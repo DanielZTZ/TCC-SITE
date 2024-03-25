@@ -1,0 +1,121 @@
+
+/* Estilizando os links */
+.categoria-link {
+    color: grey; /* Altera a cor do link para azul */
+    text-decoration: none; /* Remove o sublinhado */
+}
+
+/* Estilizando os links quando o mouse passa sobre eles */
+.categoria-link:hover {
+    color: black /* Altera a cor do link para vermelho quando o mouse passa sobre ele */
+}
+
+.card-link {
+    text-decoration: none; /* Remove o sublinhado dos links */
+    color: inherit; /* Herda a cor do texto do elemento pai */
+    display: block; /* Faz o link se comportar como um bloco, ocupando toda a largura */
+}
+
+.card-link:hover {
+    text-decoration: none; /* Mantém o link sem sublinhado ao passar o mouse */
+    /* Você pode adicionar aqui qualquer efeito de hover desejado, como uma leve mudança de cor de fundo. */
+}
+
+.card-img-top {
+    width: 100%; /* Faz a imagem ocupar 100% da largura do card */
+    height: 300px; /* Define uma altura fixa */
+    object-fit: cover; /* Garante que a imagem cubra o espaço disponível, cortando o excesso */
+}
+
+.card-body {
+    max-height: 210px;
+    min-height: 210px; 
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between; /* Distribui o espaço internamente */
+}
+
+.card-title, .card-text {
+    text-align: center; /* Centraliza o título e o texto no card */
+}
+
+.card-price {
+    font-size: 20px; /* Defina o tamanho da fonte desejado */
+    font-weight: bold; /* Opcional: aumenta a espessura da fonte para dar destaque */
+}
+
+.card:hover {
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1); /* Efeito de sombra ao passar o mouse */
+}
+
+
+/* Nav Bar */
+.header {
+    background-color:#e7e7e7; /* Um verde mais clarinho */
+    padding: 10px 0;
+}
+
+.navbar-brand img {
+    max-height: 50px;
+}
+
+.navbar-nav {
+    display: flex;
+    justify-content: center; /* Centraliza os links horizontalmente */
+    width: 100%; /* Garante que a navbar ocupe toda a largura */
+}
+
+.nav-link {
+    color: #383838 !important; /* Torna todos os links brancos */
+    margin-right: 20px; /* Espaçamento entre os links */
+}
+
+.nav-link:hover {
+    color: white !important; /* Cor ao passar o mouse */
+}
+
+/* Para garantir que o logo fique à esquerda e os links distribuídos, ajuste a classe .navbar-collapse */
+.collapse.navbar-collapse {
+    justify-content: flex-end; /* Empurra os links para o final da navbar, mantendo o logo à esquerda */
+}
+
+/* Ajuste para dispositivos menores */
+@media (max-width: 992px) {
+    .navbar-nav {
+        justify-content: flex-start; /* Alinha os itens à esquerda em telas menores */
+    }
+}
+
+.site-footer {
+    background-color: #93c24d; /* Ajuste a cor de fundo conforme necessário */
+    padding: 20px 0;
+}
+
+.contact-icon {
+    width: 50px; /* Ajuste o tamanho conforme necessário */
+    height: auto; /* Mantém a proporção original */
+    margin: 0 10px; /* Adiciona espaçamento entre os ícones */
+}
+
+/* Página Produto*/
+
+.preco-produto{
+    font-size: 30px; /* Defina o tamanho da fonte desejado */
+    font-weight: bold; /* Opcional: aumenta a espessura da fonte para dar destaque */
+}
+
+.btn-large {
+    font-size: 1.25rem; /* Ajuste o tamanho da fonte conforme necessário */
+}
+
+.max-width-container1 {
+    max-width: 600px; /* Defina a largura máxima desejada */
+    width: 100%;
+}
+.max-width-container2 {
+    max-width: 350px; /* Defina a largura máxima desejada */
+    width: 100%;
+}
+
+
+
