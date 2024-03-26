@@ -51,12 +51,7 @@
 
 /* Nav Bar */
 .header {
-    background-color:#e7e7e7; /* Um verde mais clarinho */
     padding: 10px 0;
-}
-
-.navbar-brand img {
-    max-height: 50px;
 }
 
 .navbar-nav {
@@ -73,6 +68,11 @@
 .nav-link:hover {
     color: white !important; /* Cor ao passar o mouse */
 }
+.nav-link.active {
+    font-weight: bold; /* Estilo para indicar a página atual */
+    color: #333 !important; /* Cor para indicar a página atual */
+    /* Outros estilos desejados */
+}
 
 /* Para garantir que o logo fique à esquerda e os links distribuídos, ajuste a classe .navbar-collapse */
 .collapse.navbar-collapse {
@@ -87,7 +87,6 @@
 }
 
 .site-footer {
-    background-color: #93c24d; /* Ajuste a cor de fundo conforme necessário */
     padding: 20px 0;
 }
 
