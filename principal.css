@@ -1,0 +1,45 @@
+.header {
+    padding: 10px 0;
+}
+
+.navbar-nav {
+    display: flex;
+    justify-content: center; /* Centraliza os links horizontalmente */
+    width: 100%; /* Garante que a navbar ocupe toda a largura */
+}
+
+.nav-link {
+    color: #383838 !important; /* Torna todos os links brancos */
+    margin-right: 20px; /* Espaçamento entre os links */
+}
+
+.nav-link:hover {
+    color: white !important; /* Cor ao passar o mouse */
+}
+.nav-link.active {
+    font-weight: bold; /* Estilo para indicar a página atual */
+    color: #333 !important; /* Cor para indicar a página atual */
+    /* Outros estilos desejados */
+}
+
+/* Para garantir que o logo fique à esquerda e os links distribuídos, ajuste a classe .navbar-collapse */
+.collapse.navbar-collapse {
+    justify-content: flex-end; /* Empurra os links para o final da navbar, mantendo o logo à esquerda */
+}
+
+/* Ajuste para dispositivos menores */
+@media (max-width: 992px) {
+    .navbar-nav {
+        justify-content: flex-start; /* Alinha os itens à esquerda em telas menores */
+    }
+}
+
+.site-footer {
+    padding: 20px 0;
+}
+
+.contact-icon {
+    width: 50px; /* Ajuste o tamanho conforme necessário */
+    height: auto; /* Mantém a proporção original */
+    margin: 0 10px; /* Adiciona espaçamento entre os ícones */
+}
