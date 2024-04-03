@@ -23,7 +23,7 @@
             <div class="collapse navbar-collapse" id="navbarNav">
                 <ul class="navbar-nav mx-auto"> <!-- Alteração na classe para centralizar os links -->
                     <li class="nav-item">
-                        <a class="nav-link" href="pricipal.html">Início</a>
+                        <a class="nav-link" href="pricipal.php">Início</a>
                     </li>
                     <li class="nav-item">
                         <a class="nav-link" href="#contato">Receitas</a>
