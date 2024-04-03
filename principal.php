@@ -39,7 +39,7 @@
                             <a class="nav-link" href="#servicos">Exercícios</a>
                         </li>
                         <li class="nav-item">
-                            <a class="nav-link" href="noticias22.php">Notícias</a>
+                            <a class="nav-link" href="noticia22.php">Notícias</a>
                         </li>
                         <li class="nav-item">
                             <a class="nav-link" href="#contato">Entrar</a>
