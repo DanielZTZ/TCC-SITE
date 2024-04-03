@@ -1,3 +1,4 @@
+
 <!DOCTYPE html>
 <html lang="pt-br">
 <head>
@@ -8,6 +9,7 @@
     <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.11.6/dist/umd/popper.min.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/js/bootstrap.min.js"></script>
     <link href="principal.css" rel="stylesheet">
+    
 </head>
 <body>
 
@@ -56,21 +58,21 @@
     <div id="carouselExampleIndicators" class="carousel slide" data-bs-ride="carousel">
       <div class="carousel-inner">
           <div class="carousel-item active">
-              <img src="/image/creatina3.webp" class="d-block w-100" style="height: 300px; object-fit: cover;" alt="...">
+              <img src="image/creatina3.webp" class="d-block w-100" style="height: 300px; object-fit: cover;" alt="...">
               <div class="carousel-caption d-none d-md-block">
                   <h5>Compre suplementos!</h5>
                   <p>Ajudam a ter uma vida melhor</p>
               </div>
           </div>
           <div class="carousel-item">
-              <img src="/image/whey.webp" class="d-block w-100" style="height: 300px; object-fit: cover;" alt="...">
+              <img src="image/whey.webp" class="d-block w-100" style="height: 300px; object-fit: cover;" alt="...">
               <div class="carousel-caption d-none d-md-block">
                   <h5>Veja receitas</h5>
                   <p>Varias ideias para te ajudar na dieta</p>
               </div>
           </div>
           <div class="carousel-item">
-              <img src="/image/cafe.webp" class="d-block w-100" style="height: 300px; object-fit: cover;" alt="...">
+              <img src="image/cafe.webp" class="d-block w-100" style="height: 300px; object-fit: cover;" alt="...">
               <div class="carousel-caption d-none d-md-block">
                   <h5>Veja Notícias!</h5>
                   <p>Para ter mais conhecimento sobre habitos Saudáveis</p>
@@ -88,37 +90,43 @@
   </div>
 
   <div class="container mt-5">
-    <h2 class="mb-4"> Principais Notícias</h2>
-      
-    <div class="row">
-        <div class="col-md-6">
-          <div class="shadow p-4 mb-4 bg-white">
-            <div class="card mb-4">
-                <img src="/image/foto-materia-1.webp" class="card-img-top" alt="...">
-                <div class="card-body">
-                    <h5 class="card-title">Os primeiros passos para uma vida saudável</h5>
-                    <p class="card-text">Entenda quais são os benefícios da caminhada para a saúde</p>
-                    <a href="https://g1.globo.com/sp/presidente-prudente-regiao/especial-publicitario/unimed-centro-oeste-paulista/noticia/2018/08/20/os-primeiros-passos-para-uma-vida-saudavel-unimed.ghtml" class="btn btn-success" target="_blank">Leia mais</a>
-                </div>
-            </div>
-        </div>
-        </div>
-      </span>
-        <div class="col-md-6">
-          <div class="shadow p-4 mb-4 bg-white">
-            <div class="card mb-4">
-                <img src="image/proteina-sono.webp" class="card-img-top" alt="...">
-                <div class="card-body">
-                    <h5 class="card-title">Proteína animal ou vegetal: estudo sugere qual é a melhor para o sono</h5>
-                    <p class="card-text">Pesquisadores descobriram que o tipo de proteína consumida na alimentação pode influenciar na qualidade do sono</p>
-                    <a href="https://www.cnnbrasil.com.br/saude/proteina-animal-ou-vegetal-estudo-sugere-qual-e-a-melhor-para-o-sono/" class="btn btn-success" target="_blank">Leia mais</a>
-                </div>
-              </div>
-            </div>
-        </div>
+  <div class="container mt-5">
+        <h2 class="mb-4">Principais Notícias</h2>
+        <div class="row">
         
+            <?php
+                $servidor = "localhost";
+                $usuario = "root";
+                $senha = "";
+                $dbname = "site";
+                
+                //Criar a conexão
+                $conn = mysqli_connect($servidor, $usuario, $senha, $dbname);
+            // Consulta para buscar as notícias
+            $sql = "SELECT id, titulo, texto, link, imagem FROM noticia ORDER BY RAND() DESC LIMIT 2";
+            $resultado = $conn->query($sql);
+
+            // Verifica se encontrou alguma notícia
+            if ($resultado->num_rows > 0) {
+                // Saída de dados de cada linha
+                while($row = $resultado->fetch_assoc()) {
+                    echo '<div class="col-md-6">';
+                    echo '<div class="shadow p-4 mb-4 bg-white">';
+                    echo '<div class="card mb-4">';
+                    echo '<img src="'. $row["imagem"] .'" class="card-img-top" alt="...">';
+                    echo '<div class="card-body">';
+                    echo '<h5 class="card-title">'. $row["titulo"] .'</h5>';
+                    echo '<p class="card-text">'. $row["texto"] .'</p>';
+                    echo '<a href="'. $row["link"] .'" class="btn btn-success" target="_blank">Leia mais</a>';
+                    echo '</div></div></div></div>';
+                }
+            } else {
+                echo "0 resultados";
+            }
+            $conn->close();
+            ?>
+        </div>
     </div>
-</div> 
 <div class="container mt-5">
     <h2 class="mb-4"> Principais Produtos</h2>
       
@@ -126,7 +134,7 @@
         <div class="col-md-6">
           <div class="shadow p-4 mb-4 bg-white">
             <div class="card mb-4">
-                <img src="/image/wheyprod.jpeg" class="card-img-top" alt="...">
+                <img src="image/wheyprod.jpeg" class="card-img-top" alt="...">
                 <div class="card-body">
                     <h5 class="card-title">Whey Protein </h5>
                     <p class="card-text">Proteína 100% pura, extraído diretamente do soro do leite fresco, sem blends ou adição de proteínas inferiores.</p>
@@ -150,8 +158,7 @@
         </div>
         
     </div>
-</div>           
-   
+</div>   
 <footer class="site-footer bg-light">
     <div class="container">
         <!-- Parte superior do footer: logotipo e slogan -->
@@ -182,5 +189,7 @@
         </div>
     </div>
 </footer>        
+   
+
 </body>
 </html>
