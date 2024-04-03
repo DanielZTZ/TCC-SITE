@@ -56,7 +56,7 @@
         $servername = "localhost";
         $username = "root";
         $password = "";
-        $dbname = "not_saudavel";
+        $dbname = "site";
 
         // Cria a conexão
         $conn = new mysqli($servername, $username, $password, $dbname);
