@@ -1,15 +1,5 @@
 <?php
-// Conexão com o banco de dados (substitua as credenciais conforme necessário)
-$servername = "localhost";
-$username = "root";
-$password = "";
-$dbname = "site";
-
-$conn = new mysqli($servername, $username, $password, $dbname);
-
-if ($conn->connect_error) {
-    die("Conexão falhou: " . $conn->connect_error);
-}
+require_once "conexao.php"; // Inclui o arquivo conexao.php que contém a conexão com o banco de dados
 
 // Função para filtrar produtos por categoria
 function filtrarPorCategoria($conn, $categoria_id) {

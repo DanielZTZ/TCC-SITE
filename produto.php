@@ -1,15 +1,36 @@
 <?php
-// Conexão com o banco de dados
-$host = "localhost"; // ou o IP do seu servidor de banco de dados
-$username = "root";
-$password = "";
-$database = "site";
+require_once "conexao.php"; // Inclui o arquivo conexao.php que contém a conexão com o banco de dados
 
-$conn = new mysqli($host, $username, $password, $database);
+//Calcular frete
+function calcularFrete($cepDestino) {
+    $url = "URL_DA_API_DE_FRETE"; // Substitua pela URL real da API
+    $dados = [
+        'cep_origem' => 'CEP_DE_ORIGEM',
+        'cep_destino' => $cepDestino,
+        // Adicione outros parâmetros necessários pela API
+    ];
 
-if ($conn->connect_error) {
-    die("Conexão falhou: " . $conn->connect_error);
+    // Inicia cURL
+    $ch = curl_init($url);
+
+    // Configuração do cURL
+    curl_setopt($ch, CURLOPT_RETURNTRANSFER, true);
+    curl_setopt($ch, CURLOPT_POSTFIELDS, http_build_query($dados));
+
+    // Executa a solicitação
+    $response = curl_exec($ch);
+    curl_close($ch);
+
+    // Converte a resposta
+    $resultado = json_decode($response, true);
+
+    return $resultado;
 }
+//Função que conterá os dados do cálculo, exibir com js
+echo json_encode($resultadoFrete);
+
+// Pegar o produto_id da URL
+$produto_id = isset($_GET['produto_id']) ? (int) $_GET['produto_id'] : 0;
 
 // Pegar o produto_id da URL
 $produto_id = isset($_GET['produto_id']) ? (int) $_GET['produto_id'] : 0;
@@ -28,6 +49,8 @@ if ($row = $result->fetch_assoc()) {
     $sobre = $row['sobre'];
     $beneficios = $row['beneficios'];
     $recomendacoes = $row['recomendacoes'];
+    $estoque = $row['estoque']; // Adicione esta linha
+
     // Supondo que o desconto à vista seja sempre 5%
     $desconto = $preco - ($preco * 0.05);
     // Calculando parcelas (ex: 3x sem juros)
@@ -74,6 +97,66 @@ $conn->close();
             crossorigin="anonymous"
         />
         <link rel="stylesheet" type="text/css" href="stylesproduto.css">
+        <script>
+            // Define as variáveis PHP diretamente no script JavaScript
+            var maximumQuantity = <?php echo $estoque; ?>;
+            var productId = <?php echo $produto_id; ?>;
+
+            function decreaseQuantity() {
+                var quantityInput = document.getElementById('quantity');
+                var currentValue = parseInt(quantityInput.value);
+                if (currentValue > 1) {
+                    quantityInput.value = currentValue - 1;
+                }
+            }
+
+            function increaseQuantity() {
+                var quantityInput = document.getElementById('quantity');
+                var currentValue = parseInt(quantityInput.value);
+                if (currentValue < maximumQuantity) {
+                    quantityInput.value = currentValue + 1;
+                }
+            }
+
+            function addToCart() {
+                var quantity = parseInt(document.getElementById('quantity').value);
+                if (isNaN(quantity) || quantity <= 0) {
+                    alert('Por favor, insira uma quantidade válida.');
+                    return;
+                }
+
+                // Use as variáveis definidas anteriormente
+                window.location.href = 'carrinho.php?produto_id=' + productId + '&quantidade=' + quantity;
+            }
+
+            //Calcular o Frete
+            document.getElementById('btnCalcFrete').addEventListener('click', function() {
+                // Obter o valor do CEP inserido pelo usuário
+                var cep = document.getElementById('freteInput').value;
+
+                // Validar se o CEP foi preenchido
+                if (cep.trim() === '') {
+                    alert('Por favor, insira um CEP válido.');
+                    return;
+                }
+
+                // Fazer a solicitação à API de cálculo de frete
+                // Aqui você precisa substituir 'URL_DA_API_DE_FRETE' pela URL real da API
+                var url = 'URL_DA_API_DE_FRETE?cep=' + cep;
+
+                // Fazer a solicitação usando fetch ou XMLHttpRequest
+                fetch(url)
+                    .then(response => response.json())
+                    .then(data => {
+                        // Exibir o resultado do cálculo de frete na div resultadoFrete
+                        document.getElementById('resultadoFrete').innerHTML = 'Frete para ' + cep + ': R$ ' + data.valor;
+                    })
+                    .catch(error => {
+                        console.error('Erro ao calcular frete:', error);
+                        alert('Erro ao calcular frete. Por favor, tente novamente mais tarde.');
+                    });
+            });
+        </script>
     </head>
 
     <body>
@@ -90,7 +173,7 @@ $conn->close();
                     <div class="collapse navbar-collapse" id="navbarNav">
                         <ul class="navbar-nav mx-auto"> <!-- Alteração na classe para centralizar os links -->
                             <li class="nav-item">
-                                <a class="nav-link" href="#inicio">Início</a>
+                                <a class="nav-link" href="principal.php">Início</a>
                             </li>
                             <li class="nav-item">
                                 <a class="nav-link" href="#contato">Receitas</a>
@@ -140,11 +223,11 @@ $conn->close();
                             <p>Desconto à vista 5%</p>
 
                             <div class="d-flex align-items-center mb-3 w-100 justify-content-around">
-                                <button class="btn btn-outline-secondary" id="btn-decrease">-</button>
-                                <input type="text" class="form-control text-center mx-2" value="1" style="max-width: 60px;">
-                                <button class="btn btn-outline-secondary" id="btn-increase">+</button>
-                                <button class="btn btn-success ms-2" style="flex-grow: 1; max-width: 70%;">Comprar</button>
-                            </div>
+                            <button class="btn btn-outline-secondary" id="btn-decrease" onclick="decreaseQuantity()">-</button>
+                            <input type="text" class="form-control text-center mx-2" id="quantity" value="1" style="max-width: 60px;">
+                            <button class="btn btn-outline-secondary" id="btn-increase" onclick="increaseQuantity()">+</button>
+                            <button class="btn btn-success ms-2" style="flex-grow: 1; max-width: 70%;" onclick="addToCart()">Comprar</button>
+                        </div>
 
                             <hr class="w-100">
 
@@ -154,6 +237,7 @@ $conn->close();
                                     <input type="text" class="form-control" id="freteInput" placeholder="Digite seu CEP">
                                     <button class="btn btn-outline-secondary" type="button" id="btnCalcFrete">Calcular</button>
                                 </div>
+                                <div id="resultadoFrete"></div> <!-- Aqui será exibido o resultado do cálculo de frete -->
                             </div>
                         </div>
                     </div>
@@ -257,5 +341,8 @@ $conn->close();
             integrity="sha384-BBtl+eGJRgqQAUMxJ7pMwbEyER4l1g+O15P+16Ep7Q9Q+zqX6gSbd85u4mG4QzX+"
             crossorigin="anonymous"
         ></script>
+
+        
+
     </body>
 </html>
