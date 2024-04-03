@@ -27,7 +27,7 @@
                 <div class="collapse navbar-collapse" id="navbarNav">
                     <ul class="navbar-nav mx-auto"> <!-- Alteração na classe para centralizar os links -->
                         <li class="nav-item">
-                            <a class="nav-link" href="#inicio">Início</a>
+                            <a class="nav-link" href="principal.php">Início</a>
                         </li>
                         <li class="nav-item">
                             <a class="nav-link" href="#contato">Receitas</a>
@@ -39,7 +39,7 @@
                             <a class="nav-link" href="#servicos">Exercícios</a>
                         </li>
                         <li class="nav-item">
-                            <a class="nav-link" href="#contato">Notícias</a>
+                            <a class="nav-link" href="noticias22.php">Notícias</a>
                         </li>
                         <li class="nav-item">
                             <a class="nav-link" href="#contato">Entrar</a>
