@@ -1,7 +1,7 @@
 <?php
 require_once "conexao.php"; // Inclui o arquivo conexao.php que contém a conexão com o banco de dados
 
-//Calcular frete
+/* //Calcular frete
 function calcularFrete($cepDestino) {
     $url = "URL_DA_API_DE_FRETE"; // Substitua pela URL real da API
     $dados = [
@@ -27,7 +27,7 @@ function calcularFrete($cepDestino) {
     return $resultado;
 }
 //Função que conterá os dados do cálculo, exibir com js
-echo json_encode($resultadoFrete);
+echo json_encode($resultadoFrete);*/
 
 // Pegar o produto_id da URL
 $produto_id = isset($_GET['produto_id']) ? (int) $_GET['produto_id'] : 0;
@@ -129,7 +129,7 @@ $conn->close();
                 window.location.href = 'carrinho.php?produto_id=' + productId + '&quantidade=' + quantity;
             }
 
-            //Calcular o Frete
+            /*//Calcular o Frete
             document.getElementById('btnCalcFrete').addEventListener('click', function() {
                 // Obter o valor do CEP inserido pelo usuário
                 var cep = document.getElementById('freteInput').value;
@@ -155,7 +155,7 @@ $conn->close();
                         console.error('Erro ao calcular frete:', error);
                         alert('Erro ao calcular frete. Por favor, tente novamente mais tarde.');
                     });
-            });
+            });*/
         </script>
     </head>
 
@@ -185,7 +185,7 @@ $conn->close();
                                 <a class="nav-link" href="#servicos">Exercícios</a>
                             </li>
                             <li class="nav-item">
-                                <a class="nav-link" href="#contato">Notícias</a>
+                                <a class="nav-link" href="noticia22.php">Notícias</a>
                             </li>
                             <li class="nav-item">
                                 <a class="nav-link" href="#contato">Entrar</a>
