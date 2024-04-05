@@ -24,29 +24,6 @@ SET time_zone = "+00:00";
 -- --------------------------------------------------------
 
 --
--- Estrutura para tabela `categorias`
---
-
-DROP TABLE IF EXISTS `categorias`;
-CREATE TABLE IF NOT EXISTS `categorias` (
-  `categoria_id` int NOT NULL AUTO_INCREMENT,
-  `nome` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci NOT NULL,
-  PRIMARY KEY (`categoria_id`)
-) ENGINE=MyISAM AUTO_INCREMENT=5 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
-
---
--- Despejando dados para a tabela `categorias`
---
-
-INSERT INTO `categorias` (`categoria_id`, `nome`) VALUES
-(1, 'Vitaminas e Minerais'),
-(2, 'Proteínas'),
-(3, 'Pré Treinos'),
-(4, 'Emagrecedores');
-
--- --------------------------------------------------------
-
---
 -- Estrutura para tabela `noticia`
 --
 
@@ -108,18 +85,84 @@ CREATE TABLE IF NOT EXISTS `produtos` (
 -- Despejando dados para a tabela `produtos`
 --
 
-INSERT INTO `produtos` (`produto_id`, `nome`, `preco`, `estoque`, `categoria_id`, `imagem`, `sobre`, `beneficios`, `recomendacoes`, `data_criacao`, `data_atualizacao`, `peso`, `largura`, `altura`, `comprimento`) VALUES
-(1, 'Produto 1', 99.99, 10, 1, 'img/suplemento.jpg', 'Sobre Produto 1 Lorem ipsum dolor sit amet consectetur adipisicing elit. Nesciunt tempore dolor molestiae! Id labore quas adipisci illo molestiae. Accusamus ullam molestias aliquam voluptas ab consequatur debitis, iste dolorum pariatur consectetur?', 'Benefícios Produto 1 Lorem ipsum dolor sit amet consectetur adipisicing elit. Nesciunt tempore dolor molestiae! Id labore quas adipisci illo molestiae. Accusamus ullam molestias aliquam voluptas ab consequatur debitis, iste dolorum pariatur consectetur?', 'Recomendações de uso Produto 1 Lorem ipsum dolor sit amet consectetur adipisicing elit. Nesciunt tempore dolor molestiae! Id labore quas adipisci illo molestiae. Accusamus ullam molestias aliquam voluptas ab consequatur debitis, iste dolorum pariatur consectetur?', '2024-03-31 20:21:50', '2024-03-31 20:21:50', 0.00, 0.00, 0.00, 0.00),
-(2, 'Produto 2', 199.99, 15, 2, 'img/suplemento2.jpg', 'Sobre Produto 2', 'Benefícios Produto 2', 'Recomendações de uso Produto 2', '2024-03-31 20:21:50', '2024-03-31 20:21:50', 0.00, 0.00, 0.00, 0.00),
-(3, 'Produto 3', 299.99, 5, 3, 'img/suplemento3.jpg', 'Sobre Produto 3', 'Benefícios Produto 3', 'Recomendações de uso Produto 3', '2024-03-31 20:21:50', '2024-03-31 20:21:50', 0.00, 0.00, 0.00, 0.00),
-(4, 'Produto 4', 59.99, 8, 1, 'img/suplemento.jpg', 'Sobre Produto 4', 'Benefícios Produto 4', 'Recomendações de uso Produto 4', '2024-03-31 20:21:50', '2024-03-31 20:21:50', 0.00, 0.00, 0.00, 0.00),
-(5, 'Produto 5', 49.99, 10, 2, 'img/suplemento2.jpg', 'Sobre Produto 5', 'Benefícios Produto 5', 'Recomendações de uso Produto 5', '2024-03-31 20:21:50', '2024-03-31 20:21:50', 0.00, 0.00, 0.00, 0.00),
-(6, 'Produto 6', 39.99, 20, 3, 'img/suplemento3.jpg', 'Sobre Produto 6', 'Benefícios Produto 6', 'Recomendações de uso Produto 6', '2024-03-31 20:21:50', '2024-03-31 20:21:50', 0.00, 0.00, 0.00, 0.00),
-(7, 'Produto 7', 109.99, 30, 1, 'img/suplemento.jpg', 'Sobre Produto 7', 'Benefícios Produto 7', 'Recomendações de uso Produto 7', '2024-03-31 20:21:50', '2024-03-31 20:21:50', 0.00, 0.00, 0.00, 0.00),
-(8, 'Produto 8', 129.99, 25, 2, 'img/suplemento2.jpg', 'Sobre Produto 8', 'Benefícios Produto 8', 'Recomendações de uso Produto 8', '2024-03-31 20:21:50', '2024-03-31 20:21:50', 0.00, 0.00, 0.00, 0.00),
-(9, 'Produto 9', 29.99, 12, 3, 'img/suplemento3.jpg', 'Sobre Produto 9', 'Benefícios Produto 9', 'Recomendações de uso Produto 9', '2024-03-31 20:21:50', '2024-03-31 20:21:50', 0.00, 0.00, 0.00, 0.00),
-(10, 'Produto 10', 89.99, 18, 4, 'img/suplemento4.jpg', 'Sobre Produto 10', 'Benefícios Produto 10', 'Recomendações de uso Produto 10', '2024-03-31 20:21:50', '2024-03-31 20:21:50', 0.00, 0.00, 0.00, 0.00);
-COMMIT;
+INSERT INTO `produtos` (`nome`, `preco`, `estoque`, `categoria_id`, `imagem`, `sobre`, `beneficios`, `recomendacoes`, `peso`, `largura`, `altura`, `comprimento`) VALUES
+('Vitamina Exemplo 1', 129.99, 100, 1, 'img/vitamina1.jpeg', 'descrição', 'descrição', 'descrição', 0.2, 5.0, 8.0, 5.0),
+('Vitamina Exemplo 2', 231.99, 100, 1, 'img/vitamina2.jpeg', 'descrição', 'descrição', 'descrição', 0.25, 5.5, 8.5, 5.5),
+('Vitamina Exemplo 3', 33.99, 100, 1, 'img/vitamina3.jpeg', 'descrição', 'descrição', 'descrição', 0.3, 6.0, 9.0, 6.0),
+('Vitamina Exemplo 4', 135.99, 100, 1, 'img/vitamina4.jpeg', 'descrição', 'descrição', 'descrição', 0.35, 6.5, 9.5, 6.5),
+('Vitamina Exemplo 5', 87.99, 100, 1, 'img/vitamina5.jpeg', 'descrição', 'descrição', 'descrição', 0.4, 7.0, 10.0, 7.0),
+('Proteína Exemplo 1', 159.99, 50, 2, 'img/proteina1.jpeg', 'descrição', 'descrição', 'descrição', 0.5, 10.0, 15.0, 10.0),
+('Proteína Exemplo 2', 69.99, 50, 2, 'img/proteina2.jpeg', 'descrição', 'descrição', 'descrição', 0.55, 10.5, 15.5, 10.5),
+('Proteína Exemplo 3', 279.99, 50, 2, 'img/proteina3.jpeg', 'descrição', 'descrição', 'descrição', 0.6, 11.0, 16.0, 11.0),
+('Proteína Exemplo 4', 189.99, 50, 2, 'img/proteina4.jpeg', 'descrição', 'descrição', 'descrição', 0.65, 11.5, 16.5, 11.5),
+('Proteína Exemplo 5', 99.99, 50, 2, 'img/proteina5.jpeg', 'descrição', 'descrição', 'descrição', 0.7, 12.0, 17.0, 12.0),
+('Pré Treino Exemplo 1', 45.99, 75, 3, 'img/pretreino1.jpeg', 'descrição', 'descrição', 'descrição', 0.3, 7.0, 10.0, 7.0),
+('Pré Treino Exemplo 2', 255.99, 75, 3, 'img/pretreino2.jpeg', 'descrição', 'descrição', 'descrição', 0.35, 7.5, 10.5, 7.5),
+('Pré Treino Exemplo 3', 165.99, 75, 3, 'img/pretreino3.jpeg', 'descrição', 'descrição', 'descrição', 0.4, 8.0, 11.0, 8.0),
+('Pré Treino Exemplo 4', 75.99, 75, 3, 'img/pretreino4.jpeg', 'descrição', 'descrição', 'descrição', 0.45, 8.5, 11.5, 8.5),
+('Pré Treino Exemplo 5', 185.99, 75, 3, 'img/pretreino5.jpeg', 'descrição', 'descrição', 'descrição', 0.5, 9.0, 12.0, 9.0),
+('Emagrecedor Exemplo 1', 239.99, 85, 4, 'img/emagrecedor1.jpeg', 'descrição', 'descrição', 'descrição', 0.2, 5.0, 8.0, 5.0),
+('Emagrecedor Exemplo 2', 49.99, 85, 4, 'img/emagrecedor2.jpeg', 'descrição', 'descrição', 'descrição', 0.25, 5.5, 8.5, 5.5),
+('Emagrecedor Exemplo 3', 159.99, 85, 4, 'img/emagrecedor3.jpeg', 'descrição', 'descrição', 'descrição', 0.3, 6.0, 9.0, 6.0),
+('Emagrecedor Exemplo 4', 169.99, 85, 4, 'img/emagrecedor4.jpeg', 'descrição', 'descrição', 'descrição', 0.35, 6.5, 9.5, 6.5),
+('Emagrecedor Exemplo 5', 79.99, 85, 4, 'img/emagrecedor5.jpeg', 'descrição', 'descrição', 'descrição', 0.4, 7.0, 10.0, 7.0);
+
+
+-- --------------------------------------------------------
+
+--
+-- Estrutura para tabela `categorias`
+--
+
+DROP TABLE IF EXISTS `categorias`;
+CREATE TABLE IF NOT EXISTS `categorias` (
+  `categoria_id` int NOT NULL AUTO_INCREMENT,
+  `nome` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci NOT NULL,
+  PRIMARY KEY (`categoria_id`)
+) ENGINE=MyISAM AUTO_INCREMENT=5 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+
+--
+-- Despejando dados para a tabela `categorias`
+--
+
+INSERT INTO `categorias` (`categoria_id`, `nome`) VALUES
+(1, 'Vitaminas e Minerais'),
+(2, 'Proteínas'),
+(3, 'Pré Treinos'),
+(4, 'Emagrecedores');
+
+--
+-- Estrutura para tabela `Detalhes do Usuário`
+--
+
+CREATE TABLE DetalhesUsuario (
+    id_detalhe INT AUTO_INCREMENT PRIMARY KEY,
+    id_usuario INT,
+    nome_completo VARCHAR(255),
+    cpf_cnpj VARCHAR(20),
+    telefone VARCHAR(20),
+    endereco VARCHAR(255),
+    cidade VARCHAR(100),
+    estado VARCHAR(50),
+    pais VARCHAR(50),
+    cep VARCHAR(20),
+    FOREIGN KEY (id_usuario) REFERENCES Usuarios(id_usuario)
+);
+
+--
+-- Estrutura para tabela `Pagamentos`
+--
+
+CREATE TABLE Pagamentos (
+    id_pagamento INT AUTO_INCREMENT PRIMARY KEY,
+    id_usuario INT,
+    metodo_pagamento VARCHAR(50),
+    status_pagamento VARCHAR(50),
+    valor DECIMAL(10, 2),
+    data_hora DATETIME,
+    FOREIGN KEY (id_usuario) REFERENCES Usuarios(id_usuario)
+);
+
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
 /*!40101 SET CHARACTER_SET_RESULTS=@OLD_CHARACTER_SET_RESULTS */;
