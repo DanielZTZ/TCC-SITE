@@ -27,13 +27,13 @@
                 <div class="collapse navbar-collapse" id="navbarNav">
                     <ul class="navbar-nav mx-auto"> <!-- Alteração na classe para centralizar os links -->
                         <li class="nav-item">
-                            <a class="nav-link" href="principal.php">Início</a>
+                            <a class="nav-link active" href="principal.php">Início</a>
                         </li>
                         <li class="nav-item">
                             <a class="nav-link" href="#contato">Receitas</a>
                         </li>
                         <li class="nav-item">
-                            <a class="nav-link active" href="produtos.html">Produtos</a>
+                            <a class="nav-link" href="produtos.html">Produtos</a>
                         </li>
                         <li class="nav-item">
                             <a class="nav-link" href="#servicos">Exercícios</a>
