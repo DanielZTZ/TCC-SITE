@@ -91,22 +91,22 @@ $conn->close();
                                 <a class="nav-link" href="principal.php">Início</a>
                             </li>
                             <li class="nav-item">
-                                <a class="nav-link" href="#contato">Receitas</a>
+                                <a class="nav-link" href="receitas.php">Receitas</a>
                             </li>
                             <li class="nav-item">
                                 <a class="nav-link active" href="produtos.php">Produtos</a>
                             </li>
                             <li class="nav-item">
-                                <a class="nav-link" href="#servicos">Exercícios</a>
+                                <a class="nav-link" href="exercicios.php">Exercícios</a>
                             </li>
                             <li class="nav-item">
                                 <a class="nav-link" href="noticia22.php">Notícias</a>
                             </li>
                             <li class="nav-item">
-                                <a class="nav-link" href="#contato">Entrar</a>
+                                <a class="nav-link" href="login.php">Entrar</a>
                             </li>
                             <li class="nav-item">
-                                <a class="nav-link" href="#contato">Cadastre-se</a>
+                                <a class="nav-link" href="cadastro.php">Cadastre-se</a>
                             </li>
                         </ul>
                         
@@ -153,7 +153,7 @@ $conn->close();
                             <div class="col">
                                 <a href="produto.php?produto_id=<?= $produto['produto_id'] ?>" class="card-link">
                                     <div class="card rounded-0 border-0">
-                                        <img src="<?= $produto['imagem'] ?>" class="card-img-top rounded-0" alt="...">
+                                        <img src="<?= $produto['imagem-id'] ?>" class="card-img-top rounded-0" alt="...">
                                         <div class="card-body d-flex flex-column justify-content-center align-items-center">
                                             <h5 class="card-title"><?= $produto['nome'] ?></h5>
                                             <h6 class="card-price text-success">R$ <?= number_format($produto['preco'], 2) ?></h6>

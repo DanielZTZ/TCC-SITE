@@ -45,7 +45,7 @@ if ($row = $result->fetch_assoc()) {
     // Variáveis para os detalhes do produto
     $nome = $row['nome'];
     $preco = $row['preco'];
-    $imagem = $row['imagem'];
+    $imagem = $row['imagem_id'];
     $sobre = $row['sobre'];
     $beneficios = $row['beneficios'];
     $recomendacoes = $row['recomendacoes'];
@@ -62,7 +62,7 @@ if ($row = $result->fetch_assoc()) {
 $stmt->close();
 
 // Consulta SQL para pegar outros produtos (exemplo simples)
-$stmt2 = $conn->prepare("SELECT produto_id, nome, preco, imagem FROM Produtos WHERE produto_id != ? ORDER BY RAND() LIMIT 4");
+$stmt2 = $conn->prepare("SELECT produto_id, nome, preco, imagem_id FROM Produtos WHERE produto_id != ? ORDER BY RAND() LIMIT 4");
 $stmt2->bind_param("i", $produto_id);
 $stmt2->execute();
 $result2 = $stmt2->get_result();
@@ -176,22 +176,22 @@ $conn->close();
                                 <a class="nav-link" href="principal.php">Início</a>
                             </li>
                             <li class="nav-item">
-                                <a class="nav-link" href="#contato">Receitas</a>
+                                <a class="nav-link" href="receitas.php">Receitas</a>
                             </li>
                             <li class="nav-item">
                                 <a class="nav-link active" href="produtos.php">Produtos</a>
                             </li>
                             <li class="nav-item">
-                                <a class="nav-link" href="#servicos">Exercícios</a>
+                                <a class="nav-link" href="exercicios.php">Exercícios</a>
                             </li>
                             <li class="nav-item">
                                 <a class="nav-link" href="noticia22.php">Notícias</a>
                             </li>
                             <li class="nav-item">
-                                <a class="nav-link" href="#contato">Entrar</a>
+                                <a class="nav-link" href="login.php">Entrar</a>
                             </li>
                             <li class="nav-item">
-                                <a class="nav-link" href="#contato">Cadastre-se</a>
+                                <a class="nav-link" href="cadastro.php">Cadastre-se</a>
                             </li>
                         </ul>
                         
@@ -271,7 +271,7 @@ $conn->close();
                                     <div class="col-sm-6 col-md-3 mb-4">
                                         <a href="produto.php?produto_id=<?= $produtoRelacionado['produto_id'] ?>" class="card-link">
                                             <div class="card rounded-0 border-0">
-                                                <img src="<?= $produtoRelacionado['imagem'] ?>" class="card-img-top rounded-0" alt="<?= $produtoRelacionado['nome'] ?>">
+                                                <img src="<?= $produtoRelacionado['imagem_id'] ?>" class="card-img-top rounded-0" alt="<?= $produtoRelacionado['nome'] ?>">
                                                 <div class="card-body d-flex flex-column justify-content-center align-items-center">
                                                     <h5 class="card-title"><?= $produtoRelacionado['nome'] ?></h5>
                                                     <h6 class="card-price text-success">R$ <?= number_format($produtoRelacionado['preco'], 2, ',', '.') ?></h6>

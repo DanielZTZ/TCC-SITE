@@ -61,13 +61,14 @@ INSERT INTO `noticia` (`id`, `titulo`, `texto`, `link`, `imagem`) VALUES
 --
 
 DROP TABLE IF EXISTS `produtos`;
+
 CREATE TABLE IF NOT EXISTS `produtos` (
   `produto_id` int NOT NULL AUTO_INCREMENT,
   `nome` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci NOT NULL,
   `preco` decimal(10,2) NOT NULL,
   `estoque` int NOT NULL,
   `categoria_id` int DEFAULT NULL,
-  `imagem` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci DEFAULT NULL,
+  `imagem_id` int DEFAULT NULL,
   `sobre` text CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci,
   `beneficios` text CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci,
   `recomendacoes` text CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci,
@@ -78,34 +79,73 @@ CREATE TABLE IF NOT EXISTS `produtos` (
   `altura` decimal(10,2) NOT NULL DEFAULT '0.00',
   `comprimento` decimal(10,2) NOT NULL DEFAULT '0.00',
   PRIMARY KEY (`produto_id`),
-  KEY `categoria_id` (`categoria_id`)
+  KEY `categoria_id` (`categoria_id`),
+  CONSTRAINT `fk_imagem_produto` FOREIGN KEY (`imagem_id`) REFERENCES `imagem_produto` (`id`)
 ) ENGINE=MyISAM AUTO_INCREMENT=11 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
 --
 -- Despejando dados para a tabela `produtos`
 --
 
-INSERT INTO `produtos` (`nome`, `preco`, `estoque`, `categoria_id`, `imagem`, `sobre`, `beneficios`, `recomendacoes`, `peso`, `largura`, `altura`, `comprimento`) VALUES
-('Vitamina Exemplo 1', 129.99, 100, 1, 'img/vitamina1.jpeg', 'descrição', 'descrição', 'descrição', 0.2, 5.0, 8.0, 5.0),
-('Vitamina Exemplo 2', 231.99, 100, 1, 'img/vitamina2.jpeg', 'descrição', 'descrição', 'descrição', 0.25, 5.5, 8.5, 5.5),
-('Vitamina Exemplo 3', 33.99, 100, 1, 'img/vitamina3.jpeg', 'descrição', 'descrição', 'descrição', 0.3, 6.0, 9.0, 6.0),
-('Vitamina Exemplo 4', 135.99, 100, 1, 'img/vitamina4.jpeg', 'descrição', 'descrição', 'descrição', 0.35, 6.5, 9.5, 6.5),
-('Vitamina Exemplo 5', 87.99, 100, 1, 'img/vitamina5.jpeg', 'descrição', 'descrição', 'descrição', 0.4, 7.0, 10.0, 7.0),
-('Proteína Exemplo 1', 159.99, 50, 2, 'img/proteina1.jpeg', 'descrição', 'descrição', 'descrição', 0.5, 10.0, 15.0, 10.0),
-('Proteína Exemplo 2', 69.99, 50, 2, 'img/proteina2.jpeg', 'descrição', 'descrição', 'descrição', 0.55, 10.5, 15.5, 10.5),
-('Proteína Exemplo 3', 279.99, 50, 2, 'img/proteina3.jpeg', 'descrição', 'descrição', 'descrição', 0.6, 11.0, 16.0, 11.0),
-('Proteína Exemplo 4', 189.99, 50, 2, 'img/proteina4.jpeg', 'descrição', 'descrição', 'descrição', 0.65, 11.5, 16.5, 11.5),
-('Proteína Exemplo 5', 99.99, 50, 2, 'img/proteina5.jpeg', 'descrição', 'descrição', 'descrição', 0.7, 12.0, 17.0, 12.0),
-('Pré Treino Exemplo 1', 45.99, 75, 3, 'img/pretreino1.jpeg', 'descrição', 'descrição', 'descrição', 0.3, 7.0, 10.0, 7.0),
-('Pré Treino Exemplo 2', 255.99, 75, 3, 'img/pretreino2.jpeg', 'descrição', 'descrição', 'descrição', 0.35, 7.5, 10.5, 7.5),
-('Pré Treino Exemplo 3', 165.99, 75, 3, 'img/pretreino3.jpeg', 'descrição', 'descrição', 'descrição', 0.4, 8.0, 11.0, 8.0),
-('Pré Treino Exemplo 4', 75.99, 75, 3, 'img/pretreino4.jpeg', 'descrição', 'descrição', 'descrição', 0.45, 8.5, 11.5, 8.5),
-('Pré Treino Exemplo 5', 185.99, 75, 3, 'img/pretreino5.jpeg', 'descrição', 'descrição', 'descrição', 0.5, 9.0, 12.0, 9.0),
-('Emagrecedor Exemplo 1', 239.99, 85, 4, 'img/emagrecedor1.jpeg', 'descrição', 'descrição', 'descrição', 0.2, 5.0, 8.0, 5.0),
-('Emagrecedor Exemplo 2', 49.99, 85, 4, 'img/emagrecedor2.jpeg', 'descrição', 'descrição', 'descrição', 0.25, 5.5, 8.5, 5.5),
-('Emagrecedor Exemplo 3', 159.99, 85, 4, 'img/emagrecedor3.jpeg', 'descrição', 'descrição', 'descrição', 0.3, 6.0, 9.0, 6.0),
-('Emagrecedor Exemplo 4', 169.99, 85, 4, 'img/emagrecedor4.jpeg', 'descrição', 'descrição', 'descrição', 0.35, 6.5, 9.5, 6.5),
-('Emagrecedor Exemplo 5', 79.99, 85, 4, 'img/emagrecedor5.jpeg', 'descrição', 'descrição', 'descrição', 0.4, 7.0, 10.0, 7.0);
+INSERT INTO `produtos` (`nome`, `preco`, `estoque`, `categoria_id`, `imagem_id`, `sobre`, `beneficios`, `recomendacoes`, `peso`, `largura`, `altura`, `comprimento`) VALUES
+('Vitamina Exemplo 1', 129.99, 100, 1, 1, 'descrição', 'descrição', 'descrição', 0.2, 5.0, 8.0, 5.0),
+('Vitamina Exemplo 2', 231.99, 100, 1, 2, 'descrição', 'descrição', 'descrição', 0.25, 5.5, 8.5, 5.5),
+('Vitamina Exemplo 3', 33.99, 100, 1, 3, 'descrição', 'descrição', 'descrição', 0.3, 6.0, 9.0, 6.0),
+('Vitamina Exemplo 4', 135.99, 100, 1, 4, 'descrição', 'descrição', 'descrição', 0.35, 6.5, 9.5, 6.5),
+('Vitamina Exemplo 5', 87.99, 100, 1, 5, 'descrição', 'descrição', 'descrição', 0.4, 7.0, 10.0, 7.0),
+('Proteína Exemplo 1', 159.99, 50, 2, 6, 'descrição', 'descrição', 'descrição', 0.5, 10.0, 15.0, 10.0),
+('Proteína Exemplo 2', 69.99, 50, 2, 7, 'descrição', 'descrição', 'descrição', 0.55, 10.5, 15.5, 10.5),
+('Proteína Exemplo 3', 279.99, 50, 2, 8, 'descrição', 'descrição', 'descrição', 0.6, 11.0, 16.0, 11.0),
+('Proteína Exemplo 4', 189.99, 50, 2, 9, 'descrição', 'descrição', 'descrição', 0.65, 11.5, 16.5, 11.5),
+('Proteína Exemplo 5', 99.99, 50, 2, 10, 'descrição', 'descrição', 'descrição', 0.7, 12.0, 17.0, 12.0),
+('Pré Treino Exemplo 1', 45.99, 75, 3, 11, 'descrição', 'descrição', 'descrição', 0.3, 7.0, 10.0, 7.0),
+('Pré Treino Exemplo 2', 255.99, 75, 3, 12, 'descrição', 'descrição', 'descrição', 0.35, 7.5, 10.5, 7.5),
+('Pré Treino Exemplo 3', 165.99, 75, 3, 13, 'descrição', 'descrição', 'descrição', 0.4, 8.0, 11.0, 8.0),
+('Pré Treino Exemplo 4', 75.99, 75, 3, 14, 'descrição', 'descrição', 'descrição', 0.45, 8.5, 11.5, 8.5),
+('Pré Treino Exemplo 5', 185.99, 75, 3, 15, 'descrição', 'descrição', 'descrição', 0.5, 9.0, 12.0, 9.0),
+('Emagrecedor Exemplo 1', 239.99, 85, 4, 16, 'descrição', 'descrição', 'descrição', 0.2, 5.0, 8.0, 5.0),
+('Emagrecedor Exemplo 2', 49.99, 85, 4, 17, 'descrição', 'descrição', 'descrição', 0.25, 5.5, 8.5, 5.5),
+('Emagrecedor Exemplo 3', 159.99, 85, 4, 18, 'descrição', 'descrição', 'descrição', 0.3, 6.0, 9.0, 6.0),
+('Emagrecedor Exemplo 4', 169.99, 85, 4, 19, 'descrição', 'descrição', 'descrição', 0.35, 6.5, 9.5, 6.5),
+('Emagrecedor Exemplo 5', 79.99, 85, 4, 20, 'descrição', 'descrição', 'descrição', 0.4, 7.0, 10.0, 7.0);
+
+-- --------------------------------------------------------
+
+--
+-- Estrutura para tabela `imagens`
+--
+
+CREATE TABLE `imagem_produto` (
+  `id` int(11) NOT NULL,
+  `nome` varchar(220) COLLATE utf8_unicode_ci NOT NULL,
+  `imagem` varchar(220) COLLATE utf8_unicode_ci NOT NULL
+) ENGINE=MyISAM DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
+
+--
+-- Fazendo dump de dados para tabela `imagens`
+--
+
+INSERT INTO `imagem_produto` (`id`, `nome`, `imagem`) VALUES
+(1, 'Vitamina Exemplo 1', 'img/vitamina1.jpeg'),
+(2, 'Vitamina Exemplo 2', 'img/vitamina2.jpeg'),
+(3, 'Vitamina Exemplo 3', 'img/vitamina3.jpeg'),
+(4, 'Vitamina Exemplo 4', 'img/vitamina4.jpeg'),
+(5, 'Vitamina Exemplo 5', 'img/vitamina5.jpeg'),
+(6, 'Proteína Exemplo 1', 'img/proteina1.jpeg'),
+(7, 'Proteína Exemplo 2', 'img/proteina2.jpeg'),
+(8, 'Proteína Exemplo 3', 'img/proteina3.jpeg'),
+(9, 'Proteína Exemplo 4', 'img/proteina4.jpeg'),
+(10, 'Proteína Exemplo 5', 'img/proteina5.jpeg'),
+(11, 'Pré Treino Exemplo 1', 'img/pretreino1.jpeg'),
+(12, 'Pré Treino Exemplo 2', 'img/pretreino2.jpeg'),
+(13, 'Pré Treino Exemplo 3', 'img/pretreino3.jpeg'),
+(14, 'Pré Treino Exemplo 4', 'img/pretreino4.jpeg'),
+(15, 'Pré Treino Exemplo 5', 'img/pretreino5.jpeg'),
+(16, 'Emagrecedor Exemplo 1', 'img/emagrecedor1.jpeg'),
+(17, 'Emagrecedor Exemplo 2', 'img/emagrecedor2.jpeg'),
+(18, 'Emagrecedor Exemplo 3', 'img/emagrecedor3.jpeg'),
+(19, 'Emagrecedor Exemplo 4', 'img/emagrecedor4.jpeg'),
+(20, 'Emagrecedor Exemplo 5', 'img/emagrecedor5.jpeg');
 
 
 -- --------------------------------------------------------
@@ -135,33 +175,35 @@ INSERT INTO `categorias` (`categoria_id`, `nome`) VALUES
 -- Estrutura para tabela `Detalhes do Usuário`
 --
 
-CREATE TABLE DetalhesUsuario (
-    id_detalhe INT AUTO_INCREMENT PRIMARY KEY,
-    id_usuario INT,
-    nome_completo VARCHAR(255),
-    cpf_cnpj VARCHAR(20),
-    telefone VARCHAR(20),
-    endereco VARCHAR(255),
-    cidade VARCHAR(100),
-    estado VARCHAR(50),
-    pais VARCHAR(50),
-    cep VARCHAR(20),
-    FOREIGN KEY (id_usuario) REFERENCES Usuarios(id_usuario)
-);
+-- Estrutura para tabela `DetalhesUsuario`
+CREATE TABLE IF NOT EXISTS `DetalhesUsuario` (
+  `id_detalhe` INT AUTO_INCREMENT PRIMARY KEY,
+  `id_usuario` INT,
+  `nome_completo` VARCHAR(255) NOT NULL,
+  `cpf_cnpj` VARCHAR(20),
+  `telefone` VARCHAR(20),
+  `endereco` VARCHAR(255),
+  `cidade` VARCHAR(100),
+  `estado` VARCHAR(50),
+  `pais` VARCHAR(50),
+  `cep` VARCHAR(20),
+  `data_criacao` TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
+  `data_atualizacao` TIMESTAMP DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP,
+  FOREIGN KEY (`id_usuario`) REFERENCES `Usuarios`(`id_usuario`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
---
 -- Estrutura para tabela `Pagamentos`
---
-
-CREATE TABLE Pagamentos (
-    id_pagamento INT AUTO_INCREMENT PRIMARY KEY,
-    id_usuario INT,
-    metodo_pagamento VARCHAR(50),
-    status_pagamento VARCHAR(50),
-    valor DECIMAL(10, 2),
-    data_hora DATETIME,
-    FOREIGN KEY (id_usuario) REFERENCES Usuarios(id_usuario)
-);
+CREATE TABLE IF NOT EXISTS `Pagamentos` (
+  `id_pagamento` INT AUTO_INCREMENT PRIMARY KEY,
+  `id_usuario` INT,
+  `metodo_pagamento` VARCHAR(50),
+  `status_pagamento` VARCHAR(50),
+  `valor` DECIMAL(10, 2),
+  `data_hora` DATETIME,
+  `data_criacao` TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
+  `data_atualizacao` TIMESTAMP DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP,
+  FOREIGN KEY (`id_usuario`) REFERENCES `Usuarios`(`id_usuario`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
