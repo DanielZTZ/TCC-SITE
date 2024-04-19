@@ -153,7 +153,7 @@ $conn->close();
                             <div class="col">
                                 <a href="produto.php?produto_id=<?= $produto['produto_id'] ?>" class="card-link">
                                     <div class="card rounded-0 border-0">
-                                        <img src="<?= $produto['imagem-id'] ?>" class="card-img-top rounded-0" alt="...">
+                                        <img src="<?= $produto['imagem_id'] ?>" class="card-img-top rounded-0" alt="...">
                                         <div class="card-body d-flex flex-column justify-content-center align-items-center">
                                             <h5 class="card-title"><?= $produto['nome'] ?></h5>
                                             <h6 class="card-price text-success">R$ <?= number_format($produto['preco'], 2) ?></h6>
