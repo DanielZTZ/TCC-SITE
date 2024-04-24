@@ -172,11 +172,11 @@ INSERT INTO `categorias` (`categoria_id`, `nome`) VALUES
 (4, 'Emagrecedores');
 
 --
--- Estrutura para tabela `Detalhes do Usuário`
+--
 --
 
 -- Estrutura para tabela `DetalhesUsuario`
-CREATE TABLE IF NOT EXISTS `DetalhesUsuario` (
+/*CREATE TABLE IF NOT EXISTS `DetalhesUsuario` (
   `id_detalhe` INT AUTO_INCREMENT PRIMARY KEY,
   `id_usuario` INT,
   `nome_completo` VARCHAR(255) NOT NULL,
