@@ -1,13 +1,15 @@
 -- phpMyAdmin SQL Dump
--- version 4.6.4
+-- version 4.8.4
 -- https://www.phpmyadmin.net/
 --
--- Host: 127.0.0.1
--- Tempo de geração: 09/04/2018 às 18:16
--- Versão do servidor: 5.7.14
--- Versão do PHP: 7.0.10
+-- Host: 127.0.0.1:3306
+-- Generation Time: 25-Abr-2024 às 00:23
+-- Versão do servidor: 5.7.24
+-- versão do PHP: 7.2.14
 
 SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
+SET AUTOCOMMIT = 0;
+START TRANSACTION;
 SET time_zone = "+00:00";
 
 
@@ -17,47 +19,32 @@ SET time_zone = "+00:00";
 /*!40101 SET NAMES utf8mb4 */;
 
 --
--- Banco de dados: `celke`
+-- Database: `celke`
 --
 
 -- --------------------------------------------------------
 
 --
--- Estrutura para tabela `imagens`
+-- Estrutura da tabela `imagens`
 --
 
-CREATE TABLE `imagens` (
-  `id` int(11) NOT NULL,
+DROP TABLE IF EXISTS `imagens`;
+CREATE TABLE IF NOT EXISTS `imagens` (
+  `id` int(11) NOT NULL AUTO_INCREMENT,
   `nome` varchar(220) COLLATE utf8_unicode_ci NOT NULL,
-  `imagem` varchar(220) COLLATE utf8_unicode_ci NOT NULL
-) ENGINE=MyISAM DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
+  `imagem` varchar(220) COLLATE utf8_unicode_ci NOT NULL,
+  PRIMARY KEY (`id`)
+) ENGINE=MyISAM AUTO_INCREMENT=3 DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
 
 --
--- Fazendo dump de dados para tabela `imagens`
+-- Extraindo dados da tabela `imagens`
 --
 
 INSERT INTO `imagens` (`id`, `nome`, `imagem`) VALUES
-(1, 'Teste 1', 'cinco.png');
+(1, 'Teste 1', 'cinco.png'),
+(2, 'seila', 'Papel de parede Novo.png');
+COMMIT;
 
---
--- Índices de tabelas apagadas
---
-
---
--- Índices de tabela `imagens`
---
-ALTER TABLE `imagens`
-  ADD PRIMARY KEY (`id`);
-
---
--- AUTO_INCREMENT de tabelas apagadas
---
-
---
--- AUTO_INCREMENT de tabela `imagens`
---
-ALTER TABLE `imagens`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
 /*!40101 SET CHARACTER_SET_RESULTS=@OLD_CHARACTER_SET_RESULTS */;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
