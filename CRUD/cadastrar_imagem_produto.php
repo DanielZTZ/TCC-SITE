@@ -15,7 +15,7 @@ session_start();
             unset($_SESSION['msg']);
         }
         ?>
-        <form method="POST" action="proc_cad_img.php" enctype="multipart/form-data">
+        <form method="POST" action="recebe_imagem.php" enctype="multipart/form-data">
             <label>Insira uma imagem</label>
             <input type="file" name="imagem"><br><br>
 

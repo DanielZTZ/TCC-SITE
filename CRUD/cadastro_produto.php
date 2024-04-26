@@ -15,7 +15,7 @@ session_start();
             unset($_SESSION['msg']);
         }
         ?>
-        <form method="POST" action="proc_cad_img.php" enctype="multipart/form-data">
+        <form method="POST" action="recebe_produto.php" enctype="multipart/form-data">
             <label>Nome:</label>
             <input type="text" name="nome" placeholder="Digite o nome"><br><br>
 
@@ -54,13 +54,7 @@ session_start();
             <label>Comprimento:</label>
             <input type="text" name="comprimento" placeholder="Informe o comprimento do produto"><br><br>
             
-            <label>Insira uma imagem</label>
-            <input type="file" name="imagem"><br><br>
-
-            <label>Nome da Imagem:</label>
-            <input type="text" name="nome_imagem" placeholder="Digite o nome da imagem"><br><br>
-            
-            <input name="SendCadImg" type="submit" value="Cadastrar">
+            <input type="submit"  value="Cadastrar"> <br>
         </form>
     </body>
 </html>
