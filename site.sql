@@ -203,13 +203,11 @@ CREATE TABLE IF NOT EXISTS `Pagamentos` (
   `data_criacao` TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
   `data_atualizacao` TIMESTAMP DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP,
   FOREIGN KEY (`id_usuario`) REFERENCES `Usuarios`(`id_usuario`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;*/
 
-
-/*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
-/*!40101 SET CHARACTER_SET_RESULTS=@OLD_CHARACTER_SET_RESULTS */;
-/*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */; */
-
+--
+--
+--
 
 
 DROP TABLE IF EXISTS `imagem_noticia`;
@@ -269,3 +267,7 @@ INSERT INTO `imagem_receita` (`id_imgReceita`, `nome`, `imagem`) VALUES
 (14, 'sopa de legumes', 'imagem/sopa_leg.avif'),
 (15, 'omelete de legumes', 'imagem/omelete-legumes.jpeg'),
 (16, 'sopa de legumes', 'imagem/sopa_leg.avif');
+
+/*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
+/*!40101 SET CHARACTER_SET_RESULTS=@OLD_CHARACTER_SET_RESULTS */;
+/*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
