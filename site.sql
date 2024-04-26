@@ -208,4 +208,64 @@ CREATE TABLE IF NOT EXISTS `Pagamentos` (
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
 /*!40101 SET CHARACTER_SET_RESULTS=@OLD_CHARACTER_SET_RESULTS */;
-/*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
+/*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */; */
+
+
+
+DROP TABLE IF EXISTS `imagem_noticia`;
+CREATE TABLE IF NOT EXISTS `imagem_noticia` (
+  `id_imgnot` int(11) NOT NULL AUTO_INCREMENT,
+  `nome` varchar(200) COLLATE utf8mb4_unicode_ci NOT NULL,
+  `img` varchar(100) COLLATE utf8mb4_unicode_ci NOT NULL,
+  PRIMARY KEY (`id_imgnot`)
+) ENGINE=MyISAM AUTO_INCREMENT=15 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+
+--
+-- Despejando dados para a tabela `imagem_noticia`
+--
+
+INSERT INTO `imagem_noticia` (`id_imgnot`, `nome`, `img`) VALUES
+(2, 'Os primeiros passos para uma vida saudável\r\n', 'image/materia-1.webp'),
+(3, 'Cortar completamente carne e laticínios faz bem à saúde? O que diz a ciência', 'image/materia-2.webp\r\n'),
+(4, 'Dieta vegetariana reduz risco de doenças do coração, mas aumenta risco de derrame, indica estudo', 'image/materia-3.webp'),
+(5, 'Aprenda a fazer receitas que utilizam sobras de alimentos da sua geladeira', 'image/materia-4.webp'),
+(6, 'Proteína animal ou vegetal: estudo sugere qual é a melhor para o sono', 'materia-5.webp'),
+(7, 'Saúde recomenda atenção aos hábitos alimentares para uma vida saudável', 'image/materia-6.jpg'),
+(8, 'É possível ser saudável e comer chocolate todos os dias?', 'image/materia-7.webp'),
+(9, 'Chips de Batata Doce na Air Fryer: Receita Fácil e Saudável', 'image/materia-8.webp'),
+(10, 'Descoberto melhor exercício físico para tratar depressão; veja qual', 'image/materia-9.jpg'),
+(11, 'Saiba quais sinais de problema no fígado aparecem nos pés', 'image/materia-10.jpg'),
+(12, 'Exercício físico é a melhor maneira de evitar estes 2 tipos de câncer', 'image/materia-11.jpg'),
+(13, 'Musculação faz bem para cérebro dos idosos, revela estudo', 'image/materia-12.jpg'),
+(14, 'Confira dicas para começar a correr e chegar até os 5 km', 'image/materia-13.webp');
+
+
+DROP TABLE IF EXISTS `imagem_receita`;
+CREATE TABLE IF NOT EXISTS `imagem_receita` (
+  `id_imgReceita` int(11) NOT NULL AUTO_INCREMENT,
+  `nome` varchar(100) COLLATE utf8mb4_unicode_ci NOT NULL,
+  `imagem` varchar(100) COLLATE utf8mb4_unicode_ci NOT NULL,
+  PRIMARY KEY (`id_imgReceita`)
+) ENGINE=MyISAM AUTO_INCREMENT=17 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+
+--
+-- Despejando dados para a tabela `imagem_receita`
+--
+
+INSERT INTO `imagem_receita` (`id_imgReceita`, `nome`, `imagem`) VALUES
+(1, 'wrap de frango com abacate', 'imagem/wrap-de-frango-com-abacate.webp'),
+(2, 'smothie de frutas vermelhas', 'imagem/smoothie.webp'),
+(3, 'wrap de frango com abacate', 'imagem/wrap-de-frango-com-abacate.webp'),
+(4, 'smothie de frutas vermelhas', 'imagem/smoothie.webp'),
+(5, 'salada de quinoa', 'imagem/salada-de-quinoa-simples'),
+(6, 'salada de frutas', 'imagem/salada-de-frutas.jpg'),
+(7, 'salada de quinoa', 'imagem/salada-de-quinoa-simples'),
+(8, 'salada de frutas', 'imagem/salada-de-frutas.jpg'),
+(9, 'espaguete', 'imagem/espaguete.jpg'),
+(10, 'açai', 'imagem/acai.jpg'),
+(11, 'espaguete', 'imagem/espaguete.jpg'),
+(12, 'açai', 'imagem/acai.jpg'),
+(13, 'omelete de legumes', 'imagem/omelete-legumes.jpeg'),
+(14, 'sopa de legumes', 'imagem/sopa_leg.avif'),
+(15, 'omelete de legumes', 'imagem/omelete-legumes.jpeg'),
+(16, 'sopa de legumes', 'imagem/sopa_leg.avif');

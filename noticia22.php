@@ -29,13 +29,13 @@
                         <a class="nav-link" href="#contato">Receitas</a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link active" href="produtos.html">Produtos</a>
+                        <a class="nav-link" href="produtos.html">Produtos</a>
                     </li>
                     <li class="nav-item">
                         <a class="nav-link" href="#servicos">Exercícios</a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link" href="noticia22.html">Notícias</a>
+                        <a class="nav-link active" href="noticia22.html">Notícias</a>
                     </li>
                     <li class="nav-item">
                         <a class="nav-link" href="#contato">Entrar</a>
