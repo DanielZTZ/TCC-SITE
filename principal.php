@@ -1,4 +1,5 @@
-
+<?php
+require_once "conexao.php" ?>
 <!DOCTYPE html>
 <html lang="pt-br">
 <head>
@@ -94,14 +95,8 @@
         <h2 class="mb-4">Principais Notícias</h2>
         <div class="row">
         
-            <?php
-                $servidor = "localhost";
-                $usuario = "root";
-                $senha = "";
-                $dbname = "site";
-                
-                //Criar a conexão
-                $conn = mysqli_connect($servidor, $usuario, $senha, $dbname);
+          <?php
+
             // Consulta para buscar as notícias
             $sql = "SELECT id, titulo, texto, link, imagem FROM noticia ORDER BY RAND() DESC LIMIT 2";
             $resultado = $conn->query($sql);
