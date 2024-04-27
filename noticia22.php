@@ -15,6 +15,11 @@
         height: 200px; /* Defina a altura desejada para todas as imagens */
         object-fit: cover; /* Isso garante que a imagem preencha todo o espaço da caixa mantendo a proporção */
     }
+
+    .card:hover {
+        transform: translateY(-5px); /* Move o card para cima 5px quando o mouse passa por cima */
+        transition: transform 0.3s ease; /* Adiciona uma transição suave */
+        box-shadow: 0px 0px 15px rgba(0, 0, 0, 0.3); /* Adiciona uma sombra suave */
 </style>
 </head>
 <body>
@@ -64,26 +69,50 @@
 
 
 // Consulta SQL para buscar as notícias
-$sql = "SELECT * FROM noticia ORDER BY RAND() LIMIT 6";
+$sql = "SELECT * FROM noticia ORDER BY RAND() LIMIT 7";
 $result = $conn->query($sql);
 
 if ($result->num_rows > 0) {
+    // Variável para controlar o número de iterações
+    $count = 0;
+    
     // Exibe as notícias
     while($row = $result->fetch_assoc()) {
-        echo '<div class="col-lg-4 mb-4">';
+        // Incrementa o contador
+        $count++;
+        
+        // Define a classe do card com base no contador
+        $card_class = ($count == 1) ? 'col-lg-15 mb-4' : 'col-lg-4 mb-4';
+
+        // Define a classe do texto com base no contador
+        $text_class = ($count == 1) ? 'card-text text-start' : 'card-text';
+
+        // Abre a div do card
+        echo '<div class="' . $card_class . '">';
         echo '<div class="card bg-light">';
-        echo '<img src="' . $row["imagem"] . '" class="card-img card-img-top" alt="Imagem da notícia">'; // Adicione a classe card-img
+
+        // Verifica se é a primeira notícia (notícia principal)
+        if ($count == 1) {
+            echo '<div class="card-header"></div>';
+
+             
+        }
+
+        // Imagem do card
+        echo '<img src="' . $row["imagem"] . '" class="card-img card-img-top" alt="Imagem da notícia">';
+
+        // Corpo do card
         echo '<div class="card-body">';
         echo '<h5 class="card-title">' . $row["titulo"] . '</h5>';
         $texto = $row["texto"];
-        if (strlen($texto) > 150) {
-            $texto = substr($texto, 0, 150) . '...';
+        if (strlen($texto) > 140 && $count != 1) {
+            $texto = substr($texto, 0, 140) . '...';
         }
-        echo '<p class="card-text">' . $texto . '</p>';
+        echo '<p class="' . $text_class . '">' . $texto . '</p>';
         echo '<a href="' . $row["link"] . '" class="btn btn-success" target="_blank">Ler mais</a>';
-        echo '</div>';
-        echo '</div>';
-        echo '</div>';
+        echo '</div>'; // Fecha o corpo do card
+        echo '</div>'; // Fecha o card
+        echo '</div>'; // Fecha a div do card
     }
 } else {
     echo "0 resultados";
