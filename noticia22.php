@@ -1,3 +1,5 @@
+<<?php require_once "conexao.php" ?>
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -7,6 +9,18 @@
   <!-- Inclua os arquivos CSS do Bootstrap 5 -->
   <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/css/bootstrap.min.css" rel="stylesheet">
   <link href="noticias.css" rel="stylesheet">
+  <style>
+    .card-img {
+        width: 100%;
+        height: 200px; /* Defina a altura desejada para todas as imagens */
+        object-fit: cover; /* Isso garante que a imagem preencha todo o espaço da caixa mantendo a proporção */
+    }
+
+    .card:hover {
+        transform: translateY(-5px); /* Move o card para cima 5px quando o mouse passa por cima */
+        transition: transform 0.3s ease; /* Adiciona uma transição suave */
+        box-shadow: 0px 0px 15px rgba(0, 0, 0, 0.3); /* Adiciona uma sombra suave */
+</style>
 </head>
 <body>
 
@@ -52,43 +66,62 @@
 <div class="container mt-5">
     <div class="row">
         <?php
-        // Conexão com o banco de dados (substitua essas informações pelas suas)
-        $servername = "localhost";
-        $username = "root";
-        $password = "";
-        $dbname = "site";
 
-        // Cria a conexão
-        $conn = new mysqli($servername, $username, $password, $dbname);
 
-        // Verifica a conexão
-        if ($conn->connect_error) {
-            die("Falha na conexão: " . $conn->connect_error);
+// Consulta SQL para buscar as notícias
+$sql = "SELECT * FROM noticia ORDER BY RAND() LIMIT 7";
+$result = $conn->query($sql);
+
+if ($result->num_rows > 0) {
+    // Variável para controlar o número de iterações
+    $count = 0;
+    
+    // Exibe as notícias
+    while($row = $result->fetch_assoc()) {
+        // Incrementa o contador
+        $count++;
+        
+        // Define a classe do card com base no contador
+        $card_class = ($count == 1) ? 'col-lg-15 mb-4' : 'col-lg-4 mb-4';
+
+        // Define a classe do texto com base no contador
+        $text_class = ($count == 1) ? 'card-text text-start' : 'card-text';
+
+        // Abre a div do card
+        echo '<div class="' . $card_class . '">';
+        echo '<div class="card bg-light">';
+
+        // Verifica se é a primeira notícia (notícia principal)
+        if ($count == 1) {
+            echo '<div class="card-header"></div>';
+
+             
         }
 
-        // Consulta SQL para buscar as notícias
-        $sql = "SELECT * FROM noticia ORDER BY RAND() LIMIT 6";
-        $result = $conn->query($sql);
+        // Imagem do card
+        echo '<img src="' . $row["imagem"] . '" class="card-img card-img-top" alt="Imagem da notícia">';
 
-        if ($result->num_rows > 0) {
-            // Exibe as notícias
-            while($row = $result->fetch_assoc()) {
-                echo '<div class="col-lg-4 mb-4">';
-                echo '<div class="card bg-light">';
-                echo '<img src="' . $row["imagem"] . '" class="card-img-top" alt="Imagem da notícia">';
-                echo '<div class="card-body">';
-                echo '<h5 class="card-title">' . $row["titulo"] . '</h5>';
-                echo '<p class="card-text">' . $row["texto"] . '</p>';
-                echo '<a href="' . $row["link"] . '" class="btn btn-success" target="_blank">Ler mais</a>';
-                echo '</div>';
-                echo '</div>';
-                echo '</div>';
-            }
-        } else {
-            echo "0 resultados";
+        // Corpo do card
+        echo '<div class="card-body">';
+        echo '<h5 class="card-title">' . $row["titulo"] . '</h5>';
+        $texto = $row["texto"];
+        if (strlen($texto) > 140 && $count != 1) {
+            $texto = substr($texto, 0, 140) . '...';
         }
-        $conn->close();
-        ?>
+        echo '<p class="' . $text_class . '">' . $texto . '</p>';
+        echo '<a href="' . $row["link"] . '" class="btn btn-success" target="_blank">Ler mais</a>';
+        echo '</div>'; // Fecha o corpo do card
+        echo '</div>'; // Fecha o card
+        echo '</div>'; // Fecha a div do card
+    }
+} else {
+    echo "0 resultados";
+}
+$conn->close();
+
+
+?>
+
     </div>
 </div>
 
