@@ -9,6 +9,13 @@
   <!-- Inclua os arquivos CSS do Bootstrap 5 -->
   <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/css/bootstrap.min.css" rel="stylesheet">
   <link href="noticias.css" rel="stylesheet">
+  <style>
+    .card-img {
+        width: 100%;
+        height: 200px; /* Defina a altura desejada para todas as imagens */
+        object-fit: cover; /* Isso garante que a imagem preencha todo o espaço da caixa mantendo a proporção */
+    }
+</style>
 </head>
 <body>
 
@@ -65,10 +72,14 @@ if ($result->num_rows > 0) {
     while($row = $result->fetch_assoc()) {
         echo '<div class="col-lg-4 mb-4">';
         echo '<div class="card bg-light">';
-        echo '<img src="' . $row["imagem"] . '" class="card-img-top" alt="Imagem da notícia">';
+        echo '<img src="' . $row["imagem"] . '" class="card-img card-img-top" alt="Imagem da notícia">'; // Adicione a classe card-img
         echo '<div class="card-body">';
         echo '<h5 class="card-title">' . $row["titulo"] . '</h5>';
-        echo '<p class="card-text">' . $row["texto" ] . '</p>';
+        $texto = $row["texto"];
+        if (strlen($texto) > 150) {
+            $texto = substr($texto, 0, 150) . '...';
+        }
+        echo '<p class="card-text">' . $texto . '</p>';
         echo '<a href="' . $row["link"] . '" class="btn btn-success" target="_blank">Ler mais</a>';
         echo '</div>';
         echo '</div>';
@@ -78,6 +89,8 @@ if ($result->num_rows > 0) {
     echo "0 resultados";
 }
 $conn->close();
+
+
 ?>
 
     </div>
