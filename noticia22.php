@@ -1,3 +1,5 @@
+<<?php require_once "conexao.php" ?>
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -52,43 +54,32 @@
 <div class="container mt-5">
     <div class="row">
         <?php
-        // Conexão com o banco de dados (substitua essas informações pelas suas)
-        $servername = "localhost";
-        $username = "root";
-        $password = "";
-        $dbname = "site";
 
-        // Cria a conexão
-        $conn = new mysqli($servername, $username, $password, $dbname);
 
-        // Verifica a conexão
-        if ($conn->connect_error) {
-            die("Falha na conexão: " . $conn->connect_error);
-        }
+// Consulta SQL para buscar as notícias
+$sql = "SELECT * FROM noticia ORDER BY RAND() LIMIT 6";
+$result = $conn->query($sql);
 
-        // Consulta SQL para buscar as notícias
-        $sql = "SELECT * FROM noticia ORDER BY RAND() LIMIT 6";
-        $result = $conn->query($sql);
+if ($result->num_rows > 0) {
+    // Exibe as notícias
+    while($row = $result->fetch_assoc()) {
+        echo '<div class="col-lg-4 mb-4">';
+        echo '<div class="card bg-light">';
+        echo '<img src="' . $row["imagem"] . '" class="card-img-top" alt="Imagem da notícia">';
+        echo '<div class="card-body">';
+        echo '<h5 class="card-title">' . $row["titulo"] . '</h5>';
+        echo '<p class="card-text">' . $row["texto" ] . '</p>';
+        echo '<a href="' . $row["link"] . '" class="btn btn-success" target="_blank">Ler mais</a>';
+        echo '</div>';
+        echo '</div>';
+        echo '</div>';
+    }
+} else {
+    echo "0 resultados";
+}
+$conn->close();
+?>
 
-        if ($result->num_rows > 0) {
-            // Exibe as notícias
-            while($row = $result->fetch_assoc()) {
-                echo '<div class="col-lg-4 mb-4">';
-                echo '<div class="card bg-light">';
-                echo '<img src="' . $row["imagem"] . '" class="card-img-top" alt="Imagem da notícia">';
-                echo '<div class="card-body">';
-                echo '<h5 class="card-title">' . $row["titulo"] . '</h5>';
-                echo '<p class="card-text">' . $row["texto"] . '</p>';
-                echo '<a href="' . $row["link"] . '" class="btn btn-success" target="_blank">Ler mais</a>';
-                echo '</div>';
-                echo '</div>';
-                echo '</div>';
-            }
-        } else {
-            echo "0 resultados";
-        }
-        $conn->close();
-        ?>
     </div>
 </div>
 
