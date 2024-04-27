@@ -8,11 +8,12 @@ function filtrarPorCategoria($conn, $categoria_id) {
     return $result->fetch_all(MYSQLI_ASSOC);
 }
 
-function filtrarPorPreco($conn, $min_preco, $max_preco) {
+function filtrarPorPreco($conn, $min_preco, $max_preco, $pagina_atual, $por_pagina) {
+    $inicio = ($pagina_atual - 1) * $por_pagina;
     // Se max_preco não for especificado, buscar por preços acima de min_preco
     $sql = $max_preco === '' ? 
-        "SELECT * FROM Produtos WHERE preco >= $min_preco" :
-        "SELECT * FROM Produtos WHERE preco BETWEEN $min_preco AND $max_preco";
+        "SELECT * FROM Produtos WHERE preco >= $min_preco LIMIT $inicio, $por_pagina" :
+        "SELECT * FROM Produtos WHERE preco BETWEEN $min_preco AND $max_preco LIMIT $inicio, $por_pagina";
 
     $result = $conn->query($sql);
     if(!$result) {
@@ -41,15 +42,11 @@ $categorias = ["Vitaminas e Minerais", "Proteínas", "Pré Treinos", "Emagrecedo
 if (isset($_GET['categoria_id'])) {
     $categoria_id = $_GET['categoria_id'];
     $produtos = filtrarPorCategoria($conn, $categoria_id);
-} elseif (isset($_GET['preco'])) {
-    $preco = explode("-", $_GET['preco']);
-    $min_preco = $preco[0];
-    $max_preco = isset($preco[1]) ? $preco[1] : PHP_INT_MAX;
-    $produtos = filtrarPorPreco($conn, $min_preco, $max_preco);
+} elseif (isset($_GET['min_preco']) && isset($_GET['max_preco'])) {
+    $min_preco = $_GET['min_preco'];
+    $max_preco = $_GET['max_preco'];
+    $produtos = filtrarPorPreco($conn, $min_preco, $max_preco, $pagina_atual, $por_pagina);
 }
-
-// Fechando a conexão com o banco de dados
-$conn->close();
 ?>
 
 <!-- Front End -->
@@ -121,24 +118,26 @@ $conn->close();
                     <div class="fw-bold mb-3 display-9">Categorias</div>                    
                     <?php foreach($categorias as $key => $categoria): ?>
                         <div class="row">                    
-                            <a href="produtos.php?categoria_id=<?= $key + 1 ?>" class="w-100 mb-2 d-block categoria-link"><?= $categoria ?></a>
+                            <a href="produtos.php?categoria_id=<?= $key + 1 ?>&pagina=<?= $pagina_atual ?>" class="w-100 mb-2 d-block categoria-link"><?= $categoria ?></a>
                         </div>
                     <?php endforeach; ?>
 
-                    <div class="fw-bold mb-3 mt-3 display-9">Filtrar por Preço</div>                    
+
+                   <div class="fw-bold mb-3 mt-3 display-9">Filtrar por Preço</div>
                     <!-- Filtro por Preço -->
                     <div class="row">                    
-                        <a href="produtos.php?preco=1-49.99" class="w-100 mb-2 d-block categoria-link">de R$ 1,00 até R$ 49,99</a>
+                        <a href="produtos.php?min_preco=1&max_preco=49.99&pagina=<?= $pagina_atual ?>" class="w-100 mb-2 d-block categoria-link">de R$ 1,00 até R$ 49,99</a>
                     </div>
                     <div class="row">                    
-                        <a href="produtos.php?preco=50-99.99" class="w-100 mb-2 d-block categoria-link">de R$ 50,00 até R$ 99,99</a>
+                        <a href="produtos.php?min_preco=50&max_preco=99.99&pagina=<?= $pagina_atual ?>" class="w-100 mb-2 d-block categoria-link">de R$ 50,00 até R$ 99,99</a>
                     </div>
                     <div class="row">                    
-                        <a href="produtos.php?preco=100-149.99" class="w-100 mb-2 d-block categoria-link">de R$ 100,00 até R$ 149,99</a>
+                        <a href="produtos.php?min_preco=100&max_preco=149.99&pagina=<?= $pagina_atual ?>" class="w-100 mb-2 d-block categoria-link">de R$ 100,00 até R$ 149,99</a>
                     </div>
                     <div class="row">                    
-                        <a href="produtos.php?preco=150-" class="w-100 mb-2 d-block categoria-link">mais de R$ 149,99</a>
+                        <a href="produtos.php?min_preco=150&pagina=<?= $pagina_atual ?>" class="w-100 mb-2 d-block categoria-link">mais de R$ 149,99</a>
                     </div>
+
                 </div>
 
                 <div class="col-md-10 p-4 mt-4">
@@ -153,7 +152,15 @@ $conn->close();
                             <div class="col">
                                 <a href="produto.php?produto_id=<?= $produto['produto_id'] ?>" class="card-link">
                                     <div class="card rounded-0 border-0">
-                                        <img src="<?= $produto['imagem_id'] ?>" class="card-img-top rounded-0" alt="...">
+                                        <?php
+                                            // Consulta para obter o caminho da imagem usando o ID da imagem
+                                            $imagem_id = $produto['imagem_id'];
+                                            $consulta_imagem = "SELECT imagem FROM imagem_produto WHERE id = $imagem_id";
+                                            $resultado_imagem = mysqli_query($conn, $consulta_imagem);
+                                            $linha_imagem = mysqli_fetch_assoc($resultado_imagem);
+                                            $caminho_imagem = $linha_imagem['imagem'];
+                                        ?>
+                                        <img src="<?= $caminho_imagem ?>" class="card-img-top rounded-0" alt="...">
                                         <div class="card-body d-flex flex-column justify-content-center align-items-center">
                                             <h5 class="card-title"><?= $produto['nome'] ?></h5>
                                             <h6 class="card-price text-success">R$ <?= number_format($produto['preco'], 2) ?></h6>
@@ -164,6 +171,7 @@ $conn->close();
                             </div>
                         <?php endforeach; ?>
                     </div>
+
 
                     <div class="row justify-content-center mt-4">
                         <div class="col-md-10">
