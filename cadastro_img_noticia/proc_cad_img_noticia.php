@@ -1,43 +1,69 @@
 <?php
-
 session_start();
-include_once './conexao.php';
-//Verificar se o usuário clicou no botão, clicou no botão acessa o IF e tenta cadastrar, caso contrario acessa o ELSE
+include_once './conexao_noticia.php';
+
 $SendCadImg = filter_input(INPUT_POST, 'SendCadImg', FILTER_SANITIZE_STRING);
 if ($SendCadImg) {
-    //Receber os dados do formulário
+    // Receber os dados do formulário
     $nome = filter_input(INPUT_POST, 'nome', FILTER_SANITIZE_STRING);
+    $texto = filter_input(INPUT_POST, 'texto', FILTER_SANITIZE_STRING); // Adicionado para receber o texto
+    $link = filter_input(INPUT_POST, 'link', FILTER_SANITIZE_STRING); // Adicionado para receber o link
     $nome_imagem = $_FILES['imagem']['name'];
-    //var_dump($_FILES['imagem']);
-    //Inserir no BD
-    $result_img = "INSERT INTO imagens (nome, imagem) VALUES (:nome, :imagem)";
+
+    // Iniciar a inserção na tabela "imagem_noticia"
+    $result_img = "INSERT INTO imagem_noticia (nome, img) VALUES (:nome, :imagem)";
     $insert_msg = $conn->prepare($result_img);
     $insert_msg->bindParam(':nome', $nome);
     $insert_msg->bindParam(':imagem', $nome_imagem);
 
-    //Verificar se os dados foram inseridos com sucesso
-    if ($insert_msg->execute()) {
-        //Recuperar último ID inserido no banco de dados
-        $ultimo_id = $conn->lastInsertId();
+    // Iniciar a inserção na tabela "noticias"
+    $result_noticias = "INSERT INTO noticia (titulo, texto, link) VALUES ( :titulo, :texto, :link)";
+    $insert_noticias = $conn->prepare($result_noticias);
+    $insert_noticias->bindParam(':nome', $nome);
+    $insert_noticias->bindParam(':texto', $texto);
+    $insert_noticias->bindParam(':link', $link);
 
-        //Diretório onde o arquivo vai ser salvo
-        $diretorio = 'imagens/' . $ultimo_id.'/';
+    // Verificar se os dados foram inseridos com sucesso nas duas tabelas
+    $conn->beginTransaction();
 
-        //Criar a pasta de foto 
-        mkdir($diretorio, 0755);
-        
-        if(move_uploaded_file($_FILES['imagem']['tmp_name'], $diretorio.$nome_imagem)){
-            $_SESSION['msg'] = "<p style='color:green;'>Dados salvo com sucesso e upload da imagem realizado com sucesso</p>";
-            header("Location: index.php");
-        }else{
-            $_SESSION['msg'] = "<p><span style='color:green;'>Dados salvo com sucesso. </span><span style='color:red;'>Erro ao realizar o upload da imagem</span></p>";
-            header("Location: index.php");
-        }        
-    } else {
-        $_SESSION['msg'] = "<p style='color:red;'>Erro ao salvar os dados</p>";
-        header("Location: index.php");
+    try {
+        // Inserir na tabela "imagem_noticia"
+        if ($insert_msg->execute()) {
+            // Recuperar o último ID inserido na tabela "imagem_noticia"
+            $ultimo_id = $conn->lastInsertId();
+
+            // Diretório onde o arquivo será salvo
+            $diretorio = 'imagens/' . $ultimo_id.'/';
+            mkdir($diretorio, 0755);
+            
+            // Mover o arquivo enviado para o diretório
+            if(move_uploaded_file($_FILES['imagem']['tmp_name'], $diretorio.$nome_imagem)){
+                // Se a imagem foi salva com sucesso, continuar com a inserção na tabela "noticias"
+                if ($insert_noticias->execute()) {
+                    // Confirmar a transação
+                    $conn->commit();
+                    $_SESSION['msg'] = "<p style='color:green;'>Dados salvos com sucesso e upload da imagem realizado com sucesso</p>";
+                    header("Location: index_noticia.php");
+                    exit();
+                } else {
+                    throw new Exception("Erro ao inserir dados na tabela 'noticias'");
+                }
+            } else {
+                throw new Exception("Erro ao realizar o upload da imagem");
+            }
+        } else {
+            throw new Exception("Erro ao inserir dados na tabela 'imagem_noticia'");
+        }
+    } catch (Exception $e) {
+        // Reverter a transação em caso de erro
+        $conn->rollback();
+        $_SESSION['msg'] = "<p style='color:red;'>Erro ao salvar os dados: " . $e->getMessage() . "</p>";
+        header("Location: index_noticia.php");
+        exit();
     }
 } else {
     $_SESSION['msg'] = "<p style='color:red;'>Erro ao salvar os dados</p>";
-    header("Location: index.php");
+    header("Location: index_noticia.php");
+    exit();
 }
+?>

@@ -4,6 +4,6 @@
 define('HOST', 'localhost');
 define('USER', 'root');
 define('PASS', '');
-define('DBNAME', 'celke');
+define('DBNAME', 'site');
 
 $conn = new PDO('mysql:host=' . HOST . ';dbname=' . DBNAME . ';', USER, PASS);
