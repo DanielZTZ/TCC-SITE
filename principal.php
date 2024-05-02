@@ -118,7 +118,7 @@ require_once "conexao.php" ?>
             } else {
                 echo "0 resultados";
             }
-            $conn->close();
+            //$conn->close();
             ?>
         </div>
     </div>
@@ -126,31 +126,34 @@ require_once "conexao.php" ?>
     <h2 class="mb-4"> Principais Produtos</h2>
       
     <div class="row">
-        <div class="col-md-6">
-          <div class="shadow p-4 mb-4 bg-white">
-            <div class="card mb-4">
-                <img src="image/wheyprod.jpeg" class="card-img-top" alt="...">
-                <div class="card-body">
-                    <h5 class="card-title">Whey Protein </h5>
-                    <p class="card-text">Proteína 100% pura, extraído diretamente do soro do leite fresco, sem blends ou adição de proteínas inferiores.</p>
-                    <a href="#" class="btn btn-success">Leia mais</a>
-                </div>
-            </div>
-        </div>
-        </div>
-      </span>
-        <div class="col-md-6">
-          <div class="shadow p-4 mb-4 bg-white">
-            <div class="card mb-4">
-                <img src="image/creatinaprod.jpeg" class="card-img-top" alt="...">
-                <div class="card-body">
-                    <h5 class="card-title">Creatina</h5>
-                    <p class="card-text">A CREATINA AUXILIA NO AUMENTO DO DESEMPENHO FÍSICO DURANTE EXERCÍCIOS REPETIDOS DE CURTA DURAÇÃO E ALTA INTENSIDADE</p>
-                    <a href="#" class="btn btn-success">Leia mais</a>
-                </div>
-              </div>
-            </div>
-        </div>
+<?php
+
+            // Consulta para buscar os produtos
+            $sql = "SELECT produto_id, nome, imagem_id, preco, sobre FROM produtos ORDER BY RAND() DESC LIMIT 2";
+            $resultado = $conn->query($sql);
+
+            // Verifica se encontrou algum produto
+            if ($resultado->num_rows > 0) {
+                // Saída de dados de cada linha
+                while($row = $resultado->fetch_assoc()) {
+                    echo '<div class="col-md-6">';
+                    echo '<div class="shadow p-4 mb-4 bg-white">';
+                    echo '<div class="card mb-4">';
+                    echo '<img src="/img'. $row["imagem_id"] .'" class="card-img-top" alt="...">';
+                    echo '<div class="card-body">';
+                    echo '<h5 class="card-title">'. $row["nome"] .'</h5>';
+                    echo '<p class="card-text">'. $row["sobre"] .'</p>';
+                    echo '<a href="produto.php?produto_id=' . $row["produto_id"] . '" class="btn btn-success" target="_blank">Leia mais</a>';
+
+                    echo '</div></div></div></div>';
+                }
+            } else {
+                echo "0 resultados";
+            }
+            $conn->close();
+            ?>
+
+
         
     </div>
 </div>   
