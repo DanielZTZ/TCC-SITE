@@ -277,7 +277,7 @@ COMMIT;
 -- Estrutura para tabela `DetalhesUsuario`
 --
 
-/*CREATE TABLE IF NOT EXISTS `DetalhesUsuario` (
+CREATE TABLE IF NOT EXISTS `DetalhesUsuario` (
   `id_detalhe` INT AUTO_INCREMENT PRIMARY KEY,
   `id_usuario` INT,
   `nome_completo` VARCHAR(255) NOT NULL,
@@ -290,7 +290,7 @@ COMMIT;
   `cep` VARCHAR(20),
   `data_criacao` TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
   `data_atualizacao` TIMESTAMP DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP,
-  FOREIGN KEY (`id_usuario`) REFERENCES `Usuarios`(`id_usuario`)
+  FOREIGN KEY (`id_usuario`) REFERENCES `usuario`(`id_usuario`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
 --
@@ -306,8 +306,8 @@ CREATE TABLE IF NOT EXISTS `Pagamentos` (
   `data_hora` DATETIME,
   `data_criacao` TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
   `data_atualizacao` TIMESTAMP DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP,
-  FOREIGN KEY (`id_usuario`) REFERENCES `Usuarios`(`id_usuario`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;*/
+  FOREIGN KEY (`id_usuario`) REFERENCES `usuario`(`id_usuario`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
 /*!40101 SET CHARACTER_SET_RESULTS=@OLD_CHARACTER_SET_RESULTS */;
