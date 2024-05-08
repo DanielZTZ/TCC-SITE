@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1:3306
--- Generation Time: 03-Maio-2024 às 00:17
+-- Generation Time: 08-Maio-2024 às 22:35
 -- Versão do servidor: 5.7.24
 -- versão do PHP: 7.2.14
 
@@ -33,7 +33,7 @@ CREATE TABLE IF NOT EXISTS `categorias` (
   `categoria_id` int(11) NOT NULL AUTO_INCREMENT,
   `nome` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
   PRIMARY KEY (`categoria_id`)
-) ENGINE=MyISAM AUTO_INCREMENT=5 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=5 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
 --
 -- Extraindo dados da tabela `categorias`
@@ -57,7 +57,7 @@ CREATE TABLE IF NOT EXISTS `imagem_noticia` (
   `nome` varchar(200) COLLATE utf8mb4_unicode_ci NOT NULL,
   `img` varchar(100) COLLATE utf8mb4_unicode_ci NOT NULL,
   PRIMARY KEY (`id_imgnot`)
-) ENGINE=MyISAM AUTO_INCREMENT=26 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=26 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
 --
 -- Extraindo dados da tabela `imagem_noticia`
@@ -77,10 +77,10 @@ INSERT INTO `imagem_noticia` (`id_imgnot`, `nome`, `img`) VALUES
 (12, 'Exercício físico é a melhor maneira de evitar estes 2 tipos de câncer', 'image/materia-11.jpg'),
 (13, 'Musculação faz bem para cérebro dos idosos, revela estudo', 'image/materia-12.jpg'),
 (14, 'Confira dicas para começar a correr e chegar até os 5 km', 'image/materia-13.webp'),
-(25, 'teste1', 'materia-16.webp'),
-(24, 'meteria-16', 'materia-16.webp'),
+(22, 'materia-16', 'materia-16.webp'),
 (23, 'materia-16', 'materia-16.webp'),
-(22, 'materia-16', 'materia-16.webp');
+(24, 'meteria-16', 'materia-16.webp'),
+(25, 'teste1', 'materia-16.webp');
 
 -- --------------------------------------------------------
 
@@ -93,7 +93,7 @@ CREATE TABLE IF NOT EXISTS `imagem_produto` (
   `id` int(11) NOT NULL,
   `nome` varchar(220) COLLATE utf8_unicode_ci NOT NULL,
   `imagem` varchar(220) COLLATE utf8_unicode_ci NOT NULL
-) ENGINE=MyISAM DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
 
 --
 -- Extraindo dados da tabela `imagem_produto`
@@ -133,7 +133,7 @@ CREATE TABLE IF NOT EXISTS `imagem_receita` (
   `nome` varchar(100) COLLATE utf8mb4_unicode_ci NOT NULL,
   `imagem` varchar(100) COLLATE utf8mb4_unicode_ci NOT NULL,
   PRIMARY KEY (`id_imgReceita`)
-) ENGINE=MyISAM AUTO_INCREMENT=17 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=17 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
 --
 -- Extraindo dados da tabela `imagem_receita`
@@ -171,7 +171,7 @@ CREATE TABLE IF NOT EXISTS `noticia` (
   `link` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
   `imagem` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
   PRIMARY KEY (`id`)
-) ENGINE=MyISAM AUTO_INCREMENT=14 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=14 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
 --
 -- Extraindo dados da tabela `noticia`
@@ -218,7 +218,7 @@ CREATE TABLE IF NOT EXISTS `produtos` (
   PRIMARY KEY (`produto_id`),
   KEY `categoria_id` (`categoria_id`),
   KEY `fk_imagem_produto` (`imagem_id`)
-) ENGINE=MyISAM AUTO_INCREMENT=31 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=31 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
 --
 -- Extraindo dados da tabela `produtos`
@@ -246,6 +246,68 @@ INSERT INTO `produtos` (`produto_id`, `nome`, `preco`, `estoque`, `categoria_id`
 (29, 'Emagrecedor Exemplo 4', '169.99', 85, 4, 19, 'descrição', 'descrição', 'descrição', '2024-05-02 22:48:54', '2024-05-02 22:48:54', '0.35', '6.50', '9.50', '6.50'),
 (30, 'Emagrecedor Exemplo 5', '79.99', 85, 4, 20, 'descrição', 'descrição', 'descrição', '2024-05-02 22:48:54', '2024-05-02 22:48:54', '0.40', '7.00', '10.00', '7.00');
 COMMIT;
+
+-- --------------------------------------------------------
+
+--
+-- Estrutura da tabela `usuario`
+--
+
+DROP TABLE IF EXISTS `usuario`;
+CREATE TABLE IF NOT EXISTS `usuario` (
+  `id_usuario` int(11) NOT NULL AUTO_INCREMENT,
+  `nome` varchar(100) CHARACTER SET latin1 NOT NULL,
+  `email` varchar(150) CHARACTER SET latin1 NOT NULL,
+  `telefone` varchar(14) CHARACTER SET latin1 NOT NULL,
+  `senha` varchar(100) CHARACTER SET latin1 NOT NULL,
+  PRIMARY KEY (`id_usuario`)
+) ENGINE=InnoDB AUTO_INCREMENT=2 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+
+--
+-- Extraindo dados da tabela `usuario`
+--
+
+INSERT INTO `usuario` (`id_usuario`, `nome`, `email`, `telefone`, `senha`) VALUES
+(1, 'Gabriel de matos prando', 'biel2006@gamil.com', '18997754801', 'spy12310');
+COMMIT;
+
+-- --------------------------------------------------------
+
+--
+-- Estrutura para tabela `DetalhesUsuario`
+--
+
+/*CREATE TABLE IF NOT EXISTS `DetalhesUsuario` (
+  `id_detalhe` INT AUTO_INCREMENT PRIMARY KEY,
+  `id_usuario` INT,
+  `nome_completo` VARCHAR(255) NOT NULL,
+  `cpf_cnpj` VARCHAR(20),
+  `telefone` VARCHAR(20),
+  `endereco` VARCHAR(255),
+  `cidade` VARCHAR(100),
+  `estado` VARCHAR(50),
+  `pais` VARCHAR(50),
+  `cep` VARCHAR(20),
+  `data_criacao` TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
+  `data_atualizacao` TIMESTAMP DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP,
+  FOREIGN KEY (`id_usuario`) REFERENCES `Usuarios`(`id_usuario`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+
+--
+-- Estrutura para tabela `Pagamentos`
+--
+
+CREATE TABLE IF NOT EXISTS `Pagamentos` (
+  `id_pagamento` INT AUTO_INCREMENT PRIMARY KEY,
+  `id_usuario` INT,
+  `metodo_pagamento` VARCHAR(50),
+  `status_pagamento` VARCHAR(50),
+  `valor` DECIMAL(10, 2),
+  `data_hora` DATETIME,
+  `data_criacao` TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
+  `data_atualizacao` TIMESTAMP DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP,
+  FOREIGN KEY (`id_usuario`) REFERENCES `Usuarios`(`id_usuario`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;*/
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
 /*!40101 SET CHARACTER_SET_RESULTS=@OLD_CHARACTER_SET_RESULTS */;
