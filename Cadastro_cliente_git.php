@@ -13,6 +13,8 @@ include_once("conexao_tcc.php");
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/js/bootstrap.min.js"></script>
     <link href="principal.css" rel="stylesheet">
 </head>
+<link rel="stylesheet" href="css_gabriel.css">
+
 <body>
 
 
@@ -32,25 +34,25 @@ include_once("conexao_tcc.php");
                 <div class="collapse navbar-collapse" id="navbarNav">
                     <ul class="navbar-nav mx-auto"> <!-- Alteração na classe para centralizar os links -->
                         <li class="nav-item">
-                            <a class="nav-link active" href="principal.php">Início</a>
+                            <a class="nav-link" href="principal.php">Início</a>
                         </li>
                         <li class="nav-item">
-                            <a class="nav-link" href="#contato">Receitas</a>
+                            <a class="nav-link" href="receitas.html">Receitas</a>
                         </li>
                         <li class="nav-item">
                             <a class="nav-link" href="produtos.html">Produtos</a>
                         </li>
                         <li class="nav-item">
-                            <a class="nav-link" href="#servicos">Exercícios</a>
+                            <a class="nav-link" href="exercicios_git.html">Exercícios</a>
                         </li>
                         <li class="nav-item">
                             <a class="nav-link" href="noticia22.php">Notícias</a>
                         </li>
                         <li class="nav-item">
-                            <a class="nav-link" href="#contato">Entrar</a>
+                            <a class="nav-link" href="login_tcc.php">Entrar</a>
                         </li>
                         <li class="nav-item">
-                            <a class="nav-link" href="#contato">Cadastre-se</a>
+                            <a class="nav-link active" href="Cadastro_cliente_git.php">Cadastre-se</a>
                         </li>
                     </ul>
                     
@@ -59,32 +61,29 @@ include_once("conexao_tcc.php");
         </div>
     </header>
 
-    <div class="container mt-3">
-  <h2>Cadastro cliente</h2>
-  <form method="POST" action="recebe_cadastro_tcc.php">
-    <div class="mb-3 mt-3">
-          <label for="nme">Nome:</label>
-      <input type="text" name="nome" placeholder="Insira o nome completo">
+     <div class="card custom-card-width">
+        <div class="card-body">
+            <form method="POST" action="recebe_cadastro_tcc.php">
+                <div class="mb-3 mt-3">
+                    <label for="nme">Nome:</label>
+                    <input type="text" name="nome" class="form-control" placeholder="Insira o nome completo">
+                </div>
+                <div class="mb-3">
+                    <label for="email">Email:</label>
+                    <input type="text" name="email" class="form-control" placeholder="Insira o seu E-mail">
+                </div>
+                <div class="mb-3">
+                    <label for="nmo">Número:</label>
+                    <input type="text" name="telefone" class="form-control" placeholder="Insira o seu número de telefone">
+                </div>
+                <div class="mb-3 mt-3">
+                    <label for="senha">Senha:</label>
+                    <input type="text" name="senha" class="form-control" placeholder="Insira sua senha">
+                </div>
+                <input type="submit" class="btn btn-success" value="ENVIAR">
+            </form>
+        </div>
     </div>
-      <label for="email">Email:</label>
-      <input type="text" name="email" placeholder="Insira o seu E-mail">
-    </div>
-    <div class="mb-3">
-      <label for="nmo">Número:</label>
-      <input type="text" name="telefone" placeholder="Insira o seu número de telefone">
-    </div>
-    <div class="mb-3 mt-3">
-      <label for="senha">Senha:</label>
-      <input type="text" name="senha" placeholder="Insira sua senha">
-    </div>
-   
-    <div class="form-check mb-3">
-      <label class="form-check-label">
-       
-      </label>
-    </div>
-    <input type="submit" value="ENVIAR">
-  </form>
 </div>
         <!-- Ícones de contato -->
         <div class="d-none d-lg-block text-center mb-4">
