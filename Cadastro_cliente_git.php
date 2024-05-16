@@ -13,7 +13,7 @@ include_once("conexao_tcc.php");
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/js/bootstrap.min.js"></script>
     <link href="principal.css" rel="stylesheet">
 </head>
-<link rel="stylesheet" href="css_gabriel.css">
+<link rel="stylesheet" href="css_cadastro.css">
 
 <body>
 
