@@ -1,0 +1,52 @@
+.custom-card-width {
+    width: calc(100% - 20px); /* Ajuste a largura do card */
+    max-width: 500px; /* Ajuste conforme necessário */
+    margin: 0 auto; /* Centralizar o card */
+    padding: 20px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    border: 1px solid green; /* Adiciona borda verde ao card */
+    border-radius: 10px;
+}
+
+input[type="text"],
+input[type="email"],
+input[type="password"] {
+    width: 100%; /* Faz os inputs ocuparem toda a largura disponível */
+    padding: 10px;
+    margin: 10px 0;
+    border: 2px solid green; /* Define a cor da borda */
+    border-radius: 5px;
+    transition: border-color 0.3s; /* Transição suave para a mudança de cor da borda */
+}
+
+input[type="text"]:focus,
+input[type="email"]:focus,
+input[type="password"]:focus {
+    outline: none; /* Remove a borda padrão quando focado */
+    border-color: darkgreen; /* Altera a cor da borda quando focado */
+}
+
+button[type="submit"],
+button.btn-secondary {
+    width: auto; /* Defina a largura automática */
+    background-color: green;
+    color: white;
+    cursor: pointer;
+    padding: 10px 20px;
+    border: none;
+    border-radius: 5px;
+    transition: background-color 0.3s;
+}
+
+button[type="submit"]:hover,
+button.btn-secondary:hover {
+    background-color: darkgreen; /* Cor do botão ao passar o mouse */
+}
+
+button.btn-secondary {
+    background-color: gray; /* Cor para o botão de atualizar página */
+}
+
+button.btn-secondary:hover {
+    background-color: darkgray; /* Cor do botão de atualizar página ao passar o mouse */
+}

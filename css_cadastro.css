@@ -1,0 +1,54 @@
+.container {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+form {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    width: 100%;
+}
+
+.card {
+    width: 100%;
+    max-width: 500px; /* Largura máxima do card */
+    margin: 20px auto; /* Centraliza o card horizontalmente */
+    padding: 20px;
+    border: 1px solid #ddd;
+    border-radius: 10px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+}
+
+input[type="text"],
+.custom-card-width {
+    width: calc(100% + 40px);
+    max-width: 600px; /* Ajuste conforme necessário */
+    margin: 0 auto; /* Centralizar o card */
+}
+
+input[type="text"],
+input[type="password"],
+input[type="submit"] {
+    width: 340px; /* Aumentar a largura dos inputs */
+    padding: 10px;
+    margin: 5px;
+    border: 2px solid green;
+    border-radius: 5px;
+    transition: border-color 0.3s; /* Transição suave para a mudança de cor da borda */
+}
+
+input[type="text"]:focus,
+input[type="password"]:focus,
+input[type="submit"]:focus {
+    outline: none; /* Remove a borda padrão quando focado */
+    border-color: darkgreen; /* Altera a cor da borda quando focado */
+}
+
+input[type="submit"] {
+    width: auto; /* Defina a largura automática */
+    background-color: green;
+    color: white;
+    cursor: pointer;
+}

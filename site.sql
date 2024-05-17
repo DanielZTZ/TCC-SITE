@@ -3,9 +3,9 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1:3306
--- Generation Time: 08-Maio-2024 às 22:35
+-- Tempo de geração: 16/05/2024 às 22:52
 -- Versão do servidor: 5.7.24
--- versão do PHP: 7.2.14
+-- Versão do PHP: 7.2.14
 
 SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
 SET AUTOCOMMIT = 0;
@@ -19,13 +19,31 @@ SET time_zone = "+00:00";
 /*!40101 SET NAMES utf8mb4 */;
 
 --
--- Database: `site`
+-- Banco de dados: `site`
 --
 
 -- --------------------------------------------------------
 
 --
--- Estrutura da tabela `categorias`
+-- Estrutura para tabela `boletos`
+--
+
+DROP TABLE IF EXISTS `boletos`;
+CREATE TABLE IF NOT EXISTS `boletos` (
+  `id_boleto` int(11) NOT NULL AUTO_INCREMENT,
+  `id_venda` int(11) DEFAULT NULL,
+  `numero_boleto` varchar(100) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
+  `data_vencimento` date DEFAULT NULL,
+  `status_pagamento` varchar(50) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
+  `data_criacao` timestamp NULL DEFAULT CURRENT_TIMESTAMP,
+  PRIMARY KEY (`id_boleto`),
+  KEY `id_venda` (`id_venda`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+
+-- --------------------------------------------------------
+
+--
+-- Estrutura para tabela `categorias`
 --
 
 DROP TABLE IF EXISTS `categorias`;
@@ -36,7 +54,7 @@ CREATE TABLE IF NOT EXISTS `categorias` (
 ) ENGINE=InnoDB AUTO_INCREMENT=5 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
 --
--- Extraindo dados da tabela `categorias`
+-- Despejando dados para a tabela `categorias`
 --
 
 INSERT INTO `categorias` (`categoria_id`, `nome`) VALUES
@@ -48,7 +66,31 @@ INSERT INTO `categorias` (`categoria_id`, `nome`) VALUES
 -- --------------------------------------------------------
 
 --
--- Estrutura da tabela `imagem_noticia`
+-- Estrutura para tabela `detalhesusuario`
+--
+
+DROP TABLE IF EXISTS `detalhesusuario`;
+CREATE TABLE IF NOT EXISTS `detalhesusuario` (
+  `id_detalhe` int(11) NOT NULL AUTO_INCREMENT,
+  `id_usuario` int(11) DEFAULT NULL,
+  `nome_completo` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
+  `cpf_cnpj` varchar(20) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
+  `telefone` varchar(20) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
+  `endereco` varchar(255) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
+  `cidade` varchar(100) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
+  `estado` varchar(50) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
+  `pais` varchar(50) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
+  `cep` varchar(20) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
+  `data_criacao` timestamp NULL DEFAULT CURRENT_TIMESTAMP,
+  `data_atualizacao` timestamp NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP,
+  PRIMARY KEY (`id_detalhe`),
+  KEY `id_usuario` (`id_usuario`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+
+-- --------------------------------------------------------
+
+--
+-- Estrutura para tabela `imagem_noticia`
 --
 
 DROP TABLE IF EXISTS `imagem_noticia`;
@@ -60,7 +102,7 @@ CREATE TABLE IF NOT EXISTS `imagem_noticia` (
 ) ENGINE=InnoDB AUTO_INCREMENT=26 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
 --
--- Extraindo dados da tabela `imagem_noticia`
+-- Despejando dados para a tabela `imagem_noticia`
 --
 
 INSERT INTO `imagem_noticia` (`id_imgnot`, `nome`, `img`) VALUES
@@ -85,7 +127,7 @@ INSERT INTO `imagem_noticia` (`id_imgnot`, `nome`, `img`) VALUES
 -- --------------------------------------------------------
 
 --
--- Estrutura da tabela `imagem_produto`
+-- Estrutura para tabela `imagem_produto`
 --
 
 DROP TABLE IF EXISTS `imagem_produto`;
@@ -96,7 +138,7 @@ CREATE TABLE IF NOT EXISTS `imagem_produto` (
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
 
 --
--- Extraindo dados da tabela `imagem_produto`
+-- Despejando dados para a tabela `imagem_produto`
 --
 
 INSERT INTO `imagem_produto` (`id`, `nome`, `imagem`) VALUES
@@ -124,7 +166,7 @@ INSERT INTO `imagem_produto` (`id`, `nome`, `imagem`) VALUES
 -- --------------------------------------------------------
 
 --
--- Estrutura da tabela `imagem_receita`
+-- Estrutura para tabela `imagem_receita`
 --
 
 DROP TABLE IF EXISTS `imagem_receita`;
@@ -136,7 +178,7 @@ CREATE TABLE IF NOT EXISTS `imagem_receita` (
 ) ENGINE=InnoDB AUTO_INCREMENT=17 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
 --
--- Extraindo dados da tabela `imagem_receita`
+-- Despejando dados para a tabela `imagem_receita`
 --
 
 INSERT INTO `imagem_receita` (`id_imgReceita`, `nome`, `imagem`) VALUES
@@ -160,7 +202,7 @@ INSERT INTO `imagem_receita` (`id_imgReceita`, `nome`, `imagem`) VALUES
 -- --------------------------------------------------------
 
 --
--- Estrutura da tabela `noticia`
+-- Estrutura para tabela `noticia`
 --
 
 DROP TABLE IF EXISTS `noticia`;
@@ -174,7 +216,7 @@ CREATE TABLE IF NOT EXISTS `noticia` (
 ) ENGINE=InnoDB AUTO_INCREMENT=14 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
 --
--- Extraindo dados da tabela `noticia`
+-- Despejando dados para a tabela `noticia`
 --
 
 INSERT INTO `noticia` (`id`, `titulo`, `texto`, `link`, `imagem`) VALUES
@@ -195,7 +237,27 @@ INSERT INTO `noticia` (`id`, `titulo`, `texto`, `link`, `imagem`) VALUES
 -- --------------------------------------------------------
 
 --
--- Estrutura da tabela `produtos`
+-- Estrutura para tabela `pagamentos`
+--
+
+DROP TABLE IF EXISTS `pagamentos`;
+CREATE TABLE IF NOT EXISTS `pagamentos` (
+  `id_pagamento` int(11) NOT NULL AUTO_INCREMENT,
+  `id_usuario` int(11) DEFAULT NULL,
+  `metodo_pagamento` varchar(50) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
+  `status_pagamento` varchar(50) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
+  `valor` decimal(10,2) DEFAULT NULL,
+  `data_hora` datetime DEFAULT NULL,
+  `data_criacao` timestamp NULL DEFAULT CURRENT_TIMESTAMP,
+  `data_atualizacao` timestamp NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP,
+  PRIMARY KEY (`id_pagamento`),
+  KEY `id_usuario` (`id_usuario`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+
+-- --------------------------------------------------------
+
+--
+-- Estrutura para tabela `produtos`
 --
 
 DROP TABLE IF EXISTS `produtos`;
@@ -221,7 +283,7 @@ CREATE TABLE IF NOT EXISTS `produtos` (
 ) ENGINE=InnoDB AUTO_INCREMENT=31 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
 --
--- Extraindo dados da tabela `produtos`
+-- Despejando dados para a tabela `produtos`
 --
 
 INSERT INTO `produtos` (`produto_id`, `nome`, `preco`, `estoque`, `categoria_id`, `imagem_id`, `sobre`, `beneficios`, `recomendacoes`, `data_criacao`, `data_atualizacao`, `peso`, `largura`, `altura`, `comprimento`) VALUES
@@ -245,12 +307,40 @@ INSERT INTO `produtos` (`produto_id`, `nome`, `preco`, `estoque`, `categoria_id`
 (28, 'Emagrecedor Exemplo 3', '159.99', 85, 4, 18, 'descrição', 'descrição', 'descrição', '2024-05-02 22:48:54', '2024-05-02 22:48:54', '0.30', '6.00', '9.00', '6.00'),
 (29, 'Emagrecedor Exemplo 4', '169.99', 85, 4, 19, 'descrição', 'descrição', 'descrição', '2024-05-02 22:48:54', '2024-05-02 22:48:54', '0.35', '6.50', '9.50', '6.50'),
 (30, 'Emagrecedor Exemplo 5', '79.99', 85, 4, 20, 'descrição', 'descrição', 'descrição', '2024-05-02 22:48:54', '2024-05-02 22:48:54', '0.40', '7.00', '10.00', '7.00');
-COMMIT;
 
 -- --------------------------------------------------------
 
 --
--- Estrutura da tabela `usuario`
+-- Estrutura para tabela `receitas`
+--
+
+DROP TABLE IF EXISTS `receitas`;
+CREATE TABLE IF NOT EXISTS `receitas` (
+  `id_receita` int(11) NOT NULL AUTO_INCREMENT,
+  `titulo` varchar(50) COLLATE utf8mb4_unicode_ci NOT NULL,
+  `descricao` varchar(100) COLLATE utf8mb4_unicode_ci NOT NULL,
+  `id_imgReceita` int(11) NOT NULL,
+  PRIMARY KEY (`id_receita`)
+) ENGINE=MyISAM AUTO_INCREMENT=17 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+
+--
+-- Despejando dados para a tabela `receitas`
+--
+
+INSERT INTO `receitas` (`id_receita`, `titulo`, `descricao`, `id_imgReceita`) VALUES
+(1, 'Salada de Quinoa', 'Uma salada saudável e deliciosa, perfeita para qualquer refeição.', 1),
+(2, 'Smoothie de Frutas', 'Um smoothie refrescante e cheio de vitaminas para começar o dia com energia.', 2),
+(3, 'Wrap de Frango e Abacate', 'Um wrap leve e saboroso, perfeito para um almoço rápido e saudável.', 3),
+(4, 'Tigela de Açaí', 'Uma tigela deliciosa de açaí, perfeita para um lanche saudável e energizante.', 4),
+(5, 'Sopa de Legumes', 'Uma sopa reconfortante cheia de legumes frescos, perfeita para os dias frios.', 5),
+(6, 'Salada de Frutas', 'Uma salada colorida e refrescante, perfeita para uma sobremesa saudável.', 6),
+(7, 'Omelete de Vegetais', 'Um omelete colorido e saudável', 7),
+(8, 'Espaguete de Abobrinha com Molho de Tomate', 'Um prato principal perfeito.', 8);
+
+-- --------------------------------------------------------
+
+--
+-- Estrutura para tabela `usuario`
 --
 
 DROP TABLE IF EXISTS `usuario`;
@@ -264,80 +354,60 @@ CREATE TABLE IF NOT EXISTS `usuario` (
 ) ENGINE=InnoDB AUTO_INCREMENT=2 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
 --
--- Extraindo dados da tabela `usuario`
+-- Despejando dados para a tabela `usuario`
 --
 
 INSERT INTO `usuario` (`id_usuario`, `nome`, `email`, `telefone`, `senha`) VALUES
 (1, 'Gabriel de matos prando', 'biel2006@gamil.com', '18997754801', 'spy12310');
-COMMIT;
 
 -- --------------------------------------------------------
 
 --
--- Estrutura para tabela `DetalhesUsuario`
+-- Estrutura para tabela `vendas`
 --
 
-CREATE TABLE IF NOT EXISTS `DetalhesUsuario` (
-  `id_detalhe` INT AUTO_INCREMENT PRIMARY KEY,
-  `id_usuario` INT,
-  `nome_completo` VARCHAR(255) NOT NULL,
-  `cpf_cnpj` VARCHAR(20),
-  `telefone` VARCHAR(20),
-  `endereco` VARCHAR(255),
-  `cidade` VARCHAR(100),
-  `estado` VARCHAR(50),
-  `pais` VARCHAR(50),
-  `cep` VARCHAR(20),
-  `data_criacao` TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
-  `data_atualizacao` TIMESTAMP DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP,
-  FOREIGN KEY (`id_usuario`) REFERENCES `usuario`(`id_usuario`)
+DROP TABLE IF EXISTS `vendas`;
+CREATE TABLE IF NOT EXISTS `vendas` (
+  `id_venda` int(11) NOT NULL AUTO_INCREMENT,
+  `id_usuario` int(11) DEFAULT NULL,
+  `id_produto` int(11) DEFAULT NULL,
+  `quantidade` int(11) DEFAULT NULL,
+  `preco_unitario` decimal(10,2) DEFAULT NULL,
+  `data_venda` timestamp NULL DEFAULT CURRENT_TIMESTAMP,
+  PRIMARY KEY (`id_venda`),
+  KEY `id_usuario` (`id_usuario`),
+  KEY `id_produto` (`id_produto`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
 --
--- Estrutura para tabela `Pagamentos`
+-- Restrições para dumps de tabelas
 --
 
-CREATE TABLE IF NOT EXISTS `Pagamentos` (
-  `id_pagamento` INT AUTO_INCREMENT PRIMARY KEY,
-  `id_usuario` INT,
-  `metodo_pagamento` VARCHAR(50),
-  `status_pagamento` VARCHAR(50),
-  `valor` DECIMAL(10, 2),
-  `data_hora` DATETIME,
-  `data_criacao` TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
-  `data_atualizacao` TIMESTAMP DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP,
-  FOREIGN KEY (`id_usuario`) REFERENCES `usuario`(`id_usuario`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+--
+-- Restrições para tabelas `boletos`
+--
+ALTER TABLE `boletos`
+  ADD CONSTRAINT `boletos_ibfk_1` FOREIGN KEY (`id_venda`) REFERENCES `vendas` (`id_venda`);
 
 --
--- Tabela de Vendas
+-- Restrições para tabelas `detalhesusuario`
 --
-
-CREATE TABLE IF NOT EXISTS `Vendas` (
-  `id_venda` INT AUTO_INCREMENT PRIMARY KEY,
-  `id_usuario` INT,
-  `id_produto` INT,
-  `quantidade` INT,
-  `preco_unitario` DECIMAL(10, 2),
-  `data_venda` TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
-  FOREIGN KEY (`id_usuario`) REFERENCES `usuario`(`id_usuario`),
-  FOREIGN KEY (`id_produto`) REFERENCES `produtos`(`produto_id`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+ALTER TABLE `detalhesusuario`
+  ADD CONSTRAINT `detalhesusuario_ibfk_1` FOREIGN KEY (`id_usuario`) REFERENCES `usuario` (`id_usuario`);
 
 --
--- Tabela de Boletos
+-- Restrições para tabelas `pagamentos`
 --
+ALTER TABLE `pagamentos`
+  ADD CONSTRAINT `pagamentos_ibfk_1` FOREIGN KEY (`id_usuario`) REFERENCES `usuario` (`id_usuario`);
 
-CREATE TABLE IF NOT EXISTS `Boletos` (
-  `id_boleto` INT AUTO_INCREMENT PRIMARY KEY,
-  `id_venda` INT,
-  `numero_boleto` VARCHAR(100),
-  `data_vencimento` DATE,
-  `status_pagamento` VARCHAR(50),
-  `data_criacao` TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
-  FOREIGN KEY (`id_venda`) REFERENCES `Vendas`(`id_venda`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
-
+--
+-- Restrições para tabelas `vendas`
+--
+ALTER TABLE `vendas`
+  ADD CONSTRAINT `vendas_ibfk_1` FOREIGN KEY (`id_usuario`) REFERENCES `usuario` (`id_usuario`),
+  ADD CONSTRAINT `vendas_ibfk_2` FOREIGN KEY (`id_produto`) REFERENCES `produtos` (`produto_id`);
+COMMIT;
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
 /*!40101 SET CHARACTER_SET_RESULTS=@OLD_CHARACTER_SET_RESULTS */;
