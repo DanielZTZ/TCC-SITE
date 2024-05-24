@@ -1,43 +1,58 @@
 <?php
-
 session_start();
-include_once './conexao.php';
-//Verificar se o usuário clicou no botão, clicou no botão acessa o IF e tenta cadastrar, caso contrario acessa o ELSE
+include_once '../conexao.php';
+
+// Verificar se o usuário clicou no botão
 $SendCadImg = filter_input(INPUT_POST, 'SendCadImg', FILTER_SANITIZE_STRING);
 if ($SendCadImg) {
-    //Receber os dados do formulário
+    // Receber os dados do formulário
     $nome = filter_input(INPUT_POST, 'nome_imagem', FILTER_SANITIZE_STRING);
-    $nome_imagem = $_FILES['imagem']['nome_imagem'];
-    //var_dump($_FILES['imagem']);
-    //Inserir no BD
-    $result_img = "INSERT INTO imagem_produto (nome, imagem) VALUES (:nome, :imagem)";
-    $insert_msg = $conn->prepare($result_img);
-    $insert_msg->bindParam(':nome', $nome);
-    $insert_msg->bindParam(':imagem', $nome_imagem);
 
-    //Verificar se os dados foram inseridos com sucesso
-    if ($insert_msg->execute()) {
-        //Recuperar último ID inserido no banco de dados
-        $ultimo_id = $conn->lastInsertId();
+    // Verificar se foi enviado um arquivo
+    if (isset($_FILES['imagem'])) {
+        $nome_imagem = $_FILES['imagem']['name'];
+        $nome_tmp = $_FILES['imagem']['tmp_name'];
+        $erro = $_FILES['imagem']['error'];
 
-        //Diretório onde o arquivo vai ser salvo
-        $diretorio = 'imagem_produto/' . $ultimo_id.'/';
+        // Verificar se não houve erro no upload
+        if ($erro == UPLOAD_ERR_OK) {
+            // Diretório onde o arquivo vai ser salvo
+            $diretorio = 'imagem_produto/';
+            $caminho_completo = $diretorio . $nome_imagem;
 
-        //Criar a pasta de foto 
-        mkdir($diretorio, 0755);
-        
-        if(move_uploaded_file($_FILES['imagem']['tmp_name'], $diretorio.$nome_imagem)){
-            $_SESSION['msg'] = "<p style='color:green;'>Dados salvo com sucesso e upload da imagem realizado com sucesso</p>";
-            header("Location: cadastrar_imagem_produto.php");
-        }else{
-            $_SESSION['msg'] = "<p><span style='color:green;'>Dados salvo com sucesso. </span><span style='color:red;'>Erro ao realizar o upload da imagem</span></p>";
-            header("Location: cadastrar_imagem_produto.php");
-        }        
+            // Mover o arquivo para o diretório
+            if (move_uploaded_file($nome_tmp, $caminho_completo)) {
+                // Inserir no BD apenas o caminho para a imagem
+                $result_img = "INSERT INTO imagem_produto (nome, imagem) VALUES (?, ?)";
+
+                // Preparação da consulta SQL
+                $insert_msg = $conn->prepare($result_img);
+                if ($insert_msg === false) {
+                    die("Erro na preparação da consulta: " . $conn->error);
+                }
+
+                // Vinculação dos parâmetros da consulta
+                $insert_msg->bind_param('ss', $nome, $caminho_completo);
+
+                // Verificar se os dados foram inseridos com sucesso
+                if ($insert_msg->execute()) {
+                    $_SESSION['msg'] = "<p style='color:green;'>Dados salvos e imagem enviada com sucesso</p>";
+                } else {
+                    $_SESSION['msg'] = "<p style='color:red;'>Erro ao salvar os dados: " . $insert_msg->error . "</p>";
+                }
+            } else {
+                $_SESSION['msg'] = "<p style='color:red;'>Erro ao enviar a imagem</p>";
+            }
+        } else {
+            $_SESSION['msg'] = "<p style='color:red;'>Erro no upload da imagem: $erro</p>";
+        }
     } else {
-        $_SESSION['msg'] = "<p style='color:red;'>Erro ao salvar os dados</p>";
-        header("Location: cadastrar_imagem_produto.php");
+        $_SESSION['msg'] = "<p style='color:red;'>Nenhum arquivo enviado</p>";
     }
 } else {
-    $_SESSION['msg'] = "<p style='color:red;'>Erro ao salvar os dados</p>";
-    header("Location: cadastrar_imagem_produto.php");
+    $_SESSION['msg'] = "<p style='color:red;'>Acesso ao formulário não autorizado</p>";
 }
+
+// Redirecionar de volta para o formulário
+header("Location: cadastrar_imagem_produto.php");
+?>

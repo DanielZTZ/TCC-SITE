@@ -1,6 +1,3 @@
-<?php
-session_start();
-?>
 <!DOCTYPE html>
 <html lang="pt-br">
     <head>
@@ -10,7 +7,7 @@ session_start();
     <body>
         <h1>Cadastrar Produto</h1>
         <?php
-        if(isset($_SESSION['msg'])){
+        if (isset($_SESSION['msg'])) {
             echo $_SESSION['msg'];
             unset($_SESSION['msg']);
         }
@@ -20,10 +17,10 @@ session_start();
             <input type="text" name="nome" placeholder="Digite o nome"><br><br>
 
             <label>Preço:</label>
-            <input type="text" name="preco" placeholder="Informe o preço"><br><br>
+            <input type="number" name="preco" placeholder="Informe o preço"><br><br>
 
             <label>Estoque:</label>
-            <input type="text" name="estoque" placeholder="Informe a quantidade"><br><br>
+            <input type="number" name="estoque" placeholder="Informe a quantidade"><br><br>
 
             <label for="categoria">Categoria:</label>
             <select id="categoria_id" name="categoria">
@@ -34,27 +31,27 @@ session_start();
             </select><br><br>
 
             <label>Sobre:</label>
-            <input type="text" name="sobre" placeholder="Informe sobre o produto"><br><br>
+            <textarea name="sobre" placeholder="Informe sobre o produto"></textarea><br><br>
 
             <label>Benefícios:</label>
-            <input type="text" name="beneficios" placeholder="Informe os benefícios do produto"><br><br>
+            <textarea name="beneficios" placeholder="Informe os benefícios do produto"></textarea><br><br>
 
             <label>Recomendações de Uso:</label>
-            <input type="text" name="recomendacoes" placeholder="Recomendações de uso do produto"><br><br>
+            <textarea name="recomendacoes" placeholder="Recomendações de uso do produto"></textarea><br><br>
 
             <label>Peso:</label>
-            <input type="text" name="peso" placeholder="Informe o peso do produto"><br><br>
+            <input type="number" name="peso" placeholder="Informe o peso do produto"><br><br>
 
             <label>Largura:</label>
-            <input type="text" name="largura" placeholder="Informe a Largura do produto"><br><br>
+            <input type="number" name="largura" placeholder="Informe a largura do produto"><br><br>
 
             <label>Altura:</label>
-            <input type="text" name="altura" placeholder="Informe a altura"><br><br>
+            <input type="number" name="altura" placeholder="Informe a altura"><br><br>
 
             <label>Comprimento:</label>
-            <input type="text" name="comprimento" placeholder="Informe o comprimento do produto"><br><br>
+            <input type="number" name="comprimento" placeholder="Informe o comprimento do produto"><br><br>
             
-            <input type="submit"  value="Cadastrar"> <br>
+            <input type="submit" value="Cadastrar"><br>
         </form>
     </body>
 </html>

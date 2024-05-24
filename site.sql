@@ -132,10 +132,12 @@ INSERT INTO `imagem_noticia` (`id_imgnot`, `nome`, `img`) VALUES
 
 DROP TABLE IF EXISTS `imagem_produto`;
 CREATE TABLE IF NOT EXISTS `imagem_produto` (
-  `id` int(11) NOT NULL,
+  `id` int(11) NOT NULL AUTO_INCREMENT,
   `nome` varchar(220) COLLATE utf8_unicode_ci NOT NULL,
-  `imagem` varchar(220) COLLATE utf8_unicode_ci NOT NULL
+  `imagem` varchar(220) COLLATE utf8_unicode_ci NOT NULL,
+  PRIMARY KEY (`id`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
+
 
 --
 -- Despejando dados para a tabela `imagem_produto`

@@ -13,5 +13,6 @@
     } else {
         // Definir a codificação de caracteres da conexão
         mysqli_set_charset($conn, "utf8mb4");
+        echo "Conexao TCC-SITE realizada com sucesso <p>";
     }
 ?>

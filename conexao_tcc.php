@@ -14,6 +14,6 @@
 	}
 	else
 	{
-		echo "Conexao realizada com sucesso <p>";
+		echo "Conexao tcc-site realizada com sucesso <p>";
 	}
 ?>
