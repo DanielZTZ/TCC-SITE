@@ -1,6 +1,6 @@
 <?php
 session_start();
-include_once '../conexao.php';
+include_once './conexao.php';
 
 // Verificar se o usuário clicou no botão
 $SendCadImg = filter_input(INPUT_POST, 'SendCadImg', FILTER_SANITIZE_STRING);
@@ -12,7 +12,7 @@ if ($SendCadImg) {
     $nome_imagem = $_FILES['imagem']['name'];
     
     // Inserir na tabela 'imagem'
-    $result_imagem = "INSERT INTO imagem_noticia (nome, img) VALUES (:nome, :imagem)";
+    $result_imagem = "INSERT INTO imagem (nome, imagem) VALUES (:nome, :imagem)";
     $insert_imagem = $conn->prepare($result_imagem);
     
     // Verificar se a preparação da consulta foi bem-sucedida
@@ -26,7 +26,7 @@ if ($SendCadImg) {
             $imagem_id = $conn->lastInsertId();
 
             // Inserir na tabela 'noticia' com a referência para a imagem recém-inserida
-            $result_noticia = "INSERT INTO noticia (titulo, texto, link, imagem) VALUES (:titulo, :texto, :link, :imagem)";
+            $result_noticia = "INSERT INTO noticia (titulo, texto, link, imagem_id) VALUES (:titulo, :texto, :link, :imagem_id)";
             $insert_noticia = $conn->prepare($result_noticia);
             $insert_noticia->bindParam(':titulo', $titulo);
             $insert_noticia->bindParam(':texto', $texto);
@@ -36,22 +36,21 @@ if ($SendCadImg) {
             // Verificar se os dados foram inseridos com sucesso na tabela 'noticia'
             if ($insert_noticia->execute()) {
                 $_SESSION['msg'] = "<p style='color:green;'>Dados salvos com sucesso</p>";
-                header("Location: index_noticia.php");
+                header("Location: index.php");
             } else {
                 $_SESSION['msg'] = "<p style='color:red;'>Erro ao salvar os dados da notícia</p>";
-                header("Location: index_noticia.php");
+                header("Location: index.php");
             }
         } else {
             $_SESSION['msg'] = "<p style='color:red;'>Erro ao salvar os dados da imagem</p>";
-            header("Location: index_noticia.php");
+            header("Location: index.php");
         }
     } else {
         $_SESSION['msg'] = "<p style='color:red;'>Erro ao preparar a consulta para inserção de imagem</p>";
-        header("Location: index_noticia.php");
+        header("Location: index.php");
     }
 } else {
     $_SESSION['msg'] = "<p style='color:red;'>Erro ao enviar o formulário</p>";
-    header("Location: index_noticia.php");
+    header("Location: index.php");
 }
-
 ?>

@@ -97,7 +97,6 @@ session_start();
         
             <label>Imagem:</label>
             <input type="file" name="imagem" required><br><br>
-<h1>Cadastrar noticia</h1>
             <label>Título:</label>
             <input type="text" name="titulo" placeholder="Digite o título" required><br><br>
             
