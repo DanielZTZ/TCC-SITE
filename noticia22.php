@@ -20,7 +20,9 @@
         transform: translateY(-5px); /* Move o card para cima 5px quando o mouse passa por cima */
         transition: transform 0.3s ease; /* Adiciona uma transição suave */
         box-shadow: 0px 0px 15px rgba(0, 0, 0, 0.3); /* Adiciona uma sombra suave */
+    }
 </style>
+
 </head>
 <body>
 
@@ -94,6 +96,7 @@ if ($result->num_rows > 0) {
         // Verifica se é a primeira notícia (notícia principal)
         if ($count == 1) {
             echo '<div class="card-header"></div>';
+
 
              
         }
