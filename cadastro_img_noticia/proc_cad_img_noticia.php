@@ -3,55 +3,62 @@ session_start();
 include_once '../conexao.php';
 
 // Verificar se o usuário clicou no botão
-$SendCadImg = filter_input(INPUT_POST, 'SendCadImg', FILTER_SANITIZE_STRING);
+$SendCadImg = filter_input(INPUT_POST, 'SendCadImg', FILTER_SANITIZE_SPECIAL_CHARS);
 if ($SendCadImg) {
     // Receber os dados do formulário
-    $titulo = filter_input(INPUT_POST, 'titulo', FILTER_SANITIZE_STRING);
-    $texto = filter_input(INPUT_POST, 'texto', FILTER_SANITIZE_STRING);
-    $link = filter_input(INPUT_POST, 'link', FILTER_SANITIZE_STRING);
-    $nome_imagem = $_FILES['imagem']['name'];
-    
-    // Inserir na tabela 'imagem'
-    $result_imagem = "INSERT INTO imagem_noticia (nome, img) VALUES (:nome, :imagem)";
-    $insert_imagem = $conn->prepare($result_imagem);
-    
-    // Verificar se a preparação da consulta foi bem-sucedida
-    if ($insert_imagem) {
-        $insert_imagem->bindParam(':nome', $titulo); // Estou assumindo que o nome da notícia será usado como nome da imagem na tabela 'imagem'
-        $insert_imagem->bindParam(':imagem', $nome_imagem);
+    $titulo = filter_input(INPUT_POST, 'titulo', FILTER_SANITIZE_SPECIAL_CHARS);
+    $texto = filter_input(INPUT_POST, 'texto', FILTER_SANITIZE_SPECIAL_CHARS);
+    $link = filter_input(INPUT_POST, 'link', FILTER_SANITIZE_SPECIAL_CHARS);
 
-        // Verificar se os dados foram inseridos com sucesso na tabela 'imagem'
-        if ($insert_imagem->execute()) {
-            // Obter o ID da imagem recém-inserida
-            $imagem_id = $conn->lastInsertId();
+    // Verificar se foi enviado um arquivo
+    if (isset($_FILES['imagem'])) {
+        $nome_imagem = $_FILES['imagem']['name'];
+        $nome_tmp = $_FILES['imagem']['tmp_name'];
+        $erro = $_FILES['imagem']['error'];
 
-            // Inserir na tabela 'noticia' com a referência para a imagem recém-inserida
-            $result_noticia = "INSERT INTO noticia (titulo, texto, link, imagem) VALUES (:titulo, :texto, :link, :imagem)";
-            $insert_noticia = $conn->prepare($result_noticia);
-            $insert_noticia->bindParam(':titulo', $titulo);
-            $insert_noticia->bindParam(':texto', $texto);
-            $insert_noticia->bindParam(':link', $link);
-            $insert_noticia->bindParam(':imagem_id', $imagem_id);
+        // Verificar se não houve erro no upload
+        if ($erro == UPLOAD_ERR_OK) {
+            // Diretório onde o arquivo vai ser salvo
+            $diretorio = 'imagens/';
+            $caminho_completo = $diretorio . $nome_imagem;
 
-            // Verificar se os dados foram inseridos com sucesso na tabela 'noticia'
-            if ($insert_noticia->execute()) {
-                $_SESSION['msg'] = "<p style='color:green;'>Dados salvos com sucesso</p>";
-                header("Location: index_noticia.php");
+            // Mover o arquivo para o diretório
+            if (move_uploaded_file($nome_tmp, $caminho_completo)) {
+                // Inserir no BD os dados da notícia incluindo o caminho da imagem
+                $result_noticia = "INSERT INTO noticia (titulo, texto, link, imagem) VALUES (?, ?, ?, ?)";
+
+                // Preparação da consulta SQL
+                $insert_noticia = $conn->prepare($result_noticia);
+
+                // Vinculação dos parâmetros da consulta
+                $insert_noticia->bind_param('ssss', $titulo, $texto, $link, $caminho_completo);
+
+                // Verificar se os dados foram inseridos com sucesso
+                if ($insert_noticia->execute()) {
+                    $_SESSION['msg'] = "<p style='color:green;'>Dados salvos e imagem enviada com sucesso</p>";
+                    $_SESSION['msg_type'] = "success";
+                } else {
+                    $_SESSION['msg'] = "<p style='color:red;'>Erro ao salvar os dados</p>";
+                    $_SESSION['msg_type'] = "danger";
+                }
             } else {
-                $_SESSION['msg'] = "<p style='color:red;'>Erro ao salvar os dados da notícia</p>";
-                header("Location: index_noticia.php");
+                $_SESSION['msg'] = "<p style='color:red;'>Erro ao enviar a imagem</p>";
+                $_SESSION['msg_type'] = "danger";
             }
         } else {
-            $_SESSION['msg'] = "<p style='color:red;'>Erro ao salvar os dados da imagem</p>";
-            header("Location: index_noticia.php");
+            $_SESSION['msg'] = "<p style='color:red;'>Erro no upload da imagem: $erro</p>";
+            $_SESSION['msg_type'] = "danger";
         }
     } else {
-        $_SESSION['msg'] = "<p style='color:red;'>Erro ao preparar a consulta para inserção de imagem</p>";
-        header("Location: index_noticia.php");
+        $_SESSION['msg'] = "<p style='color:red;'>Nenhum arquivo enviado</p>";
+        $_SESSION['msg_type'] = "danger";
     }
 } else {
-    $_SESSION['msg'] = "<p style='color:red;'>Erro ao enviar o formulário</p>";
-    header("Location: index_noticia.php");
+    $_SESSION['msg'] = "<p style='color:red;'>Acesso ao formulário não autorizado</p>";
+    $_SESSION['msg_type'] = "danger";
 }
 
+// Redirecionar de volta para o formulário
+header("Location: index_noticia.php");
+exit();
 ?>

@@ -1,7 +1,7 @@
 <<?php require_once "conexao.php" ?>
 
 <!DOCTYPE html>
-<html lang="en">
+<html lang="pt-br">
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -49,7 +49,7 @@
                         <a class="nav-link" href="#servicos">Exercícios</a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link active" href="noticia22.html">Notícias</a>
+                        <a class="nav-link active" href="noticia22.php">Notícias</a>
                     </li>
                     <li class="nav-item">
                         <a class="nav-link" href="#contato">Entrar</a>

@@ -1,6 +1,26 @@
 <?php
 session_start();
 ?>
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Cadastro de Notícias</title>
+</head>
+<body>
+
+<?php
+if (isset($_SESSION['msg']) && isset($_SESSION['msg_type'])) {
+    $msg_type = $_SESSION['msg_type'];
+    $msg = $_SESSION['msg'];
+    echo "<div class='alert alert-{$msg_type}'>{$msg}</div>";
+    unset($_SESSION['msg']);
+    unset($_SESSION['msg_type']);
+}
+?>
+
 <!DOCTYPE html>
 <html lang="pt-br">
 <head>
