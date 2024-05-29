@@ -94,16 +94,16 @@ if (isset($_GET['categoria_id'])) {
                                 <a class="nav-link active" href="produtos.php">Produtos</a>
                             </li>
                             <li class="nav-item">
-                                <a class="nav-link" href="exercicios.php">Exercícios</a>
+                                <a class="nav-link" href="exercicios_git.html">Exercícios</a>
                             </li>
                             <li class="nav-item">
                                 <a class="nav-link" href="noticia22.php">Notícias</a>
                             </li>
                             <li class="nav-item">
-                                <a class="nav-link" href="login.php">Entrar</a>
+                                <a class="nav-link" href="login_tcc.php">Entrar</a>
                             </li>
                             <li class="nav-item">
-                                <a class="nav-link" href="cadastro.php">Cadastre-se</a>
+                                <a class="nav-link" href="Cadastro_cliente_git.php">Cadastre-se</a>
                             </li>
                         </ul>
                         
