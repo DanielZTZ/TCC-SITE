@@ -19,7 +19,7 @@ if ($SendCadImg) {
         // Verificar se não houve erro no upload
         if ($erro == UPLOAD_ERR_OK) {
             // Diretório onde o arquivo vai ser salvo
-            $diretorio = 'imagens/';
+            $diretorio = 'imagens';
             $caminho_completo = $diretorio . $nome_imagem;
 
             // Mover o arquivo para o diretório
