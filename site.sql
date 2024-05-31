@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1:3306
--- Tempo de geração: 31/05/2024 às 19:09
+-- Tempo de geração: 31/05/2024 às 21:52
 -- Versão do servidor: 8.2.0
 -- Versão do PHP: 8.2.13
 
@@ -118,18 +118,14 @@ CREATE TABLE IF NOT EXISTS `imagem_noticia` (
   `id` int NOT NULL AUTO_INCREMENT,
   `caminho` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci NOT NULL,
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=8 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=2 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
 --
 -- Despejando dados para a tabela `imagem_noticia`
 --
 
 INSERT INTO `imagem_noticia` (`id`, `caminho`) VALUES
-(1, 'imagem01-logo-RECAYD_DRUG-03.jpg'),
-(2, 'imagem08accb812e8420cb98b81cec383fc5e8.jpg'),
-(3, 'imagens/11.jpg'),
-(4, 'imagensdownload (1).jpeg'),
-(5, 'imagens/images.jpeg');
+(1, 'imagens/noticia-1.webp');
 
 -- --------------------------------------------------------
 
@@ -214,18 +210,14 @@ CREATE TABLE IF NOT EXISTS `noticia` (
   `imagem_noticia_id` int DEFAULT NULL,
   PRIMARY KEY (`id`),
   KEY `fk_noticia_imagem_noticia` (`imagem_noticia_id`)
-) ENGINE=InnoDB AUTO_INCREMENT=8 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=2 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
 --
 -- Despejando dados para a tabela `noticia`
 --
 
 INSERT INTO `noticia` (`id`, `titulo`, `texto`, `link`, `imagem_noticia_id`) VALUES
-(3, 'TESTE1', 'TESTE1', 'https://www.youtube.com', 1),
-(4, 'TESTE1', 'TESTE1', 'https://www.youtube.com', 2),
-(5, 'TESTE3', 'TESTE3', 'https://www.youtube.com', 3),
-(6, 'TESTE3', 'TESTE3', 'https://www.youtube.com', 4),
-(7, 'TESTE3', 'TESTE3', 'https://www.youtube.com', 5);
+(1, 'É possível ser saudável e comer chocolate todos os dias?', 'Comer pequenas doses de chocolate diariamente pode ser bom para saúde, é importante apenas escolher o tipo certo', 'https://www.gazetaweb.com/noticias/ciencia-e-saude/e-possivel-ser-saudavel-e-comer-chocolate-todos-os-dias-755154', 1);
 
 -- --------------------------------------------------------
 
