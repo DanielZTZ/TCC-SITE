@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1:3306
--- Tempo de geração: 31/05/2024 às 17:22
+-- Tempo de geração: 31/05/2024 às 18:53
 -- Versão do servidor: 8.2.0
 -- Versão do PHP: 8.2.13
 
@@ -106,6 +106,18 @@ CREATE TABLE IF NOT EXISTS `detalhesusuario` (
   PRIMARY KEY (`id_detalhe`),
   KEY `id_usuario` (`id_usuario`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+
+-- --------------------------------------------------------
+
+--
+-- Estrutura para tabela `imagem_noticia`
+--
+
+DROP TABLE IF EXISTS `imagem_noticia`;
+CREATE TABLE IF NOT EXISTS `imagem_noticia` (
+  `id_notim` int NOT NULL,
+  `imagem` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL
+) ENGINE=MyISAM DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
 -- --------------------------------------------------------
 
