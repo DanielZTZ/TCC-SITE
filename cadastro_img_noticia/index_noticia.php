@@ -112,8 +112,7 @@ if (isset($_SESSION['msg']) && isset($_SESSION['msg_type'])) {
         }
         ?>
         <form method="POST" action="proc_cad_img_noticia.php" enctype="multipart/form-data">
-            <label>Nome:</label>
-            <input type="text" name="nome" placeholder="Digite o nome" required><br><br>
+            
         
             <label>Imagem:</label>
             <input type="file" name="imagem" required><br><br>
