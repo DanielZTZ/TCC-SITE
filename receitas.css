@@ -43,3 +43,11 @@
     height: auto; /* Mantém a proporção original */
     margin: 0 10px; /* Adiciona espaçamento entre os ícones */
 }
+
+.card {
+    height: 100%;
+}
+.card-img-top {
+    object-fit: cover;
+    height: 200px; /* Defina a altura desejada */
+}
