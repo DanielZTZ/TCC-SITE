@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1:3306
--- Tempo de geração: 31/05/2024 às 21:52
+-- Tempo de geração: 31/05/2024 às 23:30
 -- Versão do servidor: 8.2.0
 -- Versão do PHP: 8.2.13
 
@@ -118,14 +118,16 @@ CREATE TABLE IF NOT EXISTS `imagem_noticia` (
   `id` int NOT NULL AUTO_INCREMENT,
   `caminho` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci NOT NULL,
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=2 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=4 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
 --
 -- Despejando dados para a tabela `imagem_noticia`
 --
 
 INSERT INTO `imagem_noticia` (`id`, `caminho`) VALUES
-(1, 'imagens/noticia-1.webp');
+(1, 'cadastro_img_noticia/imagem-not/not_1.webp'),
+(2, '/imagem-notnot_2.webp'),
+(3, 'C:/wamp64/wwwTCC-SITE/cadastro_img_img/imagem-not/not_3.webp');
 
 -- --------------------------------------------------------
 
@@ -210,14 +212,16 @@ CREATE TABLE IF NOT EXISTS `noticia` (
   `imagem_noticia_id` int DEFAULT NULL,
   PRIMARY KEY (`id`),
   KEY `fk_noticia_imagem_noticia` (`imagem_noticia_id`)
-) ENGINE=InnoDB AUTO_INCREMENT=2 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=4 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
 --
 -- Despejando dados para a tabela `noticia`
 --
 
 INSERT INTO `noticia` (`id`, `titulo`, `texto`, `link`, `imagem_noticia_id`) VALUES
-(1, 'É possível ser saudável e comer chocolate todos os dias?', 'Comer pequenas doses de chocolate diariamente pode ser bom para saúde, é importante apenas escolher o tipo certo', 'https://www.gazetaweb.com/noticias/ciencia-e-saude/e-possivel-ser-saudavel-e-comer-chocolate-todos-os-dias-755154', 1);
+(1, 'Entre o rótulo e a realidade ', 'A complexidade escondida nas escolhas alimentares', 'https://veja.abril.com.br/coluna/coluna-da-lucilia/entre-o-rotulo-e-a-realidade/', 1),
+(2, 'O poder do feijão e grão-de-bico para regular o peso e melhorar a dieta', 'Ricos em fibras, alimentos preenchem lacunas de nutrientes que são preocupação em saúde pública, como ferro, magnésio e vitamina E', 'https://veja.abril.com.br/saude/o-poder-do-feijao-e-grao-de-bico-para-regular-o-peso-e-melhorar-a-dieta/', 2),
+(3, 'Sal: só o quanto baste – e olhe lá!', 'Nem excluir nem abusar: especialista explica as funções do ingrediente no organismo e por que o exagero abre alas a males como a hipertensão', 'https://veja.abril.com.br/coluna/letra-de-medico/sal-so-o-quanto-baste-e-olhe-la/', 3);
 
 -- --------------------------------------------------------
 

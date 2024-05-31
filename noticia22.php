@@ -1,4 +1,4 @@
-<?php require_once "conexao.php" ?>
+<<?php require_once "conexao.php" ?>
 
 <!DOCTYPE html>
 <html lang="pt-br">
@@ -72,14 +72,11 @@
 
 // Consulta SQL para buscar as notícias
 // Consulta SQL para buscar as notícias
-
-
-$sql = "SELECT n.titulo, n.texto, n.link, img.imagem_noticia_id AS caminho_imagem
+$sql = "SELECT n.titulo, n.texto, n.link, img.caminho AS caminho_imagem
         FROM noticia AS n
-        INNER JOIN imagem_noticia AS img ON n.caminho = img.id
+        INNER JOIN imagem_noticia AS img ON n.imagem_noticia_id = img.id
         ORDER BY RAND() LIMIT 7";
 
-// Executar a consulta
 $result = $conn->query($sql);
 
 if ($result->num_rows > 0) {
