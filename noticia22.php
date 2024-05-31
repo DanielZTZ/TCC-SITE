@@ -72,10 +72,14 @@
 
 // Consulta SQL para buscar as notícias
 // Consulta SQL para buscar as notícias
-$sql = "SELECT noticia.*, imagem_noticia.caminho AS caminho_imagem FROM noticia 
-        INNER JOIN imagem_noticia ON noticia.imagem_noticia_id = imagem_noticia.id
+
+
+$sql = "SELECT n.titulo, n.texto, n.link, img.imagem_noticia_id AS caminho_imagem
+        FROM noticia AS n
+        INNER JOIN imagem_noticia AS img ON n.caminho = img.id
         ORDER BY RAND() LIMIT 7";
 
+// Executar a consulta
 $result = $conn->query($sql);
 
 if ($result->num_rows > 0) {
