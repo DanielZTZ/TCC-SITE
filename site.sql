@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1:3306
--- Tempo de geração: 31/05/2024 às 18:53
+-- Tempo de geração: 31/05/2024 às 19:09
 -- Versão do servidor: 8.2.0
 -- Versão do PHP: 8.2.13
 
@@ -115,9 +115,21 @@ CREATE TABLE IF NOT EXISTS `detalhesusuario` (
 
 DROP TABLE IF EXISTS `imagem_noticia`;
 CREATE TABLE IF NOT EXISTS `imagem_noticia` (
-  `id_notim` int NOT NULL,
-  `imagem` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL
-) ENGINE=MyISAM DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+  `id` int NOT NULL AUTO_INCREMENT,
+  `caminho` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci NOT NULL,
+  PRIMARY KEY (`id`)
+) ENGINE=InnoDB AUTO_INCREMENT=8 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+
+--
+-- Despejando dados para a tabela `imagem_noticia`
+--
+
+INSERT INTO `imagem_noticia` (`id`, `caminho`) VALUES
+(1, 'imagem01-logo-RECAYD_DRUG-03.jpg'),
+(2, 'imagem08accb812e8420cb98b81cec383fc5e8.jpg'),
+(3, 'imagens/11.jpg'),
+(4, 'imagensdownload (1).jpeg'),
+(5, 'imagens/images.jpeg');
 
 -- --------------------------------------------------------
 
@@ -199,21 +211,21 @@ CREATE TABLE IF NOT EXISTS `noticia` (
   `titulo` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci NOT NULL,
   `texto` text CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci NOT NULL,
   `link` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci NOT NULL,
-  `imagem` varchar(100) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci NOT NULL,
-  PRIMARY KEY (`id`)
-  KEY `fk_imagem_notica` (`id_notim`)
+  `imagem_noticia_id` int DEFAULT NULL,
+  PRIMARY KEY (`id`),
+  KEY `fk_noticia_imagem_noticia` (`imagem_noticia_id`)
 ) ENGINE=InnoDB AUTO_INCREMENT=8 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
 --
 -- Despejando dados para a tabela `noticia`
 --
 
-INSERT INTO `noticia` (`id`, `titulo`, `texto`, `link`, `imagem`) VALUES
-(3, 'TESTE1', 'TESTE1', 'https://www.youtube.com', 'imagem01-logo-RECAYD_DRUG-03.jpg'),
-(4, 'TESTE1', 'TESTE1', 'https://www.youtube.com', 'imagem08accb812e8420cb98b81cec383fc5e8.jpg'),
-(5, 'TESTE3', 'TESTE3', 'https://www.youtube.com', 'imagens/11.jpg'),
-(6, 'TESTE3', 'TESTE3', 'https://www.youtube.com', 'imagensdownload (1).jpeg'),
-(7, 'TESTE3', 'TESTE3', 'https://www.youtube.com', 'imagens/images.jpeg');
+INSERT INTO `noticia` (`id`, `titulo`, `texto`, `link`, `imagem_noticia_id`) VALUES
+(3, 'TESTE1', 'TESTE1', 'https://www.youtube.com', 1),
+(4, 'TESTE1', 'TESTE1', 'https://www.youtube.com', 2),
+(5, 'TESTE3', 'TESTE3', 'https://www.youtube.com', 3),
+(6, 'TESTE3', 'TESTE3', 'https://www.youtube.com', 4),
+(7, 'TESTE3', 'TESTE3', 'https://www.youtube.com', 5);
 
 -- --------------------------------------------------------
 
@@ -367,6 +379,12 @@ CREATE TABLE IF NOT EXISTS `vendas` (
 --
 -- Restrições para tabelas despejadas
 --
+
+--
+-- Restrições para tabelas `noticia`
+--
+ALTER TABLE `noticia`
+  ADD CONSTRAINT `fk_noticia_imagem_noticia` FOREIGN KEY (`imagem_noticia_id`) REFERENCES `imagem_noticia` (`id`);
 
 --
 -- Restrições para tabelas `vendas`
