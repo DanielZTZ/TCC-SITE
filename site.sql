@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1:3306
--- Tempo de geração: 29/05/2024 às 22:24
+-- Tempo de geração: 31/05/2024 às 23:30
 -- Versão do servidor: 8.2.0
 -- Versão do PHP: 8.2.13
 
@@ -65,6 +65,27 @@ INSERT INTO `categorias` (`categoria_id`, `nome`) VALUES
 -- --------------------------------------------------------
 
 --
+-- Estrutura para tabela `categoria_receita`
+--
+
+DROP TABLE IF EXISTS `categoria_receita`;
+CREATE TABLE IF NOT EXISTS `categoria_receita` (
+  `id_categoria` int NOT NULL AUTO_INCREMENT,
+  `nome` varchar(50) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci NOT NULL,
+  PRIMARY KEY (`id_categoria`)
+) ENGINE=MyISAM AUTO_INCREMENT=3 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+
+--
+-- Despejando dados para a tabela `categoria_receita`
+--
+
+INSERT INTO `categoria_receita` (`id_categoria`, `nome`) VALUES
+(1, 'Salgados'),
+(2, 'Doces');
+
+-- --------------------------------------------------------
+
+--
 -- Estrutura para tabela `detalhesusuario`
 --
 
@@ -85,6 +106,28 @@ CREATE TABLE IF NOT EXISTS `detalhesusuario` (
   PRIMARY KEY (`id_detalhe`),
   KEY `id_usuario` (`id_usuario`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+
+-- --------------------------------------------------------
+
+--
+-- Estrutura para tabela `imagem_noticia`
+--
+
+DROP TABLE IF EXISTS `imagem_noticia`;
+CREATE TABLE IF NOT EXISTS `imagem_noticia` (
+  `id` int NOT NULL AUTO_INCREMENT,
+  `caminho` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci NOT NULL,
+  PRIMARY KEY (`id`)
+) ENGINE=InnoDB AUTO_INCREMENT=4 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+
+--
+-- Despejando dados para a tabela `imagem_noticia`
+--
+
+INSERT INTO `imagem_noticia` (`id`, `caminho`) VALUES
+(1, 'cadastro_img_noticia/imagem-not/not_1.webp'),
+(2, '/imagem-notnot_2.webp'),
+(3, 'C:/wamp64/wwwTCC-SITE/cadastro_img_img/imagem-not/not_3.webp');
 
 -- --------------------------------------------------------
 
@@ -145,22 +188,14 @@ CREATE TABLE IF NOT EXISTS `imagem_receita` (
 --
 
 INSERT INTO `imagem_receita` (`id_imgReceita`, `nome`, `imagem`) VALUES
-(1, 'wrap de frango com abacate', 'imagem/wrap-de-frango-com-abacate.webp'),
-(2, 'smothie de frutas vermelhas', 'imagem/smoothie.webp'),
-(3, 'wrap de frango com abacate', 'imagem/wrap-de-frango-com-abacate.webp'),
-(4, 'smothie de frutas vermelhas', 'imagem/smoothie.webp'),
-(5, 'salada de quinoa', 'imagem/salada-de-quinoa-simples'),
-(6, 'salada de frutas', 'imagem/salada-de-frutas.jpg'),
-(7, 'salada de quinoa', 'imagem/salada-de-quinoa-simples'),
-(8, 'salada de frutas', 'imagem/salada-de-frutas.jpg'),
-(9, 'espaguete', 'imagem/espaguete.jpg'),
-(10, 'açai', 'imagem/acai.jpg'),
-(11, 'espaguete', 'imagem/espaguete.jpg'),
-(12, 'açai', 'imagem/acai.jpg'),
-(13, 'omelete de legumes', 'imagem/omelete-legumes.jpeg'),
-(14, 'sopa de legumes', 'imagem/sopa_leg.avif'),
-(15, 'omelete de legumes', 'imagem/omelete-legumes.jpeg'),
-(16, 'sopa de legumes', 'imagem/sopa_leg.avif');
+(1, 'wrap de frango com abacate', 'image/wrap-de-frango-com-abacate.webp'),
+(2, 'smothie de frutas vermelhas', 'image/smoothie.webp'),
+(3, 'salada de quinoa', 'image/salada-de-quinoa-simples'),
+(4, 'salada de frutas', 'image/salada-de-frutas.jpg'),
+(5, 'espaguete', 'image/espaguete.jpg'),
+(6, 'açai', 'image/acai.jpg'),
+(7, 'sopa de legumes', 'image/sopa_leg.avif'),
+(8, 'omelete de legumes', 'image/omelete-legumes.jpeg');
 
 -- --------------------------------------------------------
 
@@ -174,20 +209,19 @@ CREATE TABLE IF NOT EXISTS `noticia` (
   `titulo` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci NOT NULL,
   `texto` text CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci NOT NULL,
   `link` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci NOT NULL,
-  `imagem` varchar(100) COLLATE utf8mb4_unicode_ci NOT NULL,
-  PRIMARY KEY (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=8 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+  `imagem_noticia_id` int DEFAULT NULL,
+  PRIMARY KEY (`id`),
+  KEY `fk_noticia_imagem_noticia` (`imagem_noticia_id`)
+) ENGINE=InnoDB AUTO_INCREMENT=4 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
 --
 -- Despejando dados para a tabela `noticia`
 --
 
-INSERT INTO `noticia` (`id`, `titulo`, `texto`, `link`, `imagem`) VALUES
-(3, 'TESTE1', 'TESTE1', 'https://www.youtube.com', 'imagem01-logo-RECAYD_DRUG-03.jpg'),
-(4, 'TESTE1', 'TESTE1', 'https://www.youtube.com', 'imagem08accb812e8420cb98b81cec383fc5e8.jpg'),
-(5, 'TESTE3', 'TESTE3', 'https://www.youtube.com', 'imagens/11.jpg'),
-(6, 'TESTE3', 'TESTE3', 'https://www.youtube.com', 'imagensdownload (1).jpeg'),
-(7, 'TESTE3', 'TESTE3', 'https://www.youtube.com', 'imagens/images.jpeg');
+INSERT INTO `noticia` (`id`, `titulo`, `texto`, `link`, `imagem_noticia_id`) VALUES
+(1, 'Entre o rótulo e a realidade ', 'A complexidade escondida nas escolhas alimentares', 'https://veja.abril.com.br/coluna/coluna-da-lucilia/entre-o-rotulo-e-a-realidade/', 1),
+(2, 'O poder do feijão e grão-de-bico para regular o peso e melhorar a dieta', 'Ricos em fibras, alimentos preenchem lacunas de nutrientes que são preocupação em saúde pública, como ferro, magnésio e vitamina E', 'https://veja.abril.com.br/saude/o-poder-do-feijao-e-grao-de-bico-para-regular-o-peso-e-melhorar-a-dieta/', 2),
+(3, 'Sal: só o quanto baste – e olhe lá!', 'Nem excluir nem abusar: especialista explica as funções do ingrediente no organismo e por que o exagero abre alas a males como a hipertensão', 'https://veja.abril.com.br/coluna/letra-de-medico/sal-so-o-quanto-baste-e-olhe-la/', 3);
 
 -- --------------------------------------------------------
 
@@ -275,22 +309,26 @@ CREATE TABLE IF NOT EXISTS `receitas` (
   `titulo` varchar(50) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci NOT NULL,
   `descricao` varchar(100) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci NOT NULL,
   `id_imgReceita` int NOT NULL,
-  PRIMARY KEY (`id_receita`)
-) ENGINE=MyISAM AUTO_INCREMENT=17 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+  `id_categoria` int NOT NULL,
+  `link` varchar(1000) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci NOT NULL,
+  PRIMARY KEY (`id_receita`),
+  KEY `id_categoria` (`id_categoria`),
+  KEY `fk_imagem_receita` (`id_imgReceita`)
+) ENGINE=MyISAM AUTO_INCREMENT=25 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
 --
 -- Despejando dados para a tabela `receitas`
 --
 
-INSERT INTO `receitas` (`id_receita`, `titulo`, `descricao`, `id_imgReceita`) VALUES
-(1, 'Salada de Quinoa', 'Uma salada saudável e deliciosa, perfeita para qualquer refeição.', 1),
-(2, 'Smoothie de Frutas', 'Um smoothie refrescante e cheio de vitaminas para começar o dia com energia.', 2),
-(3, 'Wrap de Frango e Abacate', 'Um wrap leve e saboroso, perfeito para um almoço rápido e saudável.', 3),
-(4, 'Tigela de Açaí', 'Uma tigela deliciosa de açaí, perfeita para um lanche saudável e energizante.', 4),
-(5, 'Sopa de Legumes', 'Uma sopa reconfortante cheia de legumes frescos, perfeita para os dias frios.', 5),
-(6, 'Salada de Frutas', 'Uma salada colorida e refrescante, perfeita para uma sobremesa saudável.', 6),
-(7, 'Omelete de Vegetais', 'Um omelete colorido e saudável', 7),
-(8, 'Espaguete de Abobrinha com Molho de Tomate', 'Um prato principal perfeito.', 8);
+INSERT INTO `receitas` (`id_receita`, `titulo`, `descricao`, `id_imgReceita`, `id_categoria`, `link`) VALUES
+(17, 'Smoothie de Frutas Vermelhas', 'Um smoothie delicioso e refrescante, feito com uma mistura de frutas vermelhas, iogurte natural e um', 2, 2, 'https://www.tudogostoso.com.br/receita/143871-smoothie-de-frutas-vermelhas.html'),
+(18, 'Salada de Frutas', 'Uma salada fresca e colorida, com uma variedade de frutas da estação, perfeita para um lanche saudáv', 4, 2, 'https://www.tudogostoso.com.br/receita/787-salada-de-frutas-gostosa.html'),
+(19, 'Wrap de Frango com Abacate', 'Wraps recheados com frango desfiado, abacate, tomate e folhas verdes, temperados com um toque de lim', 1, 1, 'https://www.minhareceita.com.br/receita/wrap-com-frango-desfiado-e-avocado/'),
+(20, 'Açaí na Tigela', 'Açaí batido com banana, servido com granola e frutas frescas por cima.', 6, 2, 'https://www.tudogostoso.com.br/receita/58910-acai-na-tigela.html'),
+(21, 'Salada de Quinoa', 'Uma salada nutritiva feita com quinoa, vegetais frescos e um delicioso molho de limão e azeite.', 3, 1, 'https://www.tudogostoso.com.br/receita/156861-salada-de-quinoa.html'),
+(22, 'Espaguete Integral com Legumes', 'Espaguete integral servido com uma variedade de legumes salteados, ideal para uma refeição leve e sa', 5, 1, 'https://www.tudogostoso.com.br/receita/111295-macarrao-integral-com-legumes.html'),
+(23, 'Sopa de Legumes', 'Uma sopa reconfortante feita com uma variedade de legumes frescos, perfeita para um dia frio.', 7, 1, 'https://www.tudogostoso.com.br/receita/15665-sopa-de-legumes-com-macarrao.html'),
+(24, 'Omelete de Legumes', 'Omelete leve e saudável, recheada com uma variedade de legumes frescos e ervas.', 8, 1, 'https://www.tudogostoso.com.br/receita/163199-omelete-de-legumes.html');
 
 -- --------------------------------------------------------
 
@@ -339,22 +377,10 @@ CREATE TABLE IF NOT EXISTS `vendas` (
 --
 
 --
--- Restrições para tabelas `boletos`
+-- Restrições para tabelas `noticia`
 --
-ALTER TABLE `boletos`
-  ADD CONSTRAINT `boletos_ibfk_1` FOREIGN KEY (`id_venda`) REFERENCES `vendas` (`id_venda`);
-
---
--- Restrições para tabelas `detalhesusuario`
---
-ALTER TABLE `detalhesusuario`
-  ADD CONSTRAINT `detalhesusuario_ibfk_1` FOREIGN KEY (`id_usuario`) REFERENCES `usuario` (`id_usuario`);
-
---
--- Restrições para tabelas `pagamentos`
---
-ALTER TABLE `pagamentos`
-  ADD CONSTRAINT `pagamentos_ibfk_1` FOREIGN KEY (`id_usuario`) REFERENCES `usuario` (`id_usuario`);
+ALTER TABLE `noticia`
+  ADD CONSTRAINT `fk_noticia_imagem_noticia` FOREIGN KEY (`imagem_noticia_id`) REFERENCES `imagem_noticia` (`id`);
 
 --
 -- Restrições para tabelas `vendas`

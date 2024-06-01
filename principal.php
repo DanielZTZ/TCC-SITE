@@ -1,5 +1,6 @@
 <?php
-require_once "conexao.php" ?>
+require_once "conexao.php";
+?>
 <!DOCTYPE html>
 <html lang="pt-br">
 <head>
@@ -10,10 +11,8 @@ require_once "conexao.php" ?>
     <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.11.6/dist/umd/popper.min.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/js/bootstrap.min.js"></script>
     <link href="principal.css" rel="stylesheet">
-    
 </head>
 <body>
-
     <!-- Barra de navegação -->
     <header class="header bg-light sticky-top border-bottom shadow-sm">
         <div class="container">
@@ -26,7 +25,7 @@ require_once "conexao.php" ?>
                     <span class="navbar-toggler-icon"></span>
                 </button>
                 <div class="collapse navbar-collapse" id="navbarNav">
-                    <ul class="navbar-nav mx-auto"> <!-- Alteração na classe para centralizar os links -->
+                    <ul class="navbar-nav mx-auto">
                         <li class="nav-item">
                             <a class="nav-link active" href="principal.php">Início</a>
                         </li>
@@ -49,7 +48,6 @@ require_once "conexao.php" ?>
                             <a class="nav-link" href="#contato">Cadastre-se</a>
                         </li>
                     </ul>
-                    
                 </div>
             </nav>
         </div>
@@ -80,7 +78,7 @@ require_once "conexao.php" ?>
               </div>
           </div>
       </div>
-      <button class="carousel-control-prev" type="button" data-bs-target="#carouselExampleIndicators"  data-bs-slide="prev">
+      <button class="carousel-control-prev" type="button" data-bs-target="#carouselExampleIndicators" data-bs-slide="prev">
           <span class="carousel-control-prev-icon" aria-hidden="true"></span>
           <span class="visually-hidden">Anterior</span>
       </button>
@@ -91,12 +89,9 @@ require_once "conexao.php" ?>
   </div>
 
   <div class="container mt-5">
-  <div class="container mt-5">
         <h2 class="mb-4">Principais Notícias</h2>
         <div class="row">
-        
           <?php
-
             // Consulta para buscar as notícias
             $sql = "SELECT id, titulo, texto, link, imagem FROM noticia ORDER BY RAND() DESC LIMIT 2";
             $resultado = $conn->query($sql);
@@ -108,7 +103,6 @@ require_once "conexao.php" ?>
                     echo '<div class="col-md-6">';
                     echo '<div class="shadow p-4 mb-4 bg-white">';
                     echo '<div class="card mb-4">';
-                    echo '<img src="'. $row["imagem"] .'" class="card-img-top" alt="...">';
                     echo '<div class="card-body">';
                     echo '<h5 class="card-title">'. $row["titulo"] .'</h5>';
                     echo '<p class="card-text">'. $row["texto"] .'</p>';
@@ -118,45 +112,51 @@ require_once "conexao.php" ?>
             } else {
                 echo "0 resultados";
             }
-            //$conn->close();
             ?>
         </div>
     </div>
+
 <div class="container mt-5">
-    <h2 class="mb-4"> Principais Produtos</h2>
-      
+    <h2 class="mb-4">Principais Produtos</h2>
     <div class="row">
-<?php
+    <?php
+        // Consulta para buscar os produtos
+        $sql = "SELECT produto_id, nome, imagem_id, preco, sobre FROM produtos ORDER BY RAND() DESC LIMIT 2";
+        $resultado = $conn->query($sql);
 
-            // Consulta para buscar os produtos
-            $sql = "SELECT produto_id, nome, imagem_id, preco, sobre FROM produtos ORDER BY RAND() DESC LIMIT 2";
-            $resultado = $conn->query($sql);
-
-            // Verifica se encontrou algum produto
-            if ($resultado->num_rows > 0) {
-                // Saída de dados de cada linha
-                while($row = $resultado->fetch_assoc()) {
-                    echo '<div class="col-md-6">';
-                    echo '<div class="shadow p-4 mb-4 bg-white">';
-                    echo '<div class="card mb-4">';
-                    echo '<img src="/img'. $row["imagem_id"] .'" class="card-img-top" alt="...">';
-                    echo '<div class="card-body">';
-                    echo '<h5 class="card-title">'. $row["nome"] .'</h5>';
-                    echo '<p class="card-text">'. $row["sobre"] .'</p>';
-                    echo '<a href="produto.php?produto_id=' . $row["produto_id"] . '" class="btn btn-success" target="_blank">Leia mais</a>';
-
-                    echo '</div></div></div></div>';
+        // Verifica se encontrou algum produto
+        if ($resultado->num_rows > 0) {
+            // Saída de dados de cada linha
+            while($row = $resultado->fetch_assoc()) {
+                // Consulta para obter o caminho da imagem usando o ID da imagem
+                $imagem_id = $row['imagem_id'];
+                $consulta_imagem = "SELECT imagem FROM imagem_produto WHERE id = $imagem_id";
+                $resultado_imagem = $conn->query($consulta_imagem);
+                if ($resultado_imagem->num_rows > 0) {
+                    $linha_imagem = $resultado_imagem->fetch_assoc();
+                    $caminho_imagem = $linha_imagem['imagem'];
+                } else {
+                    $caminho_imagem = 'img/default.png'; // Imagem padrão caso não encontre
                 }
-            } else {
-                echo "0 resultados";
+
+                echo '<div class="col-md-6">';
+                echo '<div class="shadow p-4 mb-4 bg-white">';
+                echo '<div class="card mb-4">';
+                echo '<img src="' . $caminho_imagem . '" class="card-img-top rounded-0" alt="...">';
+                echo '<div class="card-body">';
+                echo '<h5 class="card-title">'. $row["nome"] .'</h5>';
+                echo '<p class="card-text">'. $row["sobre"] .'</p>';
+                echo '<a href="produto.php?produto_id=' . $row["produto_id"] . '" class="btn btn-success" target="_blank">Leia mais</a>';
+                echo '</div></div></div></div>';
             }
-            $conn->close();
-            ?>
-
-
-        
+        } else {
+            echo "0 resultados";
+        }
+        $conn->close();
+    ?>
     </div>
-</div>   
+</div>
+
 <footer class="site-footer bg-light">
     <div class="container">
         <!-- Parte superior do footer: logotipo e slogan -->
@@ -178,7 +178,6 @@ require_once "conexao.php" ?>
             <img src="img/email.png" alt="Ícone de localização" class="contact-icon">
             <!-- Adicione mais ícones conforme necessário -->
         </div>                
-        
 
         <!-- Direitos autorais -->
         <div class="copy-right text-center mt-3">
@@ -186,8 +185,6 @@ require_once "conexao.php" ?>
             <a class="text-reset fw-bold" href="https://seusite.com/">seusite.com</a> 
         </div>
     </div>
-</footer>        
-   
-
+</footer>
 </body>
 </html>

@@ -71,7 +71,12 @@
 
 
 // Consulta SQL para buscar as notícias
-$sql = "SELECT * FROM noticia ORDER BY RAND() LIMIT 7";
+// Consulta SQL para buscar as notícias
+$sql = "SELECT n.titulo, n.texto, n.link, img.caminho AS caminho_imagem
+        FROM noticia AS n
+        INNER JOIN imagem_noticia AS img ON n.imagem_noticia_id = img.id
+        ORDER BY RAND() LIMIT 7";
+
 $result = $conn->query($sql);
 
 if ($result->num_rows > 0) {
@@ -96,13 +101,11 @@ if ($result->num_rows > 0) {
         // Verifica se é a primeira notícia (notícia principal)
         if ($count == 1) {
             echo '<div class="card-header"></div>';
-
-
-             
         }
 
         // Imagem do card
-        echo '<img src="' . $row["imagem"] . '" class="card-img card-img-top" alt="Imagem da notícia">';
+        $caminho_imagem = $row["caminho_imagem"]; // caminho da imagem da notícia
+        echo '<img src="' . $caminho_imagem . '" class="card-img card-img-top" alt="Imagem da notícia">';
 
         // Corpo do card
         echo '<div class="card-body">';
@@ -121,6 +124,7 @@ if ($result->num_rows > 0) {
     echo "0 resultados";
 }
 $conn->close();
+
 
 
 ?>
