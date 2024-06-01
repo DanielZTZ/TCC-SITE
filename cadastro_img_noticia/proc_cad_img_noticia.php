@@ -19,7 +19,8 @@ if ($SendCadImg) {
         // Verificar se não houve erro no upload
         if ($erro == UPLOAD_ERR_OK) {
             // Diretório onde o arquivo vai ser salvo
-            $diretorio = $_SERVER['DOCUMENT_ROOT'] . 'cadastro_img_img/imagem-not/';
+            $diretorio = dirname(__FILE__) . '/imagem-not/';
+
             $caminho_completo = $diretorio . $nome_imagem;
 
             // Inserir os dados da imagem na tabela imagem_noticia
