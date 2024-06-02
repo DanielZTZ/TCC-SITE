@@ -113,6 +113,8 @@ body {
       <a href="cadastro_produto.php">Cadastrar Produto</a>
       <a href="deletar_produto.php">Deletar</a>
       <a href="alterar_produto.php">Alterar</a>
+      <a href="cadastrar_imagem_produto.php">Cadastrar Imagem</a>
+      <a href="alterar_imagem_produto.php">Alterar Imagem</a>
     </div>
   </div>
 

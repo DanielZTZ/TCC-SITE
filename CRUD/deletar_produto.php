@@ -31,7 +31,7 @@ include_once("../conexao.php");
 		
 		$result_usuarios = "SELECT * FROM produtos LIMIT $inicio, $qnt_result_pg";
 		$resultado_usuarios = mysqli_query($conn, $result_usuarios);
-		while($row_aluno = mysqli_fetch_assoc($resultado_usuarios)){
+		while($row_produtos = mysqli_fetch_assoc($resultado_usuarios)){
 			echo "ID: " . $row_produtos['produto_id'] . "<br>";
 			echo "Nome: " . $row_produtos['nome'] . "<br>";
 			echo "Preço: " . $row_produtos['preco'] . "<br>";

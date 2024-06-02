@@ -17,7 +17,7 @@ include_once("../conexao.php");
         }
     ?>    
       <h2>
-      <form method="POST" action="recebe2.php">
+      <form method="POST" action="recebe_categoria.php">
       <!--  <label>Código:
         <input type="text" name="codigo" placeholder="Digite o código"><br><br>
         -->   
@@ -29,8 +29,8 @@ include_once("../conexao.php");
       
     <hr> <p> 
     <a href="Principal.php"> <input type="button"  value="Página Inicial"></a> &nbsp
-  <!--  <a href="cadastro.php"> <input type="button"  value= "Cadastrar"></a> &nbsp --> 
-    <a href= "exe_listar2.php"> <input type="button"  value="Listar" ></a> &nbsp
+ 
+    
     <!-- <a href= "exe_listar.php"> <input type="button"  value="Listar Dados Completo"></a> &nbsp
     <a href= "exe_listar2.php"> <input type="button"  value="Alterar"></a> &nbsp
     <a href="apaga.php"><input type="button"  value="Apagar"></a> &nbsp <br> --> 
