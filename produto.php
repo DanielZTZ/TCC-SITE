@@ -32,9 +32,6 @@ echo json_encode($resultadoFrete);*/
 // Pegar o produto_id da URL
 $produto_id = isset($_GET['produto_id']) ? (int) $_GET['produto_id'] : 0;
 
-// Pegar o produto_id da URL
-$produto_id = isset($_GET['produto_id']) ? (int) $_GET['produto_id'] : 0;
-
 // Preparar e executar a consulta SQL para pegar os detalhes do produto
 $stmt = $conn->prepare("SELECT * FROM Produtos WHERE produto_id = ?");
 $stmt->bind_param("i", $produto_id);

@@ -87,6 +87,17 @@ body {
   height: 650px; /* Should be removed. Only for demonstration */
 }
 
+.button-link {
+    display: inline-block;
+    padding: 10px 20px;
+    color: #fff;
+    background-color: #007bff;
+    text-align: center;
+    border-radius: 5px;
+    text-decoration: none;
+}
+
+
 
 
 </style>
@@ -99,10 +110,9 @@ body {
       <i class="fa fa-caret-down"></i>
     </button>
     <div class="dropdown-content">
-      <a href="cadastro.php">Cadastrar Produto</a>
-      <a href="exibir_dados1.php">Listagem</a>
-      <a href="apagar_aluno.php">Deletar</a>
-      <a href="edit_aluno.php">Alterar</a>
+      <a href="cadastro_produto.php">Cadastrar Produto</a>
+      <a href="deletar_produto.php">Deletar</a>
+      <a href="alterar_produto.php">Alterar</a>
     </div>
   </div>
 
@@ -111,12 +121,18 @@ body {
       <i class="fa fa-caret-down"></i>
     </button>
     <div class="dropdown-content">
-      <a href="cadastro2.php">Cadastrar Categoria</a>
-      <a href="exibir_dados2.php">Listagem</a>
-      <a href="apagar_professor.php">Deletar</a>
-      <a href="edit_professor.php">Alterar</a>
+      <a href="cadastro_categoria.php">Cadastrar Categoria</a>
+      <a href="deletar_categoria.php">Deletar</a>
+      <a href="alterar_categoria.php">Alterar</a>
     </div>
   </div>
+
+  <div>
+    <a href="/TCC-SITE/principal.php" class="button-link">
+        Voltar à Página Inicial do Site
+    </a>
+</div>
+
 </div>
 
 <div class="content"> <center> 

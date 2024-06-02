@@ -2,7 +2,7 @@
 session_start();
 include_once("../conexao.php");
 $id = filter_input(INPUT_GET, 'categoria_id', FILTER_SANITIZE_NUMBER_INT);
-$result_usuario = "SELECT * FROM categorias WHERE id = '$categoria_id'";
+$result_usuario = "SELECT * FROM categorias WHERE categoria_id = '$id'";
 $resultado_usuario = mysqli_query($conn, $result_usuario);
 $row_usuario = mysqli_fetch_assoc($resultado_usuario);
 ?>
@@ -25,7 +25,7 @@ $row_usuario = mysqli_fetch_assoc($resultado_usuario);
 		}
 		?>
 		<form method="POST" action="recebe_alterar_categoria.php">
-			<input type="hidden" name="id" value="<?php echo $row_usuario['categoria_id']; ?>">
+			<input type="hidden" name="categoria_id" value="<?php echo $row_usuario['categoria_id']; ?>">
 			
 			<label>Nome: </label>
 			<input type="text" name="nome" placeholder="Digite o nome completo" value="<?php echo $row_usuario['nome']; ?>"><br><br>
