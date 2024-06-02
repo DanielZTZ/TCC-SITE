@@ -44,3 +44,14 @@
     height: auto; /* Mantém a proporção original */
     margin: 0 10px; /* Adiciona espaçamento entre os ícones */
 }
+.card-img {
+    width: 100%;
+    height: 200px; /* Defina a altura desejada para todas as imagens */
+    object-fit: cover; /* Isso garante que a imagem preencha todo o espaço da caixa mantendo a proporção */
+}
+
+.card:hover {
+    transform: translateY(-5px); /* Move o card para cima 5px quando o mouse passa por cima */
+    transition: transform 0.3s ease; /* Adiciona uma transição suave */
+    box-shadow: 0px 0px 15px rgba(0, 0, 0, 0.3); /* Adiciona uma sombra suave */
+}
