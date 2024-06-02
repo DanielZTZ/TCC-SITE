@@ -10,17 +10,7 @@
   <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/css/bootstrap.min.css" rel="stylesheet">
   <link href="noticias.css" rel="stylesheet">
   <style>
-    .card-img {
-        width: 100%;
-        height: 200px; /* Defina a altura desejada para todas as imagens */
-        object-fit: cover; /* Isso garante que a imagem preencha todo o espaço da caixa mantendo a proporção */
-    }
-
-    .card:hover {
-        transform: translateY(-5px); /* Move o card para cima 5px quando o mouse passa por cima */
-        transition: transform 0.3s ease; /* Adiciona uma transição suave */
-        box-shadow: 0px 0px 15px rgba(0, 0, 0, 0.3); /* Adiciona uma sombra suave */
-    }
+    
 </style>
 
 </head>
