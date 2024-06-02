@@ -93,16 +93,26 @@ require_once "conexao.php";
         <div class="row">
           <?php
             // Consulta para buscar as notícias
-            $sql = "SELECT id, titulo, texto, link, imagem FROM noticia ORDER BY RAND() DESC LIMIT 2";
+            $sql = "SELECT id, titulo, texto, link, imagem_noticia_id FROM noticia ORDER BY RAND() DESC LIMIT 2";
             $resultado = $conn->query($sql);
 
             // Verifica se encontrou alguma notícia
             if ($resultado->num_rows > 0) {
                 // Saída de dados de cada linha
                 while($row = $resultado->fetch_assoc()) {
+                    $imagem_id = $row['imagem_noticia_id'];
+                $consulta_imagem = "SELECT caminho FROM imagem_noticia WHERE id = $imagem_id";
+                $resultado_imagem = $conn->query($consulta_imagem);
+                if ($resultado_imagem->num_rows > 0) {
+                    $linha_imagem = $resultado_imagem->fetch_assoc();
+                    $caminho_imagem = $linha_imagem['caminho'];
+                } else {
+                    $caminho_imagem = 'img/default.png'; // Imagem padrão caso não encontre
+                }
                     echo '<div class="col-md-6">';
                     echo '<div class="shadow p-4 mb-4 bg-white">';
                     echo '<div class="card mb-4">';
+                    echo '<img src="' . $caminho_imagem . '" class="card-img-top rounded-0" alt="...">';
                     echo '<div class="card-body">';
                     echo '<h5 class="card-title">'. $row["titulo"] .'</h5>';
                     echo '<p class="card-text">'. $row["texto"] .'</p>';
