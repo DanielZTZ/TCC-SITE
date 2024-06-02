@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1:3306
--- Tempo de geração: 31/05/2024 às 23:30
+-- Tempo de geração: 02/06/2024 às 22:55
 -- Versão do servidor: 8.2.0
 -- Versão do PHP: 8.2.13
 
@@ -118,16 +118,26 @@ CREATE TABLE IF NOT EXISTS `imagem_noticia` (
   `id` int NOT NULL AUTO_INCREMENT,
   `caminho` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci NOT NULL,
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=4 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=14 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
 --
 -- Despejando dados para a tabela `imagem_noticia`
 --
 
 INSERT INTO `imagem_noticia` (`id`, `caminho`) VALUES
-(1, 'cadastro_img_noticia/imagem-not/not_1.webp'),
-(2, '/imagem-notnot_2.webp'),
-(3, 'C:/wamp64/wwwTCC-SITE/cadastro_img_img/imagem-not/not_3.webp');
+(1, 'crud_noticia/inserir_not/imagem/not-1.webp'),
+(2, 'crud_noticia/inserir_not/imagem/not-2.webp'),
+(3, 'crud_noticia/inserir_not/imagem/not-3.webp'),
+(4, 'crud_noticia/inserir_not/imagem/not-4.webp'),
+(5, 'crud_noticia/inserir_not/imagem/not-5.webp'),
+(6, 'crud_noticia/inserir_not/imagem/not-6.webp'),
+(7, 'crud_noticia/inserir_not/imagem/not-7.webp'),
+(8, 'crud_noticia/inserir_not/imagem/not-8.webp'),
+(9, 'crud_noticia/inserir_not/imagem/not-9.webp'),
+(10, 'crud_noticia/inserir_not/imagem/not-10.webp'),
+(11, 'crud_noticia/inserir_not/imagem/not-11.webp'),
+(12, 'crud_noticia/inserir_not/imagem/not-12.webp'),
+(13, 'crud_noticia/inserir_not/imagem/not-13.webp');
 
 -- --------------------------------------------------------
 
@@ -212,16 +222,26 @@ CREATE TABLE IF NOT EXISTS `noticia` (
   `imagem_noticia_id` int DEFAULT NULL,
   PRIMARY KEY (`id`),
   KEY `fk_noticia_imagem_noticia` (`imagem_noticia_id`)
-) ENGINE=InnoDB AUTO_INCREMENT=4 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=14 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
 --
 -- Despejando dados para a tabela `noticia`
 --
 
 INSERT INTO `noticia` (`id`, `titulo`, `texto`, `link`, `imagem_noticia_id`) VALUES
-(1, 'Entre o rótulo e a realidade ', 'A complexidade escondida nas escolhas alimentares', 'https://veja.abril.com.br/coluna/coluna-da-lucilia/entre-o-rotulo-e-a-realidade/', 1),
-(2, 'O poder do feijão e grão-de-bico para regular o peso e melhorar a dieta', 'Ricos em fibras, alimentos preenchem lacunas de nutrientes que são preocupação em saúde pública, como ferro, magnésio e vitamina E', 'https://veja.abril.com.br/saude/o-poder-do-feijao-e-grao-de-bico-para-regular-o-peso-e-melhorar-a-dieta/', 2),
-(3, 'Sal: só o quanto baste – e olhe lá!', 'Nem excluir nem abusar: especialista explica as funções do ingrediente no organismo e por que o exagero abre alas a males como a hipertensão', 'https://veja.abril.com.br/coluna/letra-de-medico/sal-so-o-quanto-baste-e-olhe-la/', 3);
+(1, 'O que é melhor para a saúde, leite de vaca ou &#39;alternativos&#39;?', 'Organizações como o Serviço Nacional de Saúde do Reino Unido recomendam que crianças entre um e três anos consumam 350 miligramas de cálcio por dia - pouco mais de meio litro de leite. Quando se trata de adultos, entretanto, as pesquisas sobre o efeito do leite de vaca são conflitantes.', 'https://g1.globo.com/ciencia-e-saude/viva-voce/noticia/2019/12/06/o-que-e-melhor-para-a-saude-leite-de-vaca-ou-alternativos.ghtml', 1),
+(2, 'Cortar completamente carne e laticínios faz bem à saúde? O que diz a ciência', 'Mais e mais pessoas estão comendo refeições vegetarianas e veganas — e parte do motivo é que isso é visto como mais saudável. A BBC buscou as evidências sobre o impacto na saúde.', 'https://g1.globo.com/ciencia-e-saude/noticia/2020/02/23/cortar-completamente-carne-e-laticinios-faz-bem-a-saude-o-que-diz-a-ciencia.ghtml', 2),
+(3, 'Aprenda a fazer receitas que utilizam sobras de alimentos da sua geladeira', 'O Bem Estar no É de Casa mostrou como preparar uma torta de arroz recheada com frango e tomate, e também um suflê de sobras de feijão e cenoura ralada.', 'https://g1.globo.com/bemestar/noticia/2019/09/27/aprenda-a-fazer-receitas-que-utilizam-sobras-de-alimentos-da-sua-geladeira.ghtml', 3),
+(4, 'Dieta vegetariana reduz risco de doenças do coração, mas aumenta risco de derrame, indica estudo', 'Especialistas em nutrição afirmam que, qualquer que seja o tipo de dieta adotado, o melhor para a saúde é consumir uma grande variedade de alimentos.', 'https://g1.globo.com/bemestar/noticia/2019/09/05/dieta-vegetariana-reduz-risco-de-doencas-do-coracao-mas-aumenta-risco-de-derrame-indica-estudo.ghtml', 4),
+(5, 'Cúrcuma: veja 8 benefícios e como consumir', 'O ingrediente é conhecido por suas propriedades nutricionais e medicinais, sendo rico em compostos antioxidantes e anti-inflamatórios, além de ser versátil na alimentação', 'https://www.cnnbrasil.com.br/saude/curcuma-veja-8-beneficios-e-como-consumir/', 5),
+(6, 'Veja mudanças na alimentação que podem diminuir mortes e impacto ambiental', 'Estudo brasileiro indicou alterações moderadas e acessíveis que beneficiam saúde humana e preservação do planeta', 'https://www.cnnbrasil.com.br/saude/veja-mudancas-na-alimentacao-que-podem-diminuir-mortes-e-impacto-ambiental/', 6),
+(7, 'Quais os benefícios de dietas veganas e vegetarianas? Novo estudo traz respostas', 'Pesquisadores mostram que uma alimentação sem produtos de origem animal pode estar associada a um melhor estado de saúde', 'https://www.cnnbrasil.com.br/saude/quais-os-beneficios-de-dietas-veganas-e-vegetarianas-novo-estudo-traz-respostas/', 7),
+(8, 'Existe risco de contaminação cruzada em eletrodomésticos como Air Fryer? Entenda', 'Reutilizar a fritadeira sem a devida higienização pode trazer riscos à saúde, segundo especialistas; veja quais são', 'https://www.cnnbrasil.com.br/saude/existe-risco-de-contaminacao-cruzada-em-eletrodomesticos-como-air-fryer-entenda/', 8),
+(9, 'Bulking e cutting: saiba as diferenças entre as dietas e entenda como funcionam', 'Populares no universo fitness, as estratégias visam melhorar a composição corporal de acordo com objetivos individuais, como ganhar massa muscular ou perder peso', 'https://www.cnnbrasil.com.br/saude/bulking-e-cutting-saiba-as-diferencas-entre-as-dietas-e-entenda-como-funcionam/', 9),
+(10, 'Confira 7 dicas de alimentação para ganho de massa muscular', 'Para ganhar massa magra, é fundamental aumentar a ingestão calórica com um bom equilíbrio entre proteínas, carboidratos e gorduras boas', 'https://www.cnnbrasil.com.br/saude/confira-7-dicas-de-alimentacao-para-ganho-de-massa-muscular/', 10),
+(11, '5 fatos sobre alimentos ultraprocessados que você deve saber', 'Esse tipo de alimento contém aditivos como realçadores de sabor, corantes e espessantes que podem trazer riscos à saúde quando consumidos em excesso', 'https://www.cnnbrasil.com.br/saude/5-fatos-sobre-alimentos-ultraprocessados-que-voce-deve-saber/', 11),
+(12, 'Se não devemos comer alimentos ultraprocessados, o que devemos comer?', 'Veja alguns alertas de como identificar e evitar comidas que podem prejudicar a sua saúde', 'https://www.cnnbrasil.com.br/saude/se-nao-devemos-comer-alimentos-ultraprocessados-o-que-devemos-comer/', 12),
+(13, 'Estilo de vida saudável pode reduzir risco genético de morte em 62%, diz estudo', 'Estudo recente mostrou como uma vida ativa e saudável pode estar relacionada à longevidade, mesmo entre aqueles que têm maior predisposição genética à morte precoce', 'https://www.cnnbrasil.com.br/saude/estilo-de-vida-saudavel-pode-reduzir-risco-genetico-de-morte-em-62-diz-estudo/', 13);
 
 -- --------------------------------------------------------
 
