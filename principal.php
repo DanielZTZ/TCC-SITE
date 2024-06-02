@@ -30,13 +30,13 @@ require_once "conexao.php";
                             <a class="nav-link active" href="principal.php">Início</a>
                         </li>
                         <li class="nav-item">
-                            <a class="nav-link" href="#contato">Receitas</a>
+                            <a class="nav-link" href="receitas.php">Receitas</a>
                         </li>
                         <li class="nav-item">
                             <a class="nav-link" href="produtos.html">Produtos</a>
                         </li>
                         <li class="nav-item">
-                            <a class="nav-link" href="#servicos">Exercícios</a>
+                            <a class="nav-link" href="exercicios_git.html">Exercícios</a>
                         </li>
                         <li class="nav-item">
                             <a class="nav-link" href="noticia22.php">Notícias</a>
@@ -45,7 +45,7 @@ require_once "conexao.php";
                             <a class="nav-link" href="#contato">Entrar</a>
                         </li>
                         <li class="nav-item">
-                            <a class="nav-link" href="#contato">Cadastre-se</a>
+                            <a class="nav-link" href="Cadastro_cliente_git.php">Cadastre-se</a>
                         </li>
                     </ul>
                 </div>

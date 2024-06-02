@@ -26,14 +26,14 @@ if (isset($_SESSION['msg']) && isset($_SESSION['msg_type'])) {
 <html lang="pt-br">
 <head>
     <meta charset="UTF-8">
-    <title>Imagem Notícia - Upload</title>
+    <title>Imagem Receitas - Upload</title>
     <style>
         
     </style>
 </head>
 <body>
     <div class="container">
-        <h1>Cadastrar Imagem</h1>
+        <h1>Cadastrar Receitas</h1>
         <?php
         if(isset($_SESSION['msg'])){
             echo "<div class='msg " . $_SESSION['msg_type'] . "'>" . $_SESSION['msg'] . "</div>";
