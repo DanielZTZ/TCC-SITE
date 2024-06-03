@@ -1,6 +1,6 @@
 <?php
 session_start();
-include_once './conexao.php';
+include_once '../conexao.php';
 
 // Verificar se o usuário clicou no botão
 $SendCadImg = filter_input(INPUT_POST, 'SendCadImg', FILTER_SANITIZE_SPECIAL_CHARS);
@@ -19,7 +19,7 @@ if ($SendCadImg) {
         // Verificar se não houve erro no upload
         if ($erro == UPLOAD_ERR_OK) {
             // Diretório onde o arquivo vai ser salvo
-            $diretorio = __DIR__ . '/imagem/';
+            $diretorio = __DIR__ . '/inserir_not/imagem/';
 
             // Verifica se o diretório existe, caso contrário, cria-o
             if (!is_dir($diretorio)) {
