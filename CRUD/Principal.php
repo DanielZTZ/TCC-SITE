@@ -128,6 +128,17 @@ body {
       <a href="alterar_categoria.php">Alterar</a>
     </div>
   </div>
+  
+  <div class="dropdown">
+    <button class="dropbtn">Exemplo
+      <i class="fa fa-caret-down"></i>
+    </button>
+    <div class="dropdown-content">
+      <a href="/TCC-SITE/crud_noticia/nome_arquivo.php">Cadastrar Categoria</a>
+      <a href="deletar_categoria.php">Deletar</a>
+      <a href="alterar_categoria.php">Alterar</a>
+    </div>
+  </div>
 
   <div>
     <a href="/TCC-SITE/principal.php" class="button-link">
