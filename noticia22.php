@@ -29,25 +29,25 @@
             <div class="collapse navbar-collapse" id="navbarNav">
                 <ul class="navbar-nav mx-auto"> <!-- Alteração na classe para centralizar os links -->
                     <li class="nav-item">
-                        <a class="nav-link" href="pricipal.php">Início</a>
+                        <a class="nav-link" href="principal.php">Início</a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link" href="#contato">Receitas</a>
+                        <a class="nav-link" href="receitas.php">Receitas</a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link" href="produtos.html">Produtos</a>
+                        <a class="nav-link" href="produtos.php">Produtos</a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link" href="#servicos">Exercícios</a>
+                        <a class="nav-link" href="exercicios_git.html">Exercícios</a>
                     </li>
                     <li class="nav-item">
                         <a class="nav-link active" href="noticia22.php">Notícias</a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link" href="#contato">Entrar</a>
+                        <a class="nav-link" href="login_tcc.html">Entrar</a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link" href="#contato">Cadastre-se</a>
+                        <a class="nav-link" href="Cadastro_cliente_git.php">Cadastre-se</a>
                     </li>
                 </ul>
             </div>
