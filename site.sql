@@ -158,26 +158,26 @@ CREATE TABLE IF NOT EXISTS `imagem_produto` (
 --
 
 INSERT INTO `imagem_produto` (`id`, `nome`, `imagem`) VALUES
-(1, 'Vitamina Exemplo 1', '/TCC-SITE/CRUD/imagem_produto/vitamina1.jpeg'),
-(2, 'Vitamina Exemplo 2', '/TCC-SITE/CRUD/imagem_produto/vitamina2.jpeg'),
-(3, 'Vitamina Exemplo 3', '/TCC-SITE/CRUD/imagem_produto/vitamina3.jpeg'),
-(4, 'Vitamina Exemplo 4', '/TCC-SITE/CRUD/imagem_produto/vitamina4.jpeg'),
-(5, 'Vitamina Exemplo 5', '/TCC-SITE/CRUD/imagem_produto/vitamina5.jpeg'),
-(6, 'Proteína Exemplo 1', '/TCC-SITE/CRUD/imagem_produto/proteina1.jpeg'),
-(7, 'Proteína Exemplo 2', '/TCC-SITE/CRUD/imagem_produto/proteina2.jpeg'),
-(8, 'Proteína Exemplo 3', '/TCC-SITE/CRUD/imagem_produto/proteina3.jpeg'),
-(9, 'Proteína Exemplo 4', '/TCC-SITE/CRUD/imagem_produto/proteina4.jpeg'),
-(10, 'Proteína Exemplo 5', '/TCC-SITE/CRUD/imagem_produto/proteina5.jpeg'),
-(11, 'Pré Treino Exemplo 1', '/TCC-SITE/CRUD/imagem_produto/pretreino1.jpeg'),
-(12, 'Pré Treino Exemplo 2', '/TCC-SITE/CRUD/imagem_produto/pretreino2.jpeg'),
-(13, 'Pré Treino Exemplo 3', '/TCC-SITE/CRUD/imagem_produto/pretreino3.jpeg'),
-(14, 'Pré Treino Exemplo 4', '/TCC-SITE/CRUD/imagem_produto/pretreino4.jpeg'),
-(15, 'Pré Treino Exemplo 5', '/TCC-SITE/CRUD/imagem_produto/pretreino5.jpeg'),
-(16, 'Emagrecedor Exemplo 1', '/TCC-SITE/CRUD/imagem_produto/emagrecedor1.jpeg'),
-(17, 'Emagrecedor Exemplo 2', '/TCC-SITE/CRUD/imagem_produto/emagrecedor2.jpeg'),
-(18, 'Emagrecedor Exemplo 3', '/TCC-SITE/CRUD/imagem_produto/emagrecedor3.jpeg'),
-(19, 'Emagrecedor Exemplo 4', '/TCC-SITE/CRUD/imagem_produto/emagrecedor4.jpeg'),
-(20, 'Emagrecedor Exemplo 5', '/TCC-SITE/CRUD/imagem_produto/emagrecedor5.jpeg');
+(1, 'Vitamina Exemplo 1', 'imagem_produto/vitamina1.jpeg'),
+(2, 'Vitamina Exemplo 2', 'imagem_produto/vitamina2.jpeg'),
+(3, 'Vitamina Exemplo 3', 'imagem_produto/vitamina3.jpeg'),
+(4, 'Vitamina Exemplo 4', 'imagem_produto/vitamina4.jpeg'),
+(5, 'Vitamina Exemplo 5', 'imagem_produto/vitamina5.jpeg'),
+(6, 'Proteína Exemplo 1', 'imagem_produto/proteina1.jpeg'),
+(7, 'Proteína Exemplo 2', 'imagem_produto/proteina2.jpeg'),
+(8, 'Proteína Exemplo 3', 'imagem_produto/proteina3.jpeg'),
+(9, 'Proteína Exemplo 4', 'imagem_produto/proteina4.jpeg'),
+(10, 'Proteína Exemplo 5', 'imagem_produto/proteina5.jpeg'),
+(11, 'Pré Treino Exemplo 1', 'imagem_produto/pretreino1.jpeg'),
+(12, 'Pré Treino Exemplo 2', 'imagem_produto/pretreino2.jpeg'),
+(13, 'Pré Treino Exemplo 3', 'imagem_produto/pretreino3.jpeg'),
+(14, 'Pré Treino Exemplo 4', 'imagem_produto/pretreino4.jpeg'),
+(15, 'Pré Treino Exemplo 5', 'imagem_produto/pretreino5.jpeg'),
+(16, 'Emagrecedor Exemplo 1', 'imagem_produto/emagrecedor1.jpeg'),
+(17, 'Emagrecedor Exemplo 2', 'imagem_produto/emagrecedor2.jpeg'),
+(18, 'Emagrecedor Exemplo 3', 'imagem_produto/emagrecedor3.jpeg'),
+(19, 'Emagrecedor Exemplo 4', 'imagem_produto/emagrecedor4.jpeg'),
+(20, 'Emagrecedor Exemplo 5', 'imagem_produto/emagrecedor5.jpeg');
 
 -- --------------------------------------------------------
 

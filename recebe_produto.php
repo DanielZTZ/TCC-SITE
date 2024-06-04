@@ -1,6 +1,6 @@
 <?php
     session_start();
-    include_once("../conexao.php");
+    include_once("conexao.php");
     
     $nome = filter_input(INPUT_POST, 'nome', FILTER_SANITIZE_STRING);
     $preco = filter_input(INPUT_POST, 'preco', FILTER_SANITIZE_NUMBER_FLOAT, FILTER_FLAG_ALLOW_FRACTION);

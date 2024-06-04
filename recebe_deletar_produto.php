@@ -1,6 +1,6 @@
 <?php
 session_start();
-include_once("../conexao.php");
+include_once("conexao.php");
 $id = filter_input(INPUT_GET, 'produto_id', FILTER_SANITIZE_NUMBER_INT);
 if(!empty($id)){
 	$result_usuario = "DELETE FROM produtos WHERE produto_id='$id'";

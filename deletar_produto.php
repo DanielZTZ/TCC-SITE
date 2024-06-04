@@ -1,17 +1,22 @@
 <?php
 session_start();
-include_once("../conexao.php");
+include_once("conexao.php");
 ?>
 <!DOCTYPE html>
 <html lang="pt-br">
 	<head>
 		<meta charset="utf-8">
-		<title>CRUD - Deletar Produto</title>		
+		<title>CRUD - Modificar Produto</title>
+		<link
+            href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css"
+            rel="stylesheet"
+            integrity="sha384-T3c6CoIi6uLrA9TneNEoa7RxnatzjcDSCmG1MXxSR1GAsXEV/Dwwykc2MPK8M2HN"
+            crossorigin="anonymous"
+        />			
 	</head>
 	<body>
 		<hr> <p>
-		<a href="Principal.php"> <input type="button"  value="Página Inicial"></a> &nbsp
-        <a href= "alterar_produto.php"> <input type="button"  value="Alterar"></a> &nbsp
+		<a href="principal_crud.php"> <input type="button"  value="Página Inicial"></a> &nbsp
 		<p><hr><h1>Listagem dos Produtos</h1> <p> <hr> <h3>
 		<?php
 		if(isset($_SESSION['msg'])){
@@ -45,7 +50,7 @@ include_once("../conexao.php");
 			echo "Largura: " . $row_produtos['largura'] . "<br>";
 			echo "Comprimento: " . $row_produtos['comprimento'] . "<br> <br>";
 
- 		//	echo "<a href='edit_aluno.php?id=" . $row_aluno['id'] . "'>Editar</a><br> <hr>";
+ 			echo "<a href='alterar_produto.php?id=" . $row_produtos['produto_id'] . "'>Editar</a><br> <hr>";
 			echo "<a href='recebe_deletar_produto.php?id=" . $row_produtos['produto_id'] . "'>Apagar</a><br><hr>";
 		}
 		

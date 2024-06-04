@@ -1,6 +1,6 @@
 <?php
 session_start();
-include_once '../conexao.php';
+include_once 'conexao.php';
 
 // Verificar se o usuário clicou no botão
 $SendCadImg = filter_input(INPUT_POST, 'SendCadImg', FILTER_SANITIZE_STRING);
@@ -17,7 +17,7 @@ if ($SendCadImg) {
         // Verificar se não houve erro no upload
         if ($erro == UPLOAD_ERR_OK) {
             // Diretório onde o arquivo vai ser salvo
-            $diretorio = '/TCC-SITE/CRUD/imagem_produto/';
+            $diretorio = 'imagem_produto/';
             $caminho_completo = $diretorio . $nome_imagem;
 
             // Mover o arquivo para o diretório

@@ -1,6 +1,6 @@
 <?php
 session_start();
-include_once("../conexao.php");
+include_once("conexao.php");
 $id = filter_input(INPUT_GET, 'produto_id', FILTER_SANITIZE_NUMBER_INT);
 $result_usuario = "SELECT * FROM produtos WHERE produto_id = '$id'";
 $resultado_usuario = mysqli_query($conn, $result_usuario);
@@ -10,11 +10,12 @@ $row_usuario = mysqli_fetch_assoc($resultado_usuario);
 <html lang="pt-br">
 	<head>
 		<meta charset="utf-8">
-		<title>CRUD - Editar Produto</title>		
+		<title>CRUD - Editar Produto</title>
+				
 	</head>
 	<body>
 		<hr> <p>
-		<a href="Principal.php"> <input type="button"  value="Página Inicial"></a> &nbsp
+		<a href="principal_crud.php"> <input type="button"  value="Página Inicial"></a> &nbsp
         <a href="deletar_produto.php"><input type="button"  value="Apagar"></a> &nbsp 
 		<p><hr><h1>Editar dados de Produto</h1> <p> <hr>
 		

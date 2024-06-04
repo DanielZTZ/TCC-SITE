@@ -1,6 +1,6 @@
 <?php
   session_start();
-  include_once("../conexao.php");
+  include_once("conexao.php");
 ?>
 <!DOCTYPE html>
 <html lang="pt-br">
@@ -111,8 +111,7 @@ body {
     </button>
     <div class="dropdown-content">
       <a href="cadastro_produto.php">Cadastrar Produto</a>
-      <a href="deletar_produto.php">Deletar</a>
-      <a href="alterar_produto.php">Alterar</a>
+      <a href="deletar_produto.php">Modificar</a>
       <a href="cadastrar_imagem_produto.php">Cadastrar Imagem</a>
       <a href="alterar_imagem_produto.php">Alterar Imagem</a>
     </div>
@@ -124,8 +123,7 @@ body {
     </button>
     <div class="dropdown-content">
       <a href="cadastro_categoria.php">Cadastrar Categoria</a>
-      <a href="deletar_categoria.php">Deletar</a>
-      <a href="alterar_categoria.php">Alterar</a>
+      <a href="deletar_categoria.php">Modificar</a>
     </div>
   </div>
   
@@ -135,8 +133,7 @@ body {
     </button>
     <div class="dropdown-content">
       <a href="/TCC-SITE/crud_noticia/nome_arquivo.php">Cadastrar Categoria</a>
-      <a href="deletar_categoria.php">Deletar</a>
-      <a href="alterar_categoria.php">Alterar</a>
+      <a href="deletar_categoria.php">Modificar</a>
     </div>
   </div>
 
