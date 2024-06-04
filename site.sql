@@ -413,3 +413,47 @@ COMMIT;
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
 /*!40101 SET CHARACTER_SET_RESULTS=@OLD_CHARACTER_SET_RESULTS */;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
+DROP TABLE IF EXISTS `categoria_exercicio`;
+CREATE TABLE IF NOT EXISTS `categoria_exercicio` (
+  `codigo` int(11) NOT NULL AUTO_INCREMENT,
+  `categoria` varchar(100) COLLATE utf8mb4_unicode_ci NOT NULL,
+  PRIMARY KEY (`codigo`)
+) ENGINE=MyISAM AUTO_INCREMENT=4 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+
+--
+-- Despejando dados para a tabela `categoria_exercicio`
+--
+
+INSERT INTO `categoria_exercicio` (`codigo`, `categoria`) VALUES
+(1, 'Emagrecimento'),
+(2, 'Musculação'),
+(3, 'Fisioterapia');
+
+-- --------------------------------------------------------
+
+--
+-- Estrutura para tabela `exercicio`
+--
+
+DROP TABLE IF EXISTS `exercicio`;
+CREATE TABLE IF NOT EXISTS `exercicio` (
+  `codigo` int(11) NOT NULL AUTO_INCREMENT,
+  `titulo` varchar(1000) COLLATE utf8mb4_unicode_ci NOT NULL,
+  `texto` varchar(10000) COLLATE utf8mb4_unicode_ci NOT NULL,
+  PRIMARY KEY (`codigo`)
+) ENGINE=MyISAM AUTO_INCREMENT=4 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+
+--
+-- Despejando dados para a tabela `exercicio`
+--
+
+INSERT INTO `exercicio` (`codigo`, `titulo`, `texto`) VALUES
+(1, 'Exercícios para Emagrecimento', 'Agachamento com salto\r\n            O agachamento com salto é um exercício que envolve o corpo inteiro, o que ajuda a queimar calorias de forma eficiente.\r\n    \r\n            Corrida parada\r\n            Os exercícios aeróbicos são muito importantes para o bom funcionamento físico e para a queima de gordura corporal.\r\n        \r\n            Caminhada na esteira\r\n            Uma atividade simples e uma grande aliada do dia a dia, a caminhada faz parte do grupo de exercícios que não precisam de muitos elementos para serem praticados.\r\n        \r\n            Polichinelo\r\n            Um exercício aeróbico que, assim como o agachamento com salto, envolve o corpo inteiro, é o polichinelo.\r\n        \r\n            Pular corda\r\n            Na infância, pular corda é uma brincadeira muito comum para se divertir entre amigos, mas a atividade também pode, e deve, ser realizada na fase adulta.\r\n        \r\n            Dança\r\n            Uma forma divertida e eficaz de perder peso, a dança traz diversos benefícios para o emagrecimento, bem como para a saúde do corpo.\r\n        \r\n            HIIT\r\n            Conhecido por ser um exercício que envolve alternar períodos de descanso com alta intensidade ou baixa intensidade.\r\n        \r\n            Flexão de braços\r\n            A flexão de braço é um exercício de força que, quando combinado com uma dieta saudável, pode ser muito benéfico para a perda de peso.\r\n        \r\n            Subir e descer escadas\r\n            Subir e descer escadas é uma forma de atividade física muito eficiente na perda de peso, além de acessível, pois pode ser realizada em diversos lugares.\r\n       \r\n            Burpees\r\n            O burpees é um exercício corporal completo que utiliza o treinamento de força e exercícios aeróbicos para obter um alto gasto calórico em um curto período.'),
+(2, 'Exercícios para ganho muscular', 'Flexão de Braço\r\n3 Séries com 15 repetições cada\r\n\r\nTríceps Banco\r\n3 Séries com 15 repetições cada\r\n\r\nRemada Unilateral\r\n3 Séries com 15 repetições cada\r\n\r\nAgachamento\r\n3 Séries com 15 repetições cada\r\n\r\nRosca Direta com Barra ou Halteres\r\n3 a 4 Séries com 15 repetições cada\r\n\r\nAgachamento Avanço (Afundo)\r\n3 a 4 Séries com 15 repetições cada\r\n\r\nExtensão de Quadril\r\n3 a 4 Séries com 15 repetições cada\r\n\r\nPrancha Isométrica sobre o Solo\r\nMínimo de 30seg\r\n\r\nFlexão de Ombro (Frontal e Lateral)\r\n3 a 4 Séries com 15 repetições cada\r\n'),
+(3, 'Exercícios fisioterapeuticos', 'Ao acordar, deitado de barriga para cima, pedalar 120 vezes no ar\r\nEste exercício melhora o posicionamento da coluna vertebral e da postura global, diminuindo ou retardando o encurvamento das costas e aliviando as dores na coluna.\r\n\r\nAntes do banho, exercitar as pernas (músculos gémeos)\r\nEste exercício bombeia o sangue para o coração, melhora os batimentos cardíacos e evita a obstrução das veias, diminuindo o risco de doenças cardíacas.\r\n\r\nSaltar à corda\r\nÉ um divertido e eficaz exercício para eliminar o excesso de peso, podendo queimar cerca de 10 calorias por minuto se fizer até 100 saltos por minuto. Além disso, este é um exercício verdadeiramente completo.\r\n\r\nSprints na bicicleta\r\nFaça no máximo cinco sequências, alternando velocidade intensa e velocidade menos intensa.\r\n\r\nAo chegar em casa, descanse um pouco e relaxe\r\nO importante é criar uma barreira entre o dia de trabalho que terminou e o serão em casa que está a começar.\r\n');
+COMMIT;
+
+/*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
+/*!40101 SET CHARACTER_SET_RESULTS=@OLD_CHARACTER_SET_RESULTS */;
+/*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
+
