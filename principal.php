@@ -42,7 +42,7 @@ require_once "conexao.php";
                             <a class="nav-link" href="noticia22.php">Notícias</a>
                         </li>
                         <li class="nav-item">
-                            <a class="nav-link" href="#contato">Entrar</a>
+                            <a class="nav-link" href="login_tcc.php">Entrar</a>
                         </li>
                         <li class="nav-item">
                             <a class="nav-link" href="Cadastro_cliente_git.php">Cadastre-se</a>
@@ -57,21 +57,21 @@ require_once "conexao.php";
     <div id="carouselExampleIndicators" class="carousel slide" data-bs-ride="carousel">
       <div class="carousel-inner">
           <div class="carousel-item active">
-              <img src="image/creatina3.webp" class="d-block w-100" style="height: 300px; object-fit: cover;" alt="...">
+              <img src="img/creatina3.webp" class="d-block w-100" style="height: 300px; object-fit: cover;" alt="...">
               <div class="carousel-caption d-none d-md-block">
                   <h5>Compre suplementos!</h5>
                   <p>Ajudam a ter uma vida melhor</p>
               </div>
           </div>
           <div class="carousel-item">
-              <img src="image/whey.webp" class="d-block w-100" style="height: 300px; object-fit: cover;" alt="...">
+              <img src="img/whey.webp" class="d-block w-100" style="height: 300px; object-fit: cover;" alt="...">
               <div class="carousel-caption d-none d-md-block">
                   <h5>Veja receitas</h5>
                   <p>Varias ideias para te ajudar na dieta</p>
               </div>
           </div>
           <div class="carousel-item">
-              <img src="image/cafe.webp" class="d-block w-100" style="height: 300px; object-fit: cover;" alt="...">
+              <img src="img/cafe.webp" class="d-block w-100" style="height: 300px; object-fit: cover;" alt="...">
               <div class="carousel-caption d-none d-md-block">
                   <h5>Veja Notícias!</h5>
                   <p>Para ter mais conhecimento sobre habitos Saudáveis</p>
