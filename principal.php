@@ -186,6 +186,7 @@ require_once "conexao.php";
             <img src="img/whatsapp.png" alt="Ícone de telefone" class="contact-icon">
             <img src="img/instagram.png" alt="Ícone de e-mail" class="contact-icon">
             <img src="img/email.png" alt="Ícone de localização" class="contact-icon">
+             <a class="link " href="senha_crud.php">CRUD</a>
             <!-- Adicione mais ícones conforme necessário -->
         </div>                
 
