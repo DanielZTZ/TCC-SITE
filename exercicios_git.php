@@ -28,28 +28,28 @@ include_once("conexao.php");
                 </button>
                 <div class="collapse navbar-collapse" id="navbarNav">
                     <ul class="navbar-nav mx-auto"> <!-- Alteração na classe para centralizar os links -->
-                        <li class="nav-item">
-                            <a class="nav-link" href="principal.php">Início</a>
-                        </li>
-                        <li class="nav-item">
-                            <a class="nav-link" href="receitas.html">Receitas</a>
-                        </li>
-                        <li class="nav-item">
-                            <a class="nav-link" href="produtos.php">Produtos</a>
-                        </li>
-                        <li class="nav-item">
-                            <a class="nav-link " href="exercicios_git.html">Exercícios</a>
-                        </li>
-                        <li class="nav-item">
-                            <a class="nav-link" href="noticia22.php">Notícias</a>
-                        </li>
-                        <li class="nav-item">
-                            <a class="nav-link" href="login_tcc.php">Entrar</a>
-                        </li>
-                        <li class="nav-item">
-                            <a class="nav-link" href="Cadastro_cliente_git.php">Cadastre-se</a>
-                        </li>
-                    </ul>
+                    <li class="nav-item">
+                        <a class="nav-link" href="principal.php">Início</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="receitas.php">Receitas</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="produtos.php">Produtos</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="exercicios_git.php">Exercícios</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link active" href="noticia22.php">Notícias</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="login_tcc.php">Entrar</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="Cadastro_cliente_git.php">Cadastre-se</a>
+                    </li>
+                </ul>
                     
                 </div>
             </nav>
