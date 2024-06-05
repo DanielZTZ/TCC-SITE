@@ -457,3 +457,28 @@ COMMIT;
 /*!40101 SET CHARACTER_SET_RESULTS=@OLD_CHARACTER_SET_RESULTS */;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
 
+DROP TABLE IF EXISTS `adm`;
+CREATE TABLE IF NOT EXISTS `adm` (
+  `codigo` int(11) NOT NULL AUTO_INCREMENT,
+  `nome` varchar(100) COLLATE utf8mb4_unicode_ci NOT NULL,
+  `email` varchar(100) COLLATE utf8mb4_unicode_ci NOT NULL,
+  `senha` varchar(100) COLLATE utf8mb4_unicode_ci NOT NULL,
+  PRIMARY KEY (`codigo`)
+) ENGINE=MyISAM AUTO_INCREMENT=5 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+
+--
+-- Despejando dados para a tabela `adm`
+--
+
+INSERT INTO `adm` (`codigo`, `nome`, `email`, `senha`) VALUES
+(1, 'Gabriel de matos', 'bielmatosprando2006@gmail.com', 'biel2006'),
+(2, 'Daniel', 'rodriguimdamata123@gmail.com', '123'),
+(3, 'isabella', 'isinha2006@gmail.com', '041206'),
+(4, 'Markos', 'markos_adm@gmail.com', 'IS@bella1231');
+COMMIT;
+
+/*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
+/*!40101 SET CHARACTER_SET_RESULTS=@OLD_CHARACTER_SET_RESULTS */;
+/*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
+
+
