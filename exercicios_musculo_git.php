@@ -38,10 +38,10 @@ include_once("conexao.php");
                         <a class="nav-link" href="produtos.php">Produtos</a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link" href="exercicios_git.php">Exercícios</a>
+                        <a class="nav-link active" href="exercicios_git.php">Exercícios</a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link active" href="noticia22.php">Notícias</a>
+                        <a class="nav-link " href="noticia22.php">Notícias</a>
                     </li>
                     <li class="nav-item">
                         <a class="nav-link" href="login_tcc.php">Entrar</a>
