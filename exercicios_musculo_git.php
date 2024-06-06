@@ -7,18 +7,13 @@ include_once("conexao.php");
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Login</title>
+    <title>Exercicios 3</title>
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/css/bootstrap.min.css" rel="stylesheet">
     <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.11.6/dist/umd/popper.min.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/js/bootstrap.min.js"></script>
     <link href="principal.css" rel="stylesheet">
 </head>
-<link rel="stylesheet" href="css_login.css">
-
 <body>
-
-
-
 
     <!-- Barra de navegação -->
     <header class="header bg-light sticky-top border-bottom shadow-sm">
@@ -32,7 +27,7 @@ include_once("conexao.php");
                     <span class="navbar-toggler-icon"></span>
                 </button>
                 <div class="collapse navbar-collapse" id="navbarNav">
-                   <ul class="navbar-nav mx-auto"> <!-- Alteração na classe para centralizar os links -->
+                    <ul class="navbar-nav mx-auto"> <!-- Alteração na classe para centralizar os links -->
                     <li class="nav-item">
                         <a class="nav-link" href="principal.php">Início</a>
                     </li>
@@ -43,10 +38,10 @@ include_once("conexao.php");
                         <a class="nav-link" href="produtos.php">Produtos</a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link" href="exercicios_git.php">Exercícios</a>
+                        <a class="nav-link active" href="exercicios_git.php">Exercícios</a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link active" href="noticia22.php">Notícias</a>
+                        <a class="nav-link " href="noticia22.php">Notícias</a>
                     </li>
                     <li class="nav-item">
                         <a class="nav-link" href="login_tcc.php">Entrar</a>
@@ -61,50 +56,48 @@ include_once("conexao.php");
         </div>
     </header>
 
-    <div class="container mt-3">
-    <div class="card custom-card-width">
-        <div class="card-body">
-            <center>
-                <h1><br><br>Login ADM</h1><br>
-                <form method="POST" action="verifica_senha_crud.php">
-                    <div class="mb-3">
-                        <label for="nome">Nome Completo</label>
-                        <input type="text" name="nome" id="nome" class="form-control" placeholder="Nome Completo" required autofocus>
-                    </div>
-                    <div class="mb-3">
-                        <label for="email">Email</label>
-                        <input type="email" name="email" id="email" class="form-control" placeholder="Email" required>
-                    </div>
-                    <div class="mb-3">
-                        <label for="senha">Senha</label>
-                        <input type="password" name="senha" id="senha" class="form-control" placeholder="Senha" required>
-                    </div>
-                    <button type="submit" class="btn btn-success">Acessar</button>
-                </form>
-      <p>
-        <?php 
-           if(isset($_SESSION['loginErro'])){
-                echo $_SESSION['loginErro'];
-                unset($_SESSION['loginErro']);
-            }
-        ?>
-        </p> <p>
-            <?php 
-            if(isset($_SESSION['logindeslogado'])){
-                echo $_SESSION['logindeslogado'];
-                unset($_SESSION['logindeslogado']);
-            }
-            ?>
-        </p>
-  
-<p>
- <button class="button button2"><a href="senha_crud.php">Atualizar a página</a></button>
-<p>
+   <div class="container mt-5">
+    <h2>Exercícios para ganho muscular</h2>
+    <ol>
+        <li>
+            <h5>Flexão de Braço</h5>
+            <p>3 Séries com 15 repetições cada</p>
+        </li>
+        <li>
+            <h5>Tríceps Banco</h5>
+            <p>3 Séries com 15 repetições cada</p>
+        </li>
+        <li>
+            <h5>Remada Unilateral</h5>
+            <p>3 Séries com 15 repetições cada</p>
+        </li>
+        <li>
+            <h5>Agachamento</h5>
+            <p>3 Séries com 15 repetições cada</p>
+        </li>
+        <li>
+            <h5>Rosca Direta com Barra ou Halteres</h5>
+            <p>3 a 4 Séries com 15 repetições cada</p>
+        </li>
+        <li>
+            <h5>Agachamento Avanço (Afundo)</h5>
+            <p>3 a 4 Séries com 15 repetições cada</p>
+        </li>
+        <li>
+            <h5>Extensão de Quadril</h5>
+            <p>3 a 4 Séries com 15 repetições cada</p>
+        </li>
+        <li>
+            <h5>Prancha Isométrica sobre o Solo</h5>
+            <p>Mínimo de 30seg</p>
+        </li>
+        <li>
+            <h5>Flexão de Ombro (Frontal e Lateral)</h5>
+            <p>3 a 4 Séries com 15 repetições cada</p>
+        </li>
+    </ol>
+</div>
 
-
-
-
-  
         <!-- Ícones de contato -->
         <div class="d-none d-lg-block text-center mb-4">
             <span>Conecte-se conosco nas redes sociais:</span>

@@ -7,18 +7,13 @@ include_once("conexao.php");
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Login</title>
+    <title>Exercicios 2</title>
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/css/bootstrap.min.css" rel="stylesheet">
     <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.11.6/dist/umd/popper.min.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/js/bootstrap.min.js"></script>
     <link href="principal.css" rel="stylesheet">
 </head>
-<link rel="stylesheet" href="css_login.css">
-
 <body>
-
-
-
 
     <!-- Barra de navegação -->
     <header class="header bg-light sticky-top border-bottom shadow-sm">
@@ -32,7 +27,7 @@ include_once("conexao.php");
                     <span class="navbar-toggler-icon"></span>
                 </button>
                 <div class="collapse navbar-collapse" id="navbarNav">
-                   <ul class="navbar-nav mx-auto"> <!-- Alteração na classe para centralizar os links -->
+                    <ul class="navbar-nav mx-auto"> <!-- Alteração na classe para centralizar os links -->
                     <li class="nav-item">
                         <a class="nav-link" href="principal.php">Início</a>
                     </li>
@@ -61,50 +56,31 @@ include_once("conexao.php");
         </div>
     </header>
 
-    <div class="container mt-3">
-    <div class="card custom-card-width">
-        <div class="card-body">
-            <center>
-                <h1><br><br>Login ADM</h1><br>
-                <form method="POST" action="verifica_senha_crud.php">
-                    <div class="mb-3">
-                        <label for="nome">Nome Completo</label>
-                        <input type="text" name="nome" id="nome" class="form-control" placeholder="Nome Completo" required autofocus>
-                    </div>
-                    <div class="mb-3">
-                        <label for="email">Email</label>
-                        <input type="email" name="email" id="email" class="form-control" placeholder="Email" required>
-                    </div>
-                    <div class="mb-3">
-                        <label for="senha">Senha</label>
-                        <input type="password" name="senha" id="senha" class="form-control" placeholder="Senha" required>
-                    </div>
-                    <button type="submit" class="btn btn-success">Acessar</button>
-                </form>
-      <p>
-        <?php 
-           if(isset($_SESSION['loginErro'])){
-                echo $_SESSION['loginErro'];
-                unset($_SESSION['loginErro']);
-            }
-        ?>
-        </p> <p>
-            <?php 
-            if(isset($_SESSION['logindeslogado'])){
-                echo $_SESSION['logindeslogado'];
-                unset($_SESSION['logindeslogado']);
-            }
-            ?>
-        </p>
-  
-<p>
- <button class="button button2"><a href="senha_crud.php">Atualizar a página</a></button>
-<p>
-
-
-
-
-  
+   <div class="container mt-5">
+    <h2>Rotina de Exercícios fisioterapeuticos</h2>
+    <ol>
+        <li>
+            <h5>Ao acordar, deitado de barriga para cima, pedalar 120 vezes no ar</h5>
+            <p>Este exercício melhora o posicionamento da coluna vertebral e da postura global, diminuindo ou retardando o encurvamento das costas e aliviando as dores na coluna.</p>
+        </li>
+        <li>
+            <h5>Antes do banho, exercitar as pernas (músculos gémeos)</h5>
+            <p>Este exercício bombeia o sangue para o coração, melhora os batimentos cardíacos e evita a obstrução das veias, diminuindo o risco de doenças cardíacas.</p>
+        </li>
+        <li>
+            <h5>Saltar à corda</h5>
+            <p>É um divertido e eficaz exercício para eliminar o excesso de peso, podendo queimar cerca de 10 calorias por minuto se fizer até 100 saltos por minuto. Além disso, este é um exercício verdadeiramente completo.</p>
+        </li>
+        <li>
+            <h5>Sprints na bicicleta</h5>
+            <p>Faça no máximo cinco sequências, alternando velocidade intensa e velocidade menos intensa.</p>
+        </li>
+        <li>
+            <h5>Ao chegar em casa, descanse um pouco e relaxe</h5>
+            <p>O importante é criar uma barreira entre o dia de trabalho que terminou e o serão em casa que está a começar.</p>
+        </li>
+    </ol>
+</div>
         <!-- Ícones de contato -->
         <div class="d-none d-lg-block text-center mb-4">
             <span>Conecte-se conosco nas redes sociais:</span>
