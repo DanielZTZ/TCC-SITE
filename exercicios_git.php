@@ -57,28 +57,28 @@ include_once("conexao.php");
     </header>
 
    <div class="container mt-5 d-flex justify-content-center">
-    <a href="exercicios_fisio_git.html" class="card btn" style="width: 18rem; margin-right: 15px; border: 2px solid green; text-decoration: none; color: black;">
+    <a href="exercicios_fisio_git.php" class="card btn" style="width: 18rem; margin-right: 15px; border: 2px solid green; text-decoration: none; color: black;">
         <div class="card-body">
             <h5 class="card-title text-center" style="overflow: hidden; white-space: nowrap; text-overflow: ellipsis;">Exercicios fisioterapia</h5>
             <p class="card-text text-left" style="overflow: hidden; text-overflow: ellipsis;"></p>
         </div>
-        <img class="card-img-bottom" src="imagens/fisio.jpeg" alt="Card image" style="width:100%">
+        <img class="card-img-bottom" src="img/fisio.jpeg" alt="Card image" style="width:100%">
     </a>
 
-    <a href="exercicios_musculo_git.html" class="card btn" style="width: 18rem; margin-right: 15px; border: 2px solid green; text-decoration: none; color: black;">
+    <a href="exercicios_musculo_git.php" class="card btn" style="width: 18rem; margin-right: 15px; border: 2px solid green; text-decoration: none; color: black;">
         <div class="card-body">
             <h5 class="card-title text-center" style="overflow: hidden; white-space: nowrap; text-overflow: ellipsis;">Exercicios Musculação</h5>
             <p class="card-text text-left" style="overflow: hidden; text-overflow: ellipsis;"></p>
         </div>
-        <img class="card-img-bottom" src="imagens/musculo.jpg" alt="Card image" style="width:100%">
+        <img class="card-img-bottom" src="img/musculo.jpg" alt="Card image" style="width:100%">
     </a>
 
-    <a href="exercicios_magro_git" class="card btn" style="width: 18rem; border: 2px solid green; text-decoration: none; color: black;">
+    <a href="exercicios_magre_git.php" class="card btn" style="width: 18rem; border: 2px solid green; text-decoration: none; color: black;">
         <div class="card-body">
             <h5 class="card-title text-center" style="overflow: hidden; white-space: nowrap; text-overflow: ellipsis;">Exercicios Emagrecer</h5>
             <p class="card-text text-left" style="overflow: hidden; text-overflow: ellipsis;"></p>
         </div>
-        <img class="card-img-bottom" src="imagens/magre.jpg" alt="Card image" style="width:100%">
+        <img class="card-img-bottom" src="img/magre.jpg" alt="Card image" style="width:100%">
     </a>
 </div>
 
