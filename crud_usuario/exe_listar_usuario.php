@@ -35,18 +35,18 @@ include_once("../conexao.php");
 		//calcular o inicio visualização
 		$inicio = ($qnt_result_pg * $pagina) - $qnt_result_pg;
 		
-		$result_usuarios = "SELECT * FROM aluno LIMIT $inicio, $qnt_result_pg";
+		$result_usuarios = "SELECT * FROM usuario LIMIT $inicio, $qnt_result_pg";
 		$resultado_usuarios = mysqli_query($conn, $result_usuarios);
 		while($row_usuario = mysqli_fetch_assoc($resultado_usuarios)){
-			echo "  ID: " . $row_usuario['id'] . "<br>";
+			echo "  ID: " . $row_usuario['id_usuario'] . "<br>";
 			echo "  Nome: " . $row_usuario['nome'] . "<br>";
 			echo "  E-mail: " . $row_usuario['email'] . "<br>";
 			echo "  Telefone: " . $row_usuario['telefone'] . "<br>";
 			echo "  Senha: " . $row_usuario['senha'] . "<br>";
 			echo "<hr> <br>";
 
-		//	echo "<a href='editar_aluno.php?id=" . $row_usuario['id'] . "'>Editar</a><br>";
-		//	echo "<a href='proc_apagar_usuario.php?id=" . $row_usuario['id'] . "'>Apagar</a><br><hr>";
+			echo "<a href='edit_usuario.php?id_usuario=" . $row_usuario['id_usuario'] . "'>Editar</a><br>";
+			echo "<a href='apaga_usuario.php?id_usuario=" . $row_usuario['id_usuario'] . "'>Apagar</a><br><hr>";
 		}
 		
 		//Paginção - Somar a quantidade de usuários
