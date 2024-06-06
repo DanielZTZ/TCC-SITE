@@ -52,7 +52,7 @@ $receitas_salgadas = buscarReceitasPorCategoria($conn, 'Salgados');
 </header>
 
 <div class="container mt-5">
-    <h1 class="mb-4">Receitas Saudáveis</h1>
+    
 
     <h2 class="mb-4">Receitas Doces</h2>
     <div class="row  align-items-stretch">
