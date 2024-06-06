@@ -372,6 +372,8 @@ CREATE TABLE IF NOT EXISTS `usuario` (
 
 INSERT INTO `usuario` (`id_usuario`, `nome`, `email`, `telefone`, `senha`) VALUES
 (1, 'Gabriel de matos prando', 'biel2006@gamil.com', '18997754801', 'spy12310');
+(3, 'Markos', 'Sidokinha567@gmail.com', '18994363', '696963'),
+(4, 'Isabella', 'belinha666@gmail.com', '189965264', 'nicule');
 
 -- --------------------------------------------------------
 
