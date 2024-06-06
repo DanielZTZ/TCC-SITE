@@ -32,7 +32,7 @@ if ($SendCadImg) {
             }
 
             $caminho_completo = $diretorio . basename($nome_imagem);
-            $caminho_relativo = 'crud_noticia/inserir_not/imagem/' . basename($nome_imagem);
+            $caminho_relativo = 'crud_noticia/imagem/' . basename($nome_imagem);
 
             // Verificar se o arquivo foi carregado corretamente para o local temporário
             if (is_uploaded_file($nome_tmp)) {

@@ -1,6 +1,6 @@
 <?php
     session_start();
-	include_once("conexao_tcc.php");
+	include_once("conexao.php");
 	
 	$codigo = filter_input(INPUT_POST,'id_usuario',FILTER_SANITIZE_NUMBER_INT);
 	$nome = filter_input(INPUT_POST, 'nome', FILTER_SANITIZE_STRING);

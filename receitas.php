@@ -40,11 +40,11 @@ $receitas_salgadas = buscarReceitasPorCategoria($conn, 'Salgados');
                 <ul class="navbar-nav mx-auto">
                     <li class="nav-item"><a class="nav-link" href="principal.php">Início</a></li>
                     <li class="nav-item"><a class="nav-link active" href="#contato">Receitas</a></li>
-                    <li class="nav-item"><a class="nav-link" href="produtos.html">Produtos</a></li>
-                    <li class="nav-item"><a class="nav-link" href="#servicos">Exercícios</a></li>
+                    <li class="nav-item"><a class="nav-link" href="produtos.php">Produtos</a></li>
+                    <li class="nav-item"><a class="nav-link" href="exercicios_git.html">Exercícios</a></li>
                     <li class="nav-item"><a class="nav-link" href="noticia22.php">Notícias</a></li>
-                    <li class="nav-item"><a class="nav-link" href="#contato">Entrar</a></li>
-                    <li class="nav-item"><a class="nav-link" href="#contato">Cadastre-se</a></li>
+                    <li class="nav-item"><a class="nav-link" href="login_tcc.php">Entrar</a></li>
+                    <li class="nav-item"><a class="nav-link" href="Cadastro_cliente_git.php">Cadastre-se</a></li>
                 </ul>
             </div>
         </nav>
