@@ -40,8 +40,8 @@ include_once("conexao.php");
 			echo "ID: " . $row_categorias['categoria_id'] . "<br>";
 			echo "Nome: " . $row_categorias['nome'] . "<br> <br>";
 
- 			echo "<a href='alterar_categoria.php?id=" . $row_categorias['categoria_id'] . "'>Editar</a><br> <hr>";
-			echo "<a href='recebe_deletar_categoria.php?id=" . $row_categorias['categoria_id'] . "'>Apagar</a><br><hr>";
+ 			echo "<a href='alterar_categoria.php?categoria_id=" . $row_categorias['categoria_id'] . "'>Editar</a><br> <hr>";
+			echo "<a href='recebe_deletar_categoria.php?categoria_id=" . $row_categorias['categoria_id'] . "'>Apagar</a><br><hr>";
 		}
 		
 		//Paginção - Somar a quantidade de usuários

@@ -111,9 +111,8 @@ body {
     </button>
     <div class="dropdown-content">
       <a href="cadastro_produto.php">Cadastrar Produto</a>
-      <a href="deletar_produto.php">Modificar</a>
+      <a href="deletar_produto.php">Lista de Produtos</a>
       <a href="cadastrar_imagem_produto.php">Cadastrar Imagem</a>
-      <a href="alterar_imagem_produto.php">Alterar Imagem</a>
     </div>
   </div>
 
@@ -123,7 +122,7 @@ body {
     </button>
     <div class="dropdown-content">
       <a href="cadastro_categoria.php">Cadastrar Categoria</a>
-      <a href="deletar_categoria.php">Modificar</a>
+      <a href="deletar_categoria.php">Lista de Categorias</a>
     </div>
   </div>
   
@@ -133,12 +132,12 @@ body {
     </button>
     <div class="dropdown-content">
       <a href="/TCC-SITE/crud_noticia/nome_arquivo.php">Cadastrar Categoria</a>
-      <a href="deletar_categoria.php">Modificar</a>
+      <a href="deletar_categoria.php">Lista de Categorias</a>
     </div>
   </div>
 
   <div>
-    <a href="/TCC-SITE/principal.php" class="button-link">
+    <a href="principal.php" class="button-link">
         Voltar à Página Inicial do Site
     </a>
 </div>

@@ -50,8 +50,10 @@ include_once("conexao.php");
 			echo "Largura: " . $row_produtos['largura'] . "<br>";
 			echo "Comprimento: " . $row_produtos['comprimento'] . "<br> <br>";
 
- 			echo "<a href='alterar_produto.php?id=" . $row_produtos['produto_id'] . "'>Editar</a><br> <hr>";
-			echo "<a href='recebe_deletar_produto.php?id=" . $row_produtos['produto_id'] . "'>Apagar</a><br><hr>";
+			echo "<a href='cadastrar_imagem_produto.php?imagem_id=" . $row_imagem_produto['imagem_id'] . "'>Cadastrar Imagem</a><br> <hr>";
+			echo "<a href='alterar_imagem_produto.php?imagem_id=" . $row_imagem_produto['imagem_id'] . "'>Editar Imagem</a><br> <hr>";
+ 			echo "<a href='alterar_produto.php?produto_id=" . $row_produtos['produto_id'] . "'>Editar Produto</a><br> <hr>";
+			echo "<a href='recebe_deletar_produto.php?produto_id=" . $row_produtos['produto_id'] . "'>Apagar</a><br><hr>";
 		}
 		
 		//Paginção - Somar a quantidade de usuários
