@@ -28,7 +28,7 @@ $row_usuario = mysqli_fetch_assoc($resultado_usuario);
 			unset($_SESSION['msg']);
 		}
 		?>
-		<form method="POST" action="editar_aluno.php">
+		<form method="POST" action="editar_usuario.php">
 			<input type="hidden" name="id_usuario" value="<?php echo $row_usuario['id_usuario']; ?>">
 			
 			<label>Nome: </label>
