@@ -10,11 +10,9 @@ include_once("../conexao.php");
 	</head>
 	<body>
 		<hr> <p>
-		<a href="Principal.php"> <input type="button"  value="Página Inicial"></a> &nbsp
-    	<a href="cadastro.php"> <input type="button"  value= "Cadastrar"></a> &nbsp 
-        <a href= "exibir_dados1.php"> <input type="button"  value="Listar" ></a> &nbsp
-        <a href= "exe_listar.php"> <input type="button"  value="Listar Dados Completo"></a> &nbsp
-         <a href= "exe_listar2.php"> <input type="button"  value="Alterar"></a> &nbsp
+		<a href="../principal_crud.php"> <input type="button"  value="Página Inicial"></a> &nbsp
+    	
+     
        <!-- <a href="exe_listar3.php"><input type="button"  value="Apagar"></a> &nbsp-->
 		<p><hr><h1>Listagem de Usuarios</h1> <p> <hr> <h3>
 		<?php
