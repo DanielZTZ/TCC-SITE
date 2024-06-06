@@ -6,15 +6,13 @@ include_once("../conexao.php");
 <html lang="pt-br">
 	<head>
 		<meta charset="utf-8">
-		<title>CRUD - Listar</title>		
+		<title>CRUD - Listar Usuarios</title>		
 	</head>
 	<body>
 		<hr> <p>
-		<a href="Principal.php"> <input type="button"  value="Página Inicial"></a> &nbsp
-    	<a href="cadastro.php"> <input type="button"  value= "Cadastrar"></a> &nbsp 
-        <a href= "exibir_dados1.php"> <input type="button"  value="Listar" ></a> &nbsp
-        <a href= "exe_listar.php"> <input type="button"  value="Listar Dados Completo"></a> &nbsp
-         <a href= "exe_listar2.php"> <input type="button"  value="Alterar"></a> &nbsp
+		<a href="../principal_crud.php"> <input type="button"  value="Página Inicial"></a> &nbsp
+    	
+     
        <!-- <a href="exe_listar3.php"><input type="button"  value="Apagar"></a> &nbsp-->
 		<p><hr><h1>Listagem de Usuarios</h1> <p> <hr> <h3>
 		<?php
@@ -42,8 +40,8 @@ include_once("../conexao.php");
 			echo "Telefone: " . $row_aluno['telefone'] . "<br> <br>";
 			echo "Senha: " . $row_aluno['senha'] . "<br> <br>";
 
- 		//	echo "<a href='edit_aluno.php?id=" . $row_aluno['id'] . "'>Editar</a><br> <hr>";
-			echo "<a href='apaga.php?id=" . $row_aluno['id_usuario'] . "'>Apagar</a><br><hr>";
+ 			echo "<a href='edit_usuario.php?id_usuario=" . $row_aluno['id_usuario'] . "'>Editar</a><br> <hr>";
+			echo "<a href='apaga.php?id_usuario=" . $row_aluno['id_usuario'] . "'>Apagar</a><br><hr>";
 		}
 		
 		//Paginção - Somar a quantidade de usuários
@@ -56,11 +54,11 @@ include_once("../conexao.php");
 		
 		//Limitar os link antes depois
 		$max_links = 2;
-		echo "<a href='apagar_aluno.php?pagina=1'>Primeira</a> ";
+		echo "<a href='apaga_usuario.php?pagina=1'>Primeira</a> ";
 		
 		for($pag_ant = $pagina - $max_links; $pag_ant <= $pagina - 1; $pag_ant++){
 			if($pag_ant >= 1){
-				echo "<a href='apagar_aluno.php?pagina=$pag_ant'>$pag_ant</a> ";
+				echo "<a href='apaga_usuario.php?pagina=$pag_ant'>$pag_ant</a> ";
 			}
 		}
 			
@@ -68,11 +66,11 @@ include_once("../conexao.php");
 		
 		for($pag_dep = $pagina + 1; $pag_dep <= $pagina + $max_links; $pag_dep++){
 			if($pag_dep <= $quantidade_pg){
-				echo "<a href='apagar_aluno.php?pagina=$pag_dep'>$pag_dep</a> ";
+				echo "<a href='apaga_usuario.php?pagina=$pag_dep'>$pag_dep</a> ";
 			}
 		}
 		
-		echo "<a href='apagar_aluno.php?pagina=$quantidade_pg'>Ultima</a>";
+		echo "<a href='apaga_php?pagina=$quantidade_pg'>Ultima</a>";
 		
 		?>		
 	</body>

@@ -128,12 +128,12 @@ body {
   </div>
   
   <div class="dropdown">
-    <button class="dropbtn">Exemplo
+    <button class="dropbtn">Usuario
       <i class="fa fa-caret-down"></i>
     </button>
     <div class="dropdown-content">
-      <a href="/TCC-SITE/crud_noticia/nome_arquivo.php">Cadastrar Categoria</a>
-      <a href="deletar_categoria.php">Modificar</a>
+      <a href="/TCC-SITE/crud_usuario/apaga_usuario.php">Editar Usuario</a>
+     
     </div>
   </div>
 
