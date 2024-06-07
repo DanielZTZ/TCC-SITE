@@ -1,0 +1,12 @@
+body {
+    font-size: 1.2rem; /* Aumenta o tamanho da fonte base */
+  }
+  h1 {
+    font-size: 2.5rem; /* Aumenta o tamanho da fonte do título */
+  }
+  .card-title {
+    font-size: 1.5rem; /* Aumenta o tamanho da fonte dos títulos dos cards */
+  }
+  .card-text {
+    font-size: 1.3rem; /* Aumenta o tamanho da fonte do texto dos cards */
+  }
