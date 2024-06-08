@@ -2,76 +2,49 @@
 session_start();
 include_once '../conexao.php';
 
+$id_noticia = $_POST['id_noticia'];
+
+// Iniciar transação
+$conn->begin_transaction();
+
 try {
-    
-    // ID da notícia a ser atualizada
-    $noticiaId = isset($_POST['noticiaId']) ? intval($_POST['noticiaId']) : null;
-    $novoTitulo = isset($_POST['titulo']) ? $_POST['titulo'] : null;
-    $novoTexto = isset($_POST['texto']) ? $_POST['texto'] : null;
-    $novoLink = isset($_POST['link']) ? $_POST['link'] : null;
-    $novaImagemNoticiaId = isset($_POST['imagem_noticia_id']) ? intval($_POST['imagem_noticia_id']) : null;
-    $novoCaminhoImagem = isset($_POST['caminho']) ? $_POST['caminho'] : null;
+    // Obter o caminho da imagem associada à notícia
+    $sql_obter_imagem = "SELECT i.caminho FROM noticia n JOIN imagem_noticia i ON n.imagem_noticia_id = i.id WHERE n.id = $id_noticia";
+    $resultado = $conn->query($sql_obter_imagem);
 
-    if ($noticiaId === null) {
-        throw new Exception("ID da notícia é obrigatório.");
-    }
+    if ($resultado->num_rows > 0) {
+        $row = $resultado->fetch_assoc();
+        $caminho_imagem = $row['caminho'];
 
-    // Construir a query dinamicamente para a tabela noticia
-    $fields = [];
-    $params = [];
-
-    if ($novoTitulo !== null) {
-        $fields[] = "titulo = :novoTitulo";
-        $params[':novoTitulo'] = $novoTitulo;
-    }
-
-    if ($novoTexto !== null) {
-        $fields[] = "texto = :novoTexto";
-        $params[':novoTexto'] = $novoTexto;
-    }
-
-    if ($novoLink !== null) {
-        $fields[] = "link = :novoLink";
-        $params[':novoLink'] = $novoLink;
-    }
-
-    if ($novaImagemNoticiaId !== null) {
-        $fields[] = "imagem_noticia_id = :novaImagemNoticiaId";
-        $params[':novaImagemNoticiaId'] = $novaImagemNoticiaId;
-    }
-
-    if (count($fields) > 0) {
-        $sql = "UPDATE noticia SET " . implode(", ", $fields) . " WHERE id = :noticiaId";
-        $stmt = $conn->prepare($sql);
-        foreach ($params as $param => $value) {
-            $stmt->bindValue($param, $value, PDO::PARAM_STR);
+        // Excluir a notícia
+        $sql_excluir_noticia = "DELETE FROM noticia WHERE id = $id_noticia";
+        if (!$conn->query($sql_excluir_noticia)) {
+            throw new Exception("Erro ao excluir a notícia.");
         }
-        $stmt->bindValue(':noticiaId', $noticiaId, PDO::PARAM_INT);
-        $stmt->execute();
 
-        echo "Notícia atualizada com sucesso.";
+        // Excluir a imagem associada
+        $sql_excluir_imagem = "DELETE FROM imagem_noticia WHERE id = (SELECT imagem_noticia_id FROM noticia WHERE id = $id_noticia)";
+        if (!$conn->query($sql_excluir_imagem)) {
+            throw new Exception("Erro ao excluir a imagem associada.");
+        }
+
+        // Remover o arquivo de imagem do servidor
+        if (!unlink($caminho_imagem)) {
+            throw new Exception("Erro ao excluir o arquivo de imagem do servidor.");
+        }
+
+        // Commit das alterações
+        $conn->commit();
+        echo "Notícia e imagem associada excluídas com sucesso!";
     } else {
-        echo "Nenhum dado para atualizar na tabela noticia.";
+        throw new Exception("Notícia não encontrada.");
     }
-
-    // Atualizar o caminho da imagem na tabela imagem_noticia se fornecido
-    if ($novoCaminhoImagem !== null && $novaImagemNoticiaId !== null) {
-        $sql = "UPDATE imagem_noticia SET caminho = :novoCaminho WHERE id = :imagemId";
-        $stmt = $conn->prepare($sql);
-        $stmt->bindParam(':novoCaminho', $novoCaminhoImagem, PDO::PARAM_STR);
-        $stmt->bindParam(':imagemId', $novaImagemNoticiaId, PDO::PARAM_INT);
-        $stmt->execute();
-
-        echo " Caminho da imagem atualizado com sucesso.";
-    } elseif ($novoCaminhoImagem !== null) {
-        echo " ID da imagem é necessário para atualizar o caminho.";
-    }
-
-} catch(PDOException $e) {
-    echo "Erro: " . $e->getMessage();
-} catch(Exception $e) {
-    echo "Erro: " . $e->getMessage();
+} catch (Exception $e) {
+    // Rollback em caso de erro
+    $conn->rollback();
+    echo "Erro ao excluir notícia: " . $e->getMessage();
 }
 
-$conn = null;
+// Fechar conexão
+$conn->close();
 ?>

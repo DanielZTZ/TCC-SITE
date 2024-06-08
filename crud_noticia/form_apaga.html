@@ -1,30 +1,94 @@
 <!DOCTYPE html>
-<html>
+<html lang="pt-BR">
 <head>
+    <meta charset="UTF-8">
     <title>Atualizar Notícia</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f2f2f2;
+            margin: 0;
+            padding: 0;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+        }
+        .container {
+            background-color: #fff;
+            padding: 20px;
+            border-radius: 8px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+            width: 400px;
+        }
+        h2 {
+            text-align: center;
+            color: #333;
+        }
+        label {
+            display: block;
+            margin-top: 10px;
+            color: #333;
+        }
+        input[type="text"],
+        textarea,
+        input[type="file"] {
+            width: calc(100% - 20px);
+            padding: 8px;
+            margin-top: 5px;
+            margin-bottom: 10px;
+            border: 1px solid #ccc;
+            border-radius: 4px;
+            box-sizing: border-box;
+        }
+        input[type="submit"],
+        input[type="button"] {
+            width: 100%;
+            background-color: #4CAF50;
+            color: white;
+            padding: 10px;
+            margin-top: 10px;
+            border: none;
+            border-radius: 4px;
+            cursor: pointer;
+        }
+        input[type="submit"]:hover,
+        input[type="button"]:hover {
+            background-color: #45a049;
+        }
+    </style>
 </head>
 <body>
 
-<h2>Atualizar Notícia</h2>
+<div class="container">
+    <h2>Atualizar Notícia</h2>
+    <form action="atualiza_noticia.php" method="post" enctype="multipart/form-data">
+        <label for="id_noticia">ID da Notícia:</label>
+        <input type="text" id="id_noticia" name="id_noticia" required>
 
-<form action="atualiza_noticia.php" method="post" enctype="multipart/form-data">
-    <label for="id_noticia">ID da Notícia:</label><br>
-    <input type="text" id="id_noticia" name="id_noticia"><br>
+        <label for="novo_titulo">Novo Título:</label>
+        <input type="text" id="novo_titulo" name="novo_titulo">
 
-    <label for="novo_titulo">Novo Título:</label><br>
-    <input type="text" id="novo_titulo" name="novo_titulo"><br>
+        <label for="novo_texto">Novo Texto:</label>
+        <textarea id="novo_texto" name="novo_texto" rows="4"></textarea>
 
-    <label for="novo_texto">Novo Texto:</label><br>
-    <textarea id="novo_texto" name="novo_texto"></textarea><br>
+        <label for="novo_link">Novo Link:</label>
+        <input type="text" id="novo_link" name="novo_link">
 
-    <label for="novo_link">Novo Link:</label><br>
-    <input type="text" id="novo_link" name="novo_link"><br>
+        <label for="nova_imagem">Nova Imagem:</label>
+        <input type="file" id="nova_imagem" name="nova_imagem">
 
-    <label for="nova_imagem">Nova Imagem:</label><br>
-    <input type="file" id="nova_imagem" name="nova_imagem"><br>
+        <input type="submit" value="Atualizar">
+    </form>
 
-    <input type="submit" value="Atualizar">
-</form>
+    <h2>Excluir Notícia</h2>
+    <form action="apaga_noticia.php" method="post">
+        <label for="id_noticia_excluir">ID da Notícia:</label>
+        <input type="text" id="id_noticia_excluir" name="id_noticia" required>
+
+        <input type="submit" value="Excluir Notícia">
+    </form>
+</div>
 
 </body>
 </html>
