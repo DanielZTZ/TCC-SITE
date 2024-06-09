@@ -1,5 +1,6 @@
 <?php
-require_once "conexao.php"; // Inclui o arquivo conexao.php que contém a conexão com o banco de dados
+session_start();
+include_once("conexao.php");
 
 /* //Calcular frete
 function calcularFrete($cepDestino) {
@@ -33,7 +34,7 @@ echo json_encode($resultadoFrete);*/
 $produto_id = isset($_GET['produto_id']) ? (int) $_GET['produto_id'] : 0;
 
 // Preparar e executar a consulta SQL para pegar os detalhes do produto
-$stmt = $conn->prepare("SELECT * FROM Produtos WHERE produto_id = ?");
+$stmt = $conn->prepare("SELECT * FROM produtos WHERE produto_id = ?");
 $stmt->bind_param("i", $produto_id);
 $stmt->execute();
 $result = $stmt->get_result();
@@ -115,6 +116,7 @@ $conn->close();
                 }
             }
 
+            Adicionar no carrinho. 
             function addToCart() {
                 var quantity = parseInt(document.getElementById('quantity').value);
                 if (isNaN(quantity) || quantity <= 0) {
@@ -123,10 +125,11 @@ $conn->close();
                 }
 
                 // Use as variáveis definidas anteriormente
-                window.location.href = 'carrinho.php?produto_id=' + productId + '&quantidade=' + quantity;
+                window.location.href = 'confirmacao_compra.php?produto_id=' + productId + '&quantidade=' + quantity;
             }
-
-            /*//Calcular o Frete
+            
+            /*
+            //Calcular o Frete
             document.getElementById('btnCalcFrete').addEventListener('click', function() {
                 // Obter o valor do CEP inserido pelo usuário
                 var cep = document.getElementById('freteInput').value;

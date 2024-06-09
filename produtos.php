@@ -1,5 +1,6 @@
 <?php
-require_once "conexao.php"; // Inclui o arquivo conexao.php que contém a conexão com o banco de dados
+session_start();
+include_once("conexao.php");
 
 // Função para filtrar produtos por categoria
 function filtrarPorCategoria($conn, $categoria_id) {
@@ -25,13 +26,13 @@ function filtrarPorPreco($conn, $min_preco, $max_preco, $pagina_atual, $por_pagi
 
 // Lógica de paginação
 $por_pagina = 9;
-$total_produtos = $conn->query("SELECT COUNT(*) AS total FROM Produtos")->fetch_assoc()['total'];
+$total_produtos = $conn->query("SELECT COUNT(*) AS total FROM produtos")->fetch_assoc()['total'];
 $total_paginas = ceil($total_produtos / $por_pagina);
 
 $pagina_atual = isset($_GET['pagina']) ? $_GET['pagina'] : 1;
 $inicio = ($pagina_atual - 1) * $por_pagina;
 
-$sql = "SELECT * FROM Produtos LIMIT $inicio, $por_pagina";
+$sql = "SELECT * FROM produtos LIMIT $inicio, $por_pagina";
 $result = $conn->query($sql);
 $produtos = $result->fetch_all(MYSQLI_ASSOC);
 

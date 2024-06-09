@@ -36,7 +36,8 @@ include_once("conexao.php");
 		
 		$result_usuarios = "SELECT * FROM produtos LIMIT $inicio, $qnt_result_pg";
 		$resultado_usuarios = mysqli_query($conn, $result_usuarios);
-		while($row_produtos = mysqli_fetch_assoc($resultado_usuarios)){
+
+		while ($row_produtos = mysqli_fetch_assoc($resultado_usuarios)) {
 			echo "ID: " . $row_produtos['produto_id'] . "<br>";
 			echo "Nome: " . $row_produtos['nome'] . "<br>";
 			echo "Preço: " . $row_produtos['preco'] . "<br>";
@@ -48,13 +49,31 @@ include_once("conexao.php");
 			echo "Peso: " . $row_produtos['peso'] . "<br>";
 			echo "Altura: " . $row_produtos['altura'] . "<br>";
 			echo "Largura: " . $row_produtos['largura'] . "<br>";
-			echo "Comprimento: " . $row_produtos['comprimento'] . "<br> <br>";
+			echo "Comprimento: " . $row_produtos['comprimento'] . "<br>";
 
-			echo "<a href='cadastrar_imagem_produto.php?imagem_id=" . $row_imagem_produto['imagem_id'] . "'>Cadastrar Imagem</a><br> <hr>";
-			echo "<a href='alterar_imagem_produto.php?imagem_id=" . $row_imagem_produto['imagem_id'] . "'>Editar Imagem</a><br> <hr>";
- 			echo "<a href='alterar_produto.php?produto_id=" . $row_produtos['produto_id'] . "'>Editar Produto</a><br> <hr>";
+			// Verificar se o produto possui uma imagem associada
+			if ($row_produtos['imagem_id']) {
+				$imagem_id = $row_produtos['imagem_id'];
+				$result_imagem = "SELECT * FROM imagem_produto WHERE id = '$imagem_id'";
+				$resultado_imagem = mysqli_query($conn, $result_imagem);
+				$row_imagem_produto = mysqli_fetch_assoc($resultado_imagem);
+
+				if ($row_imagem_produto) {
+					$imagem_caminho = $row_imagem_produto['imagem']; // Utilizar o caminho completo diretamente do banco de dados
+					echo "Imagem: <img src='" . $imagem_caminho . "' alt='" . $row_imagem_produto['nome'] . "' style='width:100px;'><br>";
+					echo "<a href='alterar_imagem_produto.php?imagem_id=" . $row_imagem_produto['id'] . "'>Editar Imagem</a><br>";
+				} else {
+					echo "Erro ao carregar a imagem.<br>";
+				}
+			} else {
+				echo "Sem imagem<br>";
+				echo "<a href='cadastrar_imagem_produto.php?produto_id=" . $row_produtos['produto_id'] . "'>Cadastrar Imagem</a><br>";
+			}
+
+			echo "<a href='alterar_produto.php?produto_id=" . $row_produtos['produto_id'] . "'>Editar Produto</a><br>";
 			echo "<a href='recebe_deletar_produto.php?produto_id=" . $row_produtos['produto_id'] . "'>Apagar</a><br><hr>";
-		}
+			}
+		
 		
 		//Paginção - Somar a quantidade de usuários
 		$result_pg = "SELECT COUNT(produto_id) AS num_result FROM produtos";

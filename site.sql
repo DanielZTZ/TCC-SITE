@@ -150,34 +150,37 @@ CREATE TABLE IF NOT EXISTS `imagem_produto` (
   `id` int NOT NULL AUTO_INCREMENT,
   `nome` varchar(220) CHARACTER SET utf8mb3 COLLATE utf8mb3_unicode_ci NOT NULL,
   `imagem` varchar(220) CHARACTER SET utf8mb3 COLLATE utf8mb3_unicode_ci NOT NULL,
-  PRIMARY KEY (`id`)
+  `produto_id` int DEFAULT NULL,
+  PRIMARY KEY (`id`),
+  KEY `fk_produtos` (`produto_id`)
 ) ENGINE=InnoDB AUTO_INCREMENT=21 DEFAULT CHARSET=utf8mb3 COLLATE=utf8mb3_unicode_ci;
 
 --
 -- Despejando dados para a tabela `imagem_produto`
 --
 
-INSERT INTO `imagem_produto` (`id`, `nome`, `imagem`) VALUES
-(1, 'Vitamina Exemplo 1', 'imagem_produto/vitamina1.jpeg'),
-(2, 'Vitamina Exemplo 2', 'imagem_produto/vitamina2.jpeg'),
-(3, 'Vitamina Exemplo 3', 'imagem_produto/vitamina3.jpeg'),
-(4, 'Vitamina Exemplo 4', 'imagem_produto/vitamina4.jpeg'),
-(5, 'Vitamina Exemplo 5', 'imagem_produto/vitamina5.jpeg'),
-(6, 'Proteína Exemplo 1', 'imagem_produto/proteina1.jpeg'),
-(7, 'Proteína Exemplo 2', 'imagem_produto/proteina2.jpeg'),
-(8, 'Proteína Exemplo 3', 'imagem_produto/proteina3.jpeg'),
-(9, 'Proteína Exemplo 4', 'imagem_produto/proteina4.jpeg'),
-(10, 'Proteína Exemplo 5', 'imagem_produto/proteina5.jpeg'),
-(11, 'Pré Treino Exemplo 1', 'imagem_produto/pretreino1.jpeg'),
-(12, 'Pré Treino Exemplo 2', 'imagem_produto/pretreino2.jpeg'),
-(13, 'Pré Treino Exemplo 3', 'imagem_produto/pretreino3.jpeg'),
-(14, 'Pré Treino Exemplo 4', 'imagem_produto/pretreino4.jpeg'),
-(15, 'Pré Treino Exemplo 5', 'imagem_produto/pretreino5.jpeg'),
-(16, 'Emagrecedor Exemplo 1', 'imagem_produto/emagrecedor1.jpeg'),
-(17, 'Emagrecedor Exemplo 2', 'imagem_produto/emagrecedor2.jpeg'),
-(18, 'Emagrecedor Exemplo 3', 'imagem_produto/emagrecedor3.jpeg'),
-(19, 'Emagrecedor Exemplo 4', 'imagem_produto/emagrecedor4.jpeg'),
-(20, 'Emagrecedor Exemplo 5', 'imagem_produto/emagrecedor5.jpeg');
+INSERT INTO `imagem_produto` (`id`, `nome`, `imagem`, `produto_id`) VALUES
+(1, 'Vitamina Exemplo 1', 'imagem_produto/vitamina1.jpeg', 1),
+(2, 'Vitamina Exemplo 2', 'imagem_produto/vitamina2.jpeg', 2),
+(3, 'Vitamina Exemplo 3', 'imagem_produto/vitamina3.jpeg', 3),
+(4, 'Vitamina Exemplo 4', 'imagem_produto/vitamina4.jpeg', 4),
+(5, 'Vitamina Exemplo 5', 'imagem_produto/vitamina5.jpeg', 5),
+(6, 'Proteína Exemplo 1', 'imagem_produto/proteina1.jpeg', 6),
+(7, 'Proteína Exemplo 2', 'imagem_produto/proteina2.jpeg', 7),
+(8, 'Proteína Exemplo 3', 'imagem_produto/proteina3.jpeg', 8),
+(9, 'Proteína Exemplo 4', 'imagem_produto/proteina4.jpeg', 9),
+(10, 'Proteína Exemplo 5', 'imagem_produto/proteina5.jpeg', 10),
+(11, 'Pré Treino Exemplo 1', 'imagem_produto/pretreino1.jpeg', 11),
+(12, 'Pré Treino Exemplo 2', 'imagem_produto/pretreino2.jpeg', 12),
+(13, 'Pré Treino Exemplo 3', 'imagem_produto/pretreino3.jpeg', 13),
+(14, 'Pré Treino Exemplo 4', 'imagem_produto/pretreino4.jpeg', 14),
+(15, 'Pré Treino Exemplo 5', 'imagem_produto/pretreino5.jpeg', 15),
+(16, 'Emagrecedor Exemplo 1', 'imagem_produto/emagrecedor1.jpeg', 16),
+(17, 'Emagrecedor Exemplo 2', 'imagem_produto/emagrecedor2.jpeg', 17),
+(18, 'Emagrecedor Exemplo 3', 'imagem_produto/emagrecedor3.jpeg', 18),
+(19, 'Emagrecedor Exemplo 4', 'imagem_produto/emagrecedor4.jpeg', 19),
+(20, 'Emagrecedor Exemplo 5', 'imagem_produto/emagrecedor5.jpeg', 20);
+
 
 -- --------------------------------------------------------
 
@@ -221,7 +224,7 @@ CREATE TABLE IF NOT EXISTS `noticia` (
   `link` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci NOT NULL,
   `imagem_noticia_id` int DEFAULT NULL,
   PRIMARY KEY (`id`),
-  KEY `fk_noticia_imagem_noticia` (`imagem_noticia_id`)
+  KEY `fk_imagem_noticia` (`imagem_noticia_id`)
 ) ENGINE=InnoDB AUTO_INCREMENT=14 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
 --
@@ -296,26 +299,26 @@ CREATE TABLE IF NOT EXISTS `produtos` (
 --
 
 INSERT INTO `produtos` (`produto_id`, `nome`, `preco`, `estoque`, `categoria_id`, `imagem_id`, `sobre`, `beneficios`, `recomendacoes`, `data_criacao`, `data_atualizacao`, `peso`, `largura`, `altura`, `comprimento`) VALUES
-(11, 'Vitamina Exemplo 1', 129.99, 100, 1, 1, 'descrição', 'descrição', 'descrição', '2024-05-02 22:48:54', '2024-05-02 22:48:54', 0.20, 5.00, 8.00, 5.00),
-(12, 'Vitamina Exemplo 2', 231.99, 100, 1, 2, 'descrição', 'descrição', 'descrição', '2024-05-02 22:48:54', '2024-05-02 22:48:54', 0.25, 5.50, 8.50, 5.50),
-(13, 'Vitamina Exemplo 3', 33.99, 100, 1, 3, 'descrição', 'descrição', 'descrição', '2024-05-02 22:48:54', '2024-05-02 22:48:54', 0.30, 6.00, 9.00, 6.00),
-(14, 'Vitamina Exemplo 4', 135.99, 100, 1, 4, 'descrição', 'descrição', 'descrição', '2024-05-02 22:48:54', '2024-05-02 22:48:54', 0.35, 6.50, 9.50, 6.50),
-(15, 'Vitamina Exemplo 5', 87.99, 100, 1, 5, 'descrição', 'descrição', 'descrição', '2024-05-02 22:48:54', '2024-05-02 22:48:54', 0.40, 7.00, 10.00, 7.00),
-(16, 'Proteína Exemplo 1', 159.99, 50, 2, 6, 'descrição', 'descrição', 'descrição', '2024-05-02 22:48:54', '2024-05-02 22:48:54', 0.50, 10.00, 15.00, 10.00),
-(17, 'Proteína Exemplo 2', 69.99, 50, 2, 7, 'descrição', 'descrição', 'descrição', '2024-05-02 22:48:54', '2024-05-02 22:48:54', 0.55, 10.50, 15.50, 10.50),
-(18, 'Proteína Exemplo 3', 279.99, 50, 2, 8, 'descrição', 'descrição', 'descrição', '2024-05-02 22:48:54', '2024-05-02 22:48:54', 0.60, 11.00, 16.00, 11.00),
-(19, 'Proteína Exemplo 4', 189.99, 50, 2, 9, 'descrição', 'descrição', 'descrição', '2024-05-02 22:48:54', '2024-05-02 22:48:54', 0.65, 11.50, 16.50, 11.50),
-(20, 'Proteína Exemplo 5', 99.99, 50, 2, 10, 'descrição', 'descrição', 'descrição', '2024-05-02 22:48:54', '2024-05-02 22:48:54', 0.70, 12.00, 17.00, 12.00),
-(21, 'Pré Treino Exemplo 1', 45.99, 75, 3, 11, 'descrição', 'descrição', 'descrição', '2024-05-02 22:48:54', '2024-05-02 22:48:54', 0.30, 7.00, 10.00, 7.00),
-(22, 'Pré Treino Exemplo 2', 255.99, 75, 3, 12, 'descrição', 'descrição', 'descrição', '2024-05-02 22:48:54', '2024-05-02 22:48:54', 0.35, 7.50, 10.50, 7.50),
-(23, 'Pré Treino Exemplo 3', 165.99, 75, 3, 13, 'descrição', 'descrição', 'descrição', '2024-05-02 22:48:54', '2024-05-02 22:48:54', 0.40, 8.00, 11.00, 8.00),
-(24, 'Pré Treino Exemplo 4', 75.99, 75, 3, 14, 'descrição', 'descrição', 'descrição', '2024-05-02 22:48:54', '2024-05-02 22:48:54', 0.45, 8.50, 11.50, 8.50),
-(25, 'Pré Treino Exemplo 5', 185.99, 75, 3, 15, 'descrição', 'descrição', 'descrição', '2024-05-02 22:48:54', '2024-05-02 22:48:54', 0.50, 9.00, 12.00, 9.00),
-(26, 'Emagrecedor Exemplo 1', 239.99, 85, 4, 16, 'descrição', 'descrição', 'descrição', '2024-05-02 22:48:54', '2024-05-02 22:48:54', 0.20, 5.00, 8.00, 5.00),
-(27, 'Emagrecedor Exemplo 2', 49.99, 85, 4, 17, 'descrição', 'descrição', 'descrição', '2024-05-02 22:48:54', '2024-05-02 22:48:54', 0.25, 5.50, 8.50, 5.50),
-(28, 'Emagrecedor Exemplo 3', 159.99, 85, 4, 18, 'descrição', 'descrição', 'descrição', '2024-05-02 22:48:54', '2024-05-02 22:48:54', 0.30, 6.00, 9.00, 6.00),
-(29, 'Emagrecedor Exemplo 4', 169.99, 85, 4, 19, 'descrição', 'descrição', 'descrição', '2024-05-02 22:48:54', '2024-05-02 22:48:54', 0.35, 6.50, 9.50, 6.50),
-(30, 'Emagrecedor Exemplo 5', 79.99, 85, 4, 20, 'descrição', 'descrição', 'descrição', '2024-05-02 22:48:54', '2024-05-02 22:48:54', 0.40, 7.00, 10.00, 7.00);
+(1, 'Vitamina Exemplo 1', 129.99, 100, 1, 1, 'descrição', 'descrição', 'descrição', '2024-05-02 22:48:54', '2024-05-02 22:48:54', 0.20, 5.00, 8.00, 5.00),
+(2, 'Vitamina Exemplo 2', 231.99, 100, 1, 2, 'descrição', 'descrição', 'descrição', '2024-05-02 22:48:54', '2024-05-02 22:48:54', 0.25, 5.50, 8.50, 5.50),
+(3, 'Vitamina Exemplo 3', 33.99, 100, 1, 3, 'descrição', 'descrição', 'descrição', '2024-05-02 22:48:54', '2024-05-02 22:48:54', 0.30, 6.00, 9.00, 6.00),
+(4, 'Vitamina Exemplo 4', 135.99, 100, 1, 4, 'descrição', 'descrição', 'descrição', '2024-05-02 22:48:54', '2024-05-02 22:48:54', 0.35, 6.50, 9.50, 6.50),
+(5, 'Vitamina Exemplo 5', 87.99, 100, 1, 5, 'descrição', 'descrição', 'descrição', '2024-05-02 22:48:54', '2024-05-02 22:48:54', 0.40, 7.00, 10.00, 7.00),
+(6, 'Proteína Exemplo 1', 159.99, 50, 2, 6, 'descrição', 'descrição', 'descrição', '2024-05-02 22:48:54', '2024-05-02 22:48:54', 0.50, 10.00, 15.00, 10.00),
+(7, 'Proteína Exemplo 2', 69.99, 50, 2, 7, 'descrição', 'descrição', 'descrição', '2024-05-02 22:48:54', '2024-05-02 22:48:54', 0.55, 10.50, 15.50, 10.50),
+(8, 'Proteína Exemplo 3', 279.99, 50, 2, 8, 'descrição', 'descrição', 'descrição', '2024-05-02 22:48:54', '2024-05-02 22:48:54', 0.60, 11.00, 16.00, 11.00),
+(9, 'Proteína Exemplo 4', 189.99, 50, 2, 9, 'descrição', 'descrição', 'descrição', '2024-05-02 22:48:54', '2024-05-02 22:48:54', 0.65, 11.50, 16.50, 11.50),
+(10, 'Proteína Exemplo 5', 99.99, 50, 2, 10, 'descrição', 'descrição', 'descrição', '2024-05-02 22:48:54', '2024-05-02 22:48:54', 0.70, 12.00, 17.00, 12.00),
+(11, 'Pré Treino Exemplo 1', 45.99, 75, 3, 11, 'descrição', 'descrição', 'descrição', '2024-05-02 22:48:54', '2024-05-02 22:48:54', 0.30, 7.00, 10.00, 7.00),
+(12, 'Pré Treino Exemplo 2', 255.99, 75, 3, 12, 'descrição', 'descrição', 'descrição', '2024-05-02 22:48:54', '2024-05-02 22:48:54', 0.35, 7.50, 10.50, 7.50),
+(13, 'Pré Treino Exemplo 3', 165.99, 75, 3, 13, 'descrição', 'descrição', 'descrição', '2024-05-02 22:48:54', '2024-05-02 22:48:54', 0.40, 8.00, 11.00, 8.00),
+(14, 'Pré Treino Exemplo 4', 75.99, 75, 3, 14, 'descrição', 'descrição', 'descrição', '2024-05-02 22:48:54', '2024-05-02 22:48:54', 0.45, 8.50, 11.50, 8.50),
+(15, 'Pré Treino Exemplo 5', 185.99, 75, 3, 15, 'descrição', 'descrição', 'descrição', '2024-05-02 22:48:54', '2024-05-02 22:48:54', 0.50, 9.00, 12.00, 9.00),
+(16, 'Emagrecedor Exemplo 1', 239.99, 85, 4, 16, 'descrição', 'descrição', 'descrição', '2024-05-02 22:48:54', '2024-05-02 22:48:54', 0.20, 5.00, 8.00, 5.00),
+(17, 'Emagrecedor Exemplo 2', 49.99, 85, 4, 17, 'descrição', 'descrição', 'descrição', '2024-05-02 22:48:54', '2024-05-02 22:48:54', 0.25, 5.50, 8.50, 5.50),
+(18, 'Emagrecedor Exemplo 3', 159.99, 85, 4, 18, 'descrição', 'descrição', 'descrição', '2024-05-02 22:48:54', '2024-05-02 22:48:54', 0.30, 6.00, 9.00, 6.00),
+(19, 'Emagrecedor Exemplo 4', 169.99, 85, 4, 19, 'descrição', 'descrição', 'descrição', '2024-05-02 22:48:54', '2024-05-02 22:48:54', 0.35, 6.50, 9.50, 6.50),
+(20, 'Emagrecedor Exemplo 5', 79.99, 85, 4, 20, 'descrição', 'descrição', 'descrição', '2024-05-02 22:48:54', '2024-05-02 22:48:54', 0.40, 7.00, 10.00, 7.00);
 
 -- --------------------------------------------------------
 
@@ -371,7 +374,7 @@ CREATE TABLE IF NOT EXISTS `usuario` (
 --
 
 INSERT INTO `usuario` (`id_usuario`, `nome`, `email`, `telefone`, `senha`) VALUES
-(1, 'Gabriel de matos prando', 'biel2006@gamil.com', '18997754801', 'spy12310');
+(1, 'Gabriel de matos prando', 'biel2006@gamil.com', '18997754801', 'spy12310'),
 (3, 'Markos', 'Sidokinha567@gmail.com', '18994363', '696963'),
 (4, 'Isabella', 'belinha666@gmail.com', '189965264', 'nicule');
 
