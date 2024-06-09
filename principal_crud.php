@@ -127,19 +127,26 @@ body {
   </div>
   
   <div class="dropdown">
-    <button class="dropbtn">Usuario
+    <button class="dropbtn">Noticias
       <i class="fa fa-caret-down"></i>
     </button>
     <div class="dropdown-content">
 
-      <a href="/TCC-SITE/crud_noticia/nome_arquivo.php">Cadastrar Categoria</a>
-      <a href="deletar_categoria.php">Lista de Categorias</a>
-
-      <a href="/TCC-SITE/crud_usuario/apaga_usuario.php">Editar Usuario</a>
-     
-
-    </div>
+      <a href="/TCC-SITE/crud_noticia/index_noticia.php">Cadastrar Noticia</a>
+      <a href="/TCC-SITE/crud_noticia/form_apaga.html">Apaga/Deleta Noticia</a>
   </div>
+</div>
+
+<div class="dropdown">
+    <button class="dropbtn">Receitas
+      <i class="fa fa-caret-down"></i>
+    </button>
+    <div class="dropdown-content">
+
+      <a href="/TCC-SITE/index_receita.php">Cadastrar Receitas</a>
+      <a href="/TCC-SITE/crud_receita/form_atualiza.html">Apaga/Deleta Receitas</a>
+  </div>
+</div>
 
   <div>
     <a href="principal.php" class="button-link">

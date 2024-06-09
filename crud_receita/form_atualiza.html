@@ -1,0 +1,102 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <title>Atualizar Receita</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f2f2f2;
+            margin: 0;
+            padding: 0;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+        }
+        .container {
+            background-color: #fff;
+            padding: 20px;
+            border-radius: 8px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+            width: 400px;
+        }
+        h2 {
+            text-align: center;
+            color: #333;
+        }
+        label {
+            display: block;
+            margin-top: 10px;
+            color: #333;
+        }
+        input[type="text"],
+        textarea,
+        input[type="file"],
+        select {
+            width: calc(100% - 20px);
+            padding: 8px;
+            margin-top: 5px;
+            margin-bottom: 10px;
+            border: 1px solid #ccc;
+            border-radius: 4px;
+            box-sizing: border-box;
+        }
+        input[type="submit"],
+        input[type="button"] {
+            width: 100%;
+            background-color: #4CAF50;
+            color: white;
+            padding: 10px;
+            margin-top: 10px;
+            border: none;
+            border-radius: 4px;
+            cursor: pointer;
+        }
+        input[type="submit"]:hover,
+        input[type="button"]:hover {
+            background-color: #45a049;
+        }
+    </style>
+</head>
+<body>
+
+<div class="container">
+    <h2>Atualizar Receita</h2>
+    <form action="atualiza_receita.php" method="post" enctype="multipart/form-data">
+        <label for="id_receita">ID da Receita:</label>
+        <input type="text" id="id_receita" name="id_receita" required>
+
+        <label for="novo_titulo">Novo Título:</label>
+        <input type="text" id="novo_titulo" name="novo_titulo">
+
+        <label for="nova_descricao">Nova Descrição:</label>
+        <textarea id="nova_descricao" name="nova_descricao" rows="4"></textarea>
+
+        <label for="nova_imagem">Nova Imagem:</label>
+        <input type="file" id="nova_imagem" name="nova_imagem">
+
+        <label for="id_categoria">Categoria:</label>
+        <select id="id_categoria" name="id_categoria">
+            <option value="">Selecione a categoria</option>
+            <option value="1">Salgado</option>
+            <option value="2">Doce</option>
+        </select>
+
+        <label for="novo_link">Novo Link:</label>
+        <input type="text" id="novo_link" name="novo_link">
+
+        <input type="submit" value="Atualizar">
+    </form>
+
+    <h2>Excluir Receita</h2>
+    <form action="apaga_receita.php" method="post">
+        <label for="id_receita_excluir">ID da Receita:</label>
+        <input type="text" id="id_receita_excluir" name="id_receita" required>
+
+        <input type="submit" value="Excluir Receita">
+    </form>
+</div>
+
+</body>
+</html>
