@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1:3306
--- Tempo de geração: 02/06/2024 às 22:55
+-- Tempo de geração: 09/06/2024 às 15:44
 -- Versão do servidor: 8.2.0
 -- Versão do PHP: 8.2.13
 
@@ -20,6 +20,31 @@ SET time_zone = "+00:00";
 --
 -- Banco de dados: `site`
 --
+
+-- --------------------------------------------------------
+
+--
+-- Estrutura para tabela `adm`
+--
+
+DROP TABLE IF EXISTS `adm`;
+CREATE TABLE IF NOT EXISTS `adm` (
+  `codigo` int NOT NULL AUTO_INCREMENT,
+  `nome` varchar(100) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci NOT NULL,
+  `email` varchar(100) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci NOT NULL,
+  `senha` varchar(100) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci NOT NULL,
+  PRIMARY KEY (`codigo`)
+) ENGINE=MyISAM AUTO_INCREMENT=5 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+
+--
+-- Despejando dados para a tabela `adm`
+--
+
+INSERT INTO `adm` (`codigo`, `nome`, `email`, `senha`) VALUES
+(1, 'Gabriel de matos', 'bielmatosprando2006@gmail.com', 'biel2006'),
+(2, 'Daniel', 'rodriguimdamata123@gmail.com', '123'),
+(3, 'isabella', 'isinha2006@gmail.com', '041206'),
+(4, 'Markos', 'markos_adm@gmail.com', 'IS@bella1231');
 
 -- --------------------------------------------------------
 
@@ -61,6 +86,28 @@ INSERT INTO `categorias` (`categoria_id`, `nome`) VALUES
 (2, 'Proteínas'),
 (3, 'Pré Treinos'),
 (4, 'Emagrecedores');
+
+-- --------------------------------------------------------
+
+--
+-- Estrutura para tabela `categoria_exercicio`
+--
+
+DROP TABLE IF EXISTS `categoria_exercicio`;
+CREATE TABLE IF NOT EXISTS `categoria_exercicio` (
+  `codigo` int NOT NULL AUTO_INCREMENT,
+  `categoria` varchar(100) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci NOT NULL,
+  PRIMARY KEY (`codigo`)
+) ENGINE=MyISAM AUTO_INCREMENT=4 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+
+--
+-- Despejando dados para a tabela `categoria_exercicio`
+--
+
+INSERT INTO `categoria_exercicio` (`codigo`, `categoria`) VALUES
+(1, 'Emagrecimento'),
+(2, 'Musculação'),
+(3, 'Fisioterapia');
 
 -- --------------------------------------------------------
 
@@ -110,6 +157,29 @@ CREATE TABLE IF NOT EXISTS `detalhesusuario` (
 -- --------------------------------------------------------
 
 --
+-- Estrutura para tabela `exercicio`
+--
+
+DROP TABLE IF EXISTS `exercicio`;
+CREATE TABLE IF NOT EXISTS `exercicio` (
+  `codigo` int NOT NULL AUTO_INCREMENT,
+  `titulo` varchar(1000) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci NOT NULL,
+  `texto` varchar(10000) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci NOT NULL,
+  PRIMARY KEY (`codigo`)
+) ENGINE=MyISAM AUTO_INCREMENT=4 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+
+--
+-- Despejando dados para a tabela `exercicio`
+--
+
+INSERT INTO `exercicio` (`codigo`, `titulo`, `texto`) VALUES
+(1, 'Exercícios para Emagrecimento', 'Agachamento com salto\r\n            O agachamento com salto é um exercício que envolve o corpo inteiro, o que ajuda a queimar calorias de forma eficiente.\r\n    \r\n            Corrida parada\r\n            Os exercícios aeróbicos são muito importantes para o bom funcionamento físico e para a queima de gordura corporal.\r\n        \r\n            Caminhada na esteira\r\n            Uma atividade simples e uma grande aliada do dia a dia, a caminhada faz parte do grupo de exercícios que não precisam de muitos elementos para serem praticados.\r\n        \r\n            Polichinelo\r\n            Um exercício aeróbico que, assim como o agachamento com salto, envolve o corpo inteiro, é o polichinelo.\r\n        \r\n            Pular corda\r\n            Na infância, pular corda é uma brincadeira muito comum para se divertir entre amigos, mas a atividade também pode, e deve, ser realizada na fase adulta.\r\n        \r\n            Dança\r\n            Uma forma divertida e eficaz de perder peso, a dança traz diversos benefícios para o emagrecimento, bem como para a saúde do corpo.\r\n        \r\n            HIIT\r\n            Conhecido por ser um exercício que envolve alternar períodos de descanso com alta intensidade ou baixa intensidade.\r\n        \r\n            Flexão de braços\r\n            A flexão de braço é um exercício de força que, quando combinado com uma dieta saudável, pode ser muito benéfico para a perda de peso.\r\n        \r\n            Subir e descer escadas\r\n            Subir e descer escadas é uma forma de atividade física muito eficiente na perda de peso, além de acessível, pois pode ser realizada em diversos lugares.\r\n       \r\n            Burpees\r\n            O burpees é um exercício corporal completo que utiliza o treinamento de força e exercícios aeróbicos para obter um alto gasto calórico em um curto período.'),
+(2, 'Exercícios para ganho muscular', 'Flexão de Braço\r\n3 Séries com 15 repetições cada\r\n\r\nTríceps Banco\r\n3 Séries com 15 repetições cada\r\n\r\nRemada Unilateral\r\n3 Séries com 15 repetições cada\r\n\r\nAgachamento\r\n3 Séries com 15 repetições cada\r\n\r\nRosca Direta com Barra ou Halteres\r\n3 a 4 Séries com 15 repetições cada\r\n\r\nAgachamento Avanço (Afundo)\r\n3 a 4 Séries com 15 repetições cada\r\n\r\nExtensão de Quadril\r\n3 a 4 Séries com 15 repetições cada\r\n\r\nPrancha Isométrica sobre o Solo\r\nMínimo de 30seg\r\n\r\nFlexão de Ombro (Frontal e Lateral)\r\n3 a 4 Séries com 15 repetições cada\r\n'),
+(3, 'Exercícios fisioterapeuticos', 'Ao acordar, deitado de barriga para cima, pedalar 120 vezes no ar\r\nEste exercício melhora o posicionamento da coluna vertebral e da postura global, diminuindo ou retardando o encurvamento das costas e aliviando as dores na coluna.\r\n\r\nAntes do banho, exercitar as pernas (músculos gémeos)\r\nEste exercício bombeia o sangue para o coração, melhora os batimentos cardíacos e evita a obstrução das veias, diminuindo o risco de doenças cardíacas.\r\n\r\nSaltar à corda\r\nÉ um divertido e eficaz exercício para eliminar o excesso de peso, podendo queimar cerca de 10 calorias por minuto se fizer até 100 saltos por minuto. Além disso, este é um exercício verdadeiramente completo.\r\n\r\nSprints na bicicleta\r\nFaça no máximo cinco sequências, alternando velocidade intensa e velocidade menos intensa.\r\n\r\nAo chegar em casa, descanse um pouco e relaxe\r\nO importante é criar uma barreira entre o dia de trabalho que terminou e o serão em casa que está a começar.\r\n');
+
+-- --------------------------------------------------------
+
+--
 -- Estrutura para tabela `imagem_noticia`
 --
 
@@ -118,7 +188,7 @@ CREATE TABLE IF NOT EXISTS `imagem_noticia` (
   `id` int NOT NULL AUTO_INCREMENT,
   `caminho` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci NOT NULL,
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=14 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=15 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
 --
 -- Despejando dados para a tabela `imagem_noticia`
@@ -137,7 +207,8 @@ INSERT INTO `imagem_noticia` (`id`, `caminho`) VALUES
 (10, 'crud_noticia/inserir_not/imagem/not-10.webp'),
 (11, 'crud_noticia/inserir_not/imagem/not-11.webp'),
 (12, 'crud_noticia/inserir_not/imagem/not-12.webp'),
-(13, 'crud_noticia/inserir_not/imagem/not-13.webp');
+(13, 'crud_noticia/inserir_not/imagem/not-13.webp'),
+(14, 'crud_noticia/inserir_not/imagem/Wrap-de-Frango-e-Abacate.png');
 
 -- --------------------------------------------------------
 
@@ -181,7 +252,6 @@ INSERT INTO `imagem_produto` (`id`, `nome`, `imagem`, `produto_id`) VALUES
 (19, 'Emagrecedor Exemplo 4', 'imagem_produto/emagrecedor4.jpeg', 19),
 (20, 'Emagrecedor Exemplo 5', 'imagem_produto/emagrecedor5.jpeg', 20);
 
-
 -- --------------------------------------------------------
 
 --
@@ -194,21 +264,24 @@ CREATE TABLE IF NOT EXISTS `imagem_receita` (
   `nome` varchar(100) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci NOT NULL,
   `imagem` varchar(100) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci NOT NULL,
   PRIMARY KEY (`id_imgReceita`)
-) ENGINE=InnoDB AUTO_INCREMENT=17 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=23 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
 --
 -- Despejando dados para a tabela `imagem_receita`
 --
 
 INSERT INTO `imagem_receita` (`id_imgReceita`, `nome`, `imagem`) VALUES
-(1, 'wrap de frango com abacate', 'image/wrap-de-frango-com-abacate.webp'),
-(2, 'smothie de frutas vermelhas', 'image/smoothie.webp'),
-(3, 'salada de quinoa', 'image/salada-de-quinoa-simples'),
-(4, 'salada de frutas', 'image/salada-de-frutas.jpg'),
-(5, 'espaguete', 'image/espaguete.jpg'),
-(6, 'açai', 'image/acai.jpg'),
-(7, 'sopa de legumes', 'image/sopa_leg.avif'),
-(8, 'omelete de legumes', 'image/omelete-legumes.jpeg');
+(1, 'wrap de frango com abacate', 'img/wrap-de-frango-com-abacate.webp'),
+(2, 'smothie de frutas vermelhas', 'img/smoothie.webp'),
+(3, 'salada de quinoa', 'img/salada-de-quinoa-simples'),
+(4, 'salada de frutas', 'img/salada-de-frutas.jpg'),
+(5, 'espaguete', 'img'),
+(6, 'açai', 'img/acai.jpg'),
+(7, 'sopa de legumes', 'img/sopa_leg.avif'),
+(8, 'omelete de legumes', 'img/omelete-legumes.jpeg'),
+(20, 'bolo-de-banana.jpg', 'img/bolo-de-banana.jpg'),
+(21, 'teste', 'img/bolo-de-banana.jpg'),
+(22, 'Wrap-de-Frango-e-Abacate.png', 'img/Wrap-de-Frango-e-Abacate.png');
 
 -- --------------------------------------------------------
 
@@ -234,7 +307,7 @@ CREATE TABLE IF NOT EXISTS `noticia` (
 INSERT INTO `noticia` (`id`, `titulo`, `texto`, `link`, `imagem_noticia_id`) VALUES
 (1, 'O que é melhor para a saúde, leite de vaca ou &#39;alternativos&#39;?', 'Organizações como o Serviço Nacional de Saúde do Reino Unido recomendam que crianças entre um e três anos consumam 350 miligramas de cálcio por dia - pouco mais de meio litro de leite. Quando se trata de adultos, entretanto, as pesquisas sobre o efeito do leite de vaca são conflitantes.', 'https://g1.globo.com/ciencia-e-saude/viva-voce/noticia/2019/12/06/o-que-e-melhor-para-a-saude-leite-de-vaca-ou-alternativos.ghtml', 1),
 (2, 'Cortar completamente carne e laticínios faz bem à saúde? O que diz a ciência', 'Mais e mais pessoas estão comendo refeições vegetarianas e veganas — e parte do motivo é que isso é visto como mais saudável. A BBC buscou as evidências sobre o impacto na saúde.', 'https://g1.globo.com/ciencia-e-saude/noticia/2020/02/23/cortar-completamente-carne-e-laticinios-faz-bem-a-saude-o-que-diz-a-ciencia.ghtml', 2),
-(3, 'Aprenda a fazer receitas que utilizam sobras de alimentos da sua geladeira', 'O Bem Estar no É de Casa mostrou como preparar uma torta de arroz recheada com frango e tomate, e também um suflê de sobras de feijão e cenoura ralada.', 'https://g1.globo.com/bemestar/noticia/2019/09/27/aprenda-a-fazer-receitas-que-utilizam-sobras-de-alimentos-da-sua-geladeira.ghtml', 3),
+(3, 'Aprenda a fazer receitas que utilizam sobras de alimentos da sua geladeira', 'O Bem Estar no É de Casa mostrou como preparar uma torta de arroz recheada com frango e tomate, e também um suflê de sobras de feijão e cenoura ralada.', 'https://g1.globo.com/bemestar/noticia/2019/09/27/aprenda-a-fazer-receitas-que-utilizam-sobras-de-alimentos-da-sua-geladeira.ghtml', 14),
 (4, 'Dieta vegetariana reduz risco de doenças do coração, mas aumenta risco de derrame, indica estudo', 'Especialistas em nutrição afirmam que, qualquer que seja o tipo de dieta adotado, o melhor para a saúde é consumir uma grande variedade de alimentos.', 'https://g1.globo.com/bemestar/noticia/2019/09/05/dieta-vegetariana-reduz-risco-de-doencas-do-coracao-mas-aumenta-risco-de-derrame-indica-estudo.ghtml', 4),
 (5, 'Cúrcuma: veja 8 benefícios e como consumir', 'O ingrediente é conhecido por suas propriedades nutricionais e medicinais, sendo rico em compostos antioxidantes e anti-inflamatórios, além de ser versátil na alimentação', 'https://www.cnnbrasil.com.br/saude/curcuma-veja-8-beneficios-e-como-consumir/', 5),
 (6, 'Veja mudanças na alimentação que podem diminuir mortes e impacto ambiental', 'Estudo brasileiro indicou alterações moderadas e acessíveis que beneficiam saúde humana e preservação do planeta', 'https://www.cnnbrasil.com.br/saude/veja-mudancas-na-alimentacao-que-podem-diminuir-mortes-e-impacto-ambiental/', 6),
@@ -337,14 +410,13 @@ CREATE TABLE IF NOT EXISTS `receitas` (
   PRIMARY KEY (`id_receita`),
   KEY `id_categoria` (`id_categoria`),
   KEY `fk_imagem_receita` (`id_imgReceita`)
-) ENGINE=MyISAM AUTO_INCREMENT=25 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+) ENGINE=MyISAM AUTO_INCREMENT=26 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
 --
 -- Despejando dados para a tabela `receitas`
 --
 
 INSERT INTO `receitas` (`id_receita`, `titulo`, `descricao`, `id_imgReceita`, `id_categoria`, `link`) VALUES
-(17, 'Smoothie de Frutas Vermelhas', 'Um smoothie delicioso e refrescante, feito com uma mistura de frutas vermelhas, iogurte natural e um', 2, 2, 'https://www.tudogostoso.com.br/receita/143871-smoothie-de-frutas-vermelhas.html'),
 (18, 'Salada de Frutas', 'Uma salada fresca e colorida, com uma variedade de frutas da estação, perfeita para um lanche saudáv', 4, 2, 'https://www.tudogostoso.com.br/receita/787-salada-de-frutas-gostosa.html'),
 (19, 'Wrap de Frango com Abacate', 'Wraps recheados com frango desfiado, abacate, tomate e folhas verdes, temperados com um toque de lim', 1, 1, 'https://www.minhareceita.com.br/receita/wrap-com-frango-desfiado-e-avocado/'),
 (20, 'Açaí na Tigela', 'Açaí batido com banana, servido com granola e frutas frescas por cima.', 6, 2, 'https://www.tudogostoso.com.br/receita/58910-acai-na-tigela.html'),
@@ -367,7 +439,7 @@ CREATE TABLE IF NOT EXISTS `usuario` (
   `telefone` varchar(14) CHARACTER SET latin1 COLLATE latin1_swedish_ci NOT NULL,
   `senha` varchar(100) CHARACTER SET latin1 COLLATE latin1_swedish_ci NOT NULL,
   PRIMARY KEY (`id_usuario`)
-) ENGINE=InnoDB AUTO_INCREMENT=2 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=5 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
 --
 -- Despejando dados para a tabela `usuario`
@@ -418,72 +490,3 @@ COMMIT;
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
 /*!40101 SET CHARACTER_SET_RESULTS=@OLD_CHARACTER_SET_RESULTS */;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
-DROP TABLE IF EXISTS `categoria_exercicio`;
-CREATE TABLE IF NOT EXISTS `categoria_exercicio` (
-  `codigo` int(11) NOT NULL AUTO_INCREMENT,
-  `categoria` varchar(100) COLLATE utf8mb4_unicode_ci NOT NULL,
-  PRIMARY KEY (`codigo`)
-) ENGINE=MyISAM AUTO_INCREMENT=4 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
-
---
--- Despejando dados para a tabela `categoria_exercicio`
---
-
-INSERT INTO `categoria_exercicio` (`codigo`, `categoria`) VALUES
-(1, 'Emagrecimento'),
-(2, 'Musculação'),
-(3, 'Fisioterapia');
-
--- --------------------------------------------------------
-
---
--- Estrutura para tabela `exercicio`
---
-
-DROP TABLE IF EXISTS `exercicio`;
-CREATE TABLE IF NOT EXISTS `exercicio` (
-  `codigo` int(11) NOT NULL AUTO_INCREMENT,
-  `titulo` varchar(1000) COLLATE utf8mb4_unicode_ci NOT NULL,
-  `texto` varchar(10000) COLLATE utf8mb4_unicode_ci NOT NULL,
-  PRIMARY KEY (`codigo`)
-) ENGINE=MyISAM AUTO_INCREMENT=4 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
-
---
--- Despejando dados para a tabela `exercicio`
---
-
-INSERT INTO `exercicio` (`codigo`, `titulo`, `texto`) VALUES
-(1, 'Exercícios para Emagrecimento', 'Agachamento com salto\r\n            O agachamento com salto é um exercício que envolve o corpo inteiro, o que ajuda a queimar calorias de forma eficiente.\r\n    \r\n            Corrida parada\r\n            Os exercícios aeróbicos são muito importantes para o bom funcionamento físico e para a queima de gordura corporal.\r\n        \r\n            Caminhada na esteira\r\n            Uma atividade simples e uma grande aliada do dia a dia, a caminhada faz parte do grupo de exercícios que não precisam de muitos elementos para serem praticados.\r\n        \r\n            Polichinelo\r\n            Um exercício aeróbico que, assim como o agachamento com salto, envolve o corpo inteiro, é o polichinelo.\r\n        \r\n            Pular corda\r\n            Na infância, pular corda é uma brincadeira muito comum para se divertir entre amigos, mas a atividade também pode, e deve, ser realizada na fase adulta.\r\n        \r\n            Dança\r\n            Uma forma divertida e eficaz de perder peso, a dança traz diversos benefícios para o emagrecimento, bem como para a saúde do corpo.\r\n        \r\n            HIIT\r\n            Conhecido por ser um exercício que envolve alternar períodos de descanso com alta intensidade ou baixa intensidade.\r\n        \r\n            Flexão de braços\r\n            A flexão de braço é um exercício de força que, quando combinado com uma dieta saudável, pode ser muito benéfico para a perda de peso.\r\n        \r\n            Subir e descer escadas\r\n            Subir e descer escadas é uma forma de atividade física muito eficiente na perda de peso, além de acessível, pois pode ser realizada em diversos lugares.\r\n       \r\n            Burpees\r\n            O burpees é um exercício corporal completo que utiliza o treinamento de força e exercícios aeróbicos para obter um alto gasto calórico em um curto período.'),
-(2, 'Exercícios para ganho muscular', 'Flexão de Braço\r\n3 Séries com 15 repetições cada\r\n\r\nTríceps Banco\r\n3 Séries com 15 repetições cada\r\n\r\nRemada Unilateral\r\n3 Séries com 15 repetições cada\r\n\r\nAgachamento\r\n3 Séries com 15 repetições cada\r\n\r\nRosca Direta com Barra ou Halteres\r\n3 a 4 Séries com 15 repetições cada\r\n\r\nAgachamento Avanço (Afundo)\r\n3 a 4 Séries com 15 repetições cada\r\n\r\nExtensão de Quadril\r\n3 a 4 Séries com 15 repetições cada\r\n\r\nPrancha Isométrica sobre o Solo\r\nMínimo de 30seg\r\n\r\nFlexão de Ombro (Frontal e Lateral)\r\n3 a 4 Séries com 15 repetições cada\r\n'),
-(3, 'Exercícios fisioterapeuticos', 'Ao acordar, deitado de barriga para cima, pedalar 120 vezes no ar\r\nEste exercício melhora o posicionamento da coluna vertebral e da postura global, diminuindo ou retardando o encurvamento das costas e aliviando as dores na coluna.\r\n\r\nAntes do banho, exercitar as pernas (músculos gémeos)\r\nEste exercício bombeia o sangue para o coração, melhora os batimentos cardíacos e evita a obstrução das veias, diminuindo o risco de doenças cardíacas.\r\n\r\nSaltar à corda\r\nÉ um divertido e eficaz exercício para eliminar o excesso de peso, podendo queimar cerca de 10 calorias por minuto se fizer até 100 saltos por minuto. Além disso, este é um exercício verdadeiramente completo.\r\n\r\nSprints na bicicleta\r\nFaça no máximo cinco sequências, alternando velocidade intensa e velocidade menos intensa.\r\n\r\nAo chegar em casa, descanse um pouco e relaxe\r\nO importante é criar uma barreira entre o dia de trabalho que terminou e o serão em casa que está a começar.\r\n');
-COMMIT;
-
-/*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
-/*!40101 SET CHARACTER_SET_RESULTS=@OLD_CHARACTER_SET_RESULTS */;
-/*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
-
-DROP TABLE IF EXISTS `adm`;
-CREATE TABLE IF NOT EXISTS `adm` (
-  `codigo` int(11) NOT NULL AUTO_INCREMENT,
-  `nome` varchar(100) COLLATE utf8mb4_unicode_ci NOT NULL,
-  `email` varchar(100) COLLATE utf8mb4_unicode_ci NOT NULL,
-  `senha` varchar(100) COLLATE utf8mb4_unicode_ci NOT NULL,
-  PRIMARY KEY (`codigo`)
-) ENGINE=MyISAM AUTO_INCREMENT=5 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
-
---
--- Despejando dados para a tabela `adm`
---
-
-INSERT INTO `adm` (`codigo`, `nome`, `email`, `senha`) VALUES
-(1, 'Gabriel de matos', 'bielmatosprando2006@gmail.com', 'biel2006'),
-(2, 'Daniel', 'rodriguimdamata123@gmail.com', '123'),
-(3, 'isabella', 'isinha2006@gmail.com', '041206'),
-(4, 'Markos', 'markos_adm@gmail.com', 'IS@bella1231');
-COMMIT;
-
-/*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
-/*!40101 SET CHARACTER_SET_RESULTS=@OLD_CHARACTER_SET_RESULTS */;
-/*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
-
-
