@@ -36,7 +36,7 @@ require_once "conexao.php";
                             <a class="nav-link" href="produtos.php">Produtos</a>
                         </li>
                         <li class="nav-item">
-                            <a class="nav-link" href="exercicios_git.html">Exercícios</a>
+                            <a class="nav-link" href="exercicios_git.php">Exercícios</a>
                         </li>
                         <li class="nav-item">
                             <a class="nav-link" href="noticia22.php">Notícias</a>

@@ -48,7 +48,7 @@
                         <a class="nav-link" href="produtos.php">Produtos</a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link" href="exercicios_git.html">Exercícios</a>
+                        <a class="nav-link" href="exercicios_git.php">Exercícios</a>
                     </li>
                     <li class="nav-item">
                         <a class="nav-link active" href="noticia22.php">Notícias</a>
