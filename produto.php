@@ -33,8 +33,8 @@ echo json_encode($resultadoFrete);*/
 // Pegar o produto_id da URL
 $produto_id = isset($_GET['produto_id']) ? (int) $_GET['produto_id'] : 0;
 
-// Preparar e executar a consulta SQL para pegar os detalhes do produto
-$stmt = $conn->prepare("SELECT * FROM produtos WHERE produto_id = ?");
+// Preparar e executar a consulta SQL para pegar os detalhes do produto incluindo a imagem
+$stmt = $conn->prepare("SELECT p.*, i.imagem FROM produtos p LEFT JOIN imagem_produto i ON p.imagem_id = i.id WHERE p.produto_id = ?");
 $stmt->bind_param("i", $produto_id);
 $stmt->execute();
 $result = $stmt->get_result();
@@ -43,11 +43,11 @@ if ($row = $result->fetch_assoc()) {
     // Variáveis para os detalhes do produto
     $nome = $row['nome'];
     $preco = $row['preco'];
-    $imagem = $row['imagem_id'];
+    $imagem = $row['imagem'];
     $sobre = $row['sobre'];
     $beneficios = $row['beneficios'];
     $recomendacoes = $row['recomendacoes'];
-    $estoque = $row['estoque']; // Adicione esta linha
+    $estoque = $row['estoque'];
 
     // Supondo que o desconto à vista seja sempre 5%
     $desconto = $preco - ($preco * 0.05);
@@ -59,8 +59,8 @@ if ($row = $result->fetch_assoc()) {
 }
 $stmt->close();
 
-// Consulta SQL para pegar outros produtos (exemplo simples)
-$stmt2 = $conn->prepare("SELECT produto_id, nome, preco, imagem_id FROM Produtos WHERE produto_id != ? ORDER BY RAND() LIMIT 4");
+// Ajuste a consulta SQL para incluir a junção com a tabela de imagens e selecionar a coluna `imagem`
+$stmt2 = $conn->prepare("SELECT p.produto_id, p.nome, p.preco, i.imagem FROM produtos p LEFT JOIN imagem_produto i ON p.imagem_id = i.id WHERE p.produto_id != ? ORDER BY RAND() LIMIT 4");
 $stmt2->bind_param("i", $produto_id);
 $stmt2->execute();
 $result2 = $stmt2->get_result();
@@ -96,7 +96,6 @@ $conn->close();
         />
         <link rel="stylesheet" type="text/css" href="stylesproduto.css">
         <script>
-            // Define as variáveis PHP diretamente no script JavaScript
             var maximumQuantity = <?php echo $estoque; ?>;
             var productId = <?php echo $produto_id; ?>;
 
@@ -116,7 +115,7 @@ $conn->close();
                 }
             }
 
-            Adicionar no carrinho. 
+            // Adicionar no carrinho.
             function addToCart() {
                 var quantity = parseInt(document.getElementById('quantity').value);
                 if (isNaN(quantity) || quantity <= 0) {
@@ -124,7 +123,6 @@ $conn->close();
                     return;
                 }
 
-                // Use as variáveis definidas anteriormente
                 window.location.href = 'confirmacao_compra.php?produto_id=' + productId + '&quantidade=' + quantity;
             }
             
@@ -223,11 +221,11 @@ $conn->close();
                             <p>Desconto à vista 5%</p>
 
                             <div class="d-flex align-items-center mb-3 w-100 justify-content-around">
-                            <button class="btn btn-outline-secondary" id="btn-decrease" onclick="decreaseQuantity()">-</button>
-                            <input type="text" class="form-control text-center mx-2" id="quantity" value="1" style="max-width: 60px;">
-                            <button class="btn btn-outline-secondary" id="btn-increase" onclick="increaseQuantity()">+</button>
-                            <button class="btn btn-success ms-2" style="flex-grow: 1; max-width: 70%;" onclick="addToCart()">Comprar</button>
-                        </div>
+                                <button class="btn btn-outline-secondary" id="btn-decrease" onclick="decreaseQuantity()">-</button>
+                                <input type="text" class="form-control text-center mx-2" id="quantity" value="1" style="max-width: 60px;">
+                                <button class="btn btn-outline-secondary" id="btn-increase" onclick="increaseQuantity()">+</button>
+                                <button class="btn btn-success ms-2" style="flex-grow: 1; max-width: 70%;" onclick="addToCart()">Comprar</button>
+                            </div>
 
                             <hr class="w-100">
 
@@ -264,14 +262,14 @@ $conn->close();
                             </div>
                         </div>
                         <div class="row">
-                            <?php
+                        <?php
                             if (!empty($produtosRecomendados)) {
                                 foreach ($produtosRecomendados as $produtoRelacionado) {
                                     ?>
                                     <div class="col-sm-6 col-md-3 mb-4">
                                         <a href="produto.php?produto_id=<?= $produtoRelacionado['produto_id'] ?>" class="card-link">
                                             <div class="card rounded-0 border-0">
-                                                <img src="<?= $produtoRelacionado['imagem_id'] ?>" class="card-img-top rounded-0" alt="<?= $produtoRelacionado['nome'] ?>">
+                                                <img src="<?= $produtoRelacionado['imagem'] ?>" class="card-img-top rounded-0" alt="<?= $produtoRelacionado['nome'] ?>">
                                                 <div class="card-body d-flex flex-column justify-content-center align-items-center">
                                                     <h5 class="card-title"><?= $produtoRelacionado['nome'] ?></h5>
                                                     <h6 class="card-price text-success">R$ <?= number_format($produtoRelacionado['preco'], 2, ',', '.') ?></h6>
@@ -284,7 +282,7 @@ $conn->close();
                             } else {
                                 echo "<div class='col-12'><p class='text-center'>Nenhum produto relacionado encontrado.</p></div>";
                             }
-                            ?>
+                        ?>
                         </div>
                     </div>
                     <?php
