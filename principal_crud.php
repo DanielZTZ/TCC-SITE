@@ -125,6 +125,17 @@ body {
       <a href="deletar_categoria.php">Lista de Categorias</a>
     </div>
   </div>
+
+  <div class="dropdown">
+    <button class="dropbtn">Usuarios
+      <i class="fa fa-caret-down"></i>
+    </button>
+    <div class="dropdown-content">
+
+      <a href="Cadastro_cliente_git.php">Cadastrar Usuarios</a>
+      <a href="/TCC-SITE/crud_usuario/apaga_usuario">Apagar/ Editar Usuario</a>
+  </div>
+</div>
   
   <div class="dropdown">
     <button class="dropbtn">Noticias
