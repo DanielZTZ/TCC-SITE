@@ -17,6 +17,7 @@ if ($SendCadImg) {
             $caminho_completo = $diretorio . $nome_imagem;
 
             if (move_uploaded_file($nome_tmp, $caminho_completo)) {
+                // Inserir a imagem no banco de dados
                 $result_img = "INSERT INTO imagem_produto (nome, imagem, produto_id) VALUES (?, ?, ?)";
                 $insert_msg = $conn->prepare($result_img);
                 if ($insert_msg === false) {
@@ -25,7 +26,20 @@ if ($SendCadImg) {
                 $insert_msg->bind_param('ssi', $nome, $caminho_completo, $produto_id);
 
                 if ($insert_msg->execute()) {
-                    $_SESSION['msg'] = "<p style='color:green;'>Dados salvos e imagem enviada com sucesso</p>";
+                    $imagem_id = $conn->insert_id; // Obter o ID da imagem inserida
+                    // Atualizar a tabela de produtos com a imagem cadastrada
+                    $result_prod = "UPDATE produtos SET imagem_id = ? WHERE produto_id = ?";
+                    $update_msg = $conn->prepare($result_prod);
+                    if ($update_msg === false) {
+                        die("Erro na preparação da consulta: " . $conn->error);
+                    }
+                    $update_msg->bind_param('ii', $imagem_id, $produto_id);
+
+                    if ($update_msg->execute()) {
+                        $_SESSION['msg'] = "<p style='color:green;'>Dados salvos e imagem enviada com sucesso</p>";
+                    } else {
+                        $_SESSION['msg'] = "<p style='color:red;'>Erro ao atualizar o produto: " . $update_msg->error . "</p>";
+                    }
                 } else {
                     $_SESSION['msg'] = "<p style='color:red;'>Erro ao salvar os dados: " . $insert_msg->error . "</p>";
                 }
@@ -44,3 +58,4 @@ if ($SendCadImg) {
 
 header("Location: cadastrar_imagem_produto.php?produto_id=$produto_id");
 ?>
+

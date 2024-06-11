@@ -111,8 +111,7 @@ body {
     </button>
     <div class="dropdown-content">
       <a href="cadastro_produto.php">Cadastrar Produto</a>
-      <a href="deletar_produto.php">Lista de Produtos</a>
-      <a href="cadastrar_imagem_produto.php">Cadastrar Imagem</a>
+      <a href="listar_produtos.php">Lista de Produtos</a>
     </div>
   </div>
 
