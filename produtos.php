@@ -100,7 +100,7 @@ $produtos = filtrarProdutos($conn, $categoria_id, $min_preco, $max_preco, $pagin
                                 <a class="nav-link active" href="produtos.php">Produtos</a>
                             </li>
                             <li class="nav-item">
-                                <a class="nav-link" href="exercicios_git.html">Exercícios</a>
+                                <a class="nav-link" href="exercicios_git.php">Exercícios</a>
                             </li>
                             <li class="nav-item">
                                 <a class="nav-link" href="noticia22.php">Notícias</a>
