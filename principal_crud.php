@@ -133,6 +133,7 @@ body {
 
       <a href="Cadastro_cliente_git.php">Cadastrar Usuarios</a>
       <a href="/TCC-SITE/crud_usuario/apaga_usuario">Apagar/ Editar Usuario</a>
+      <a href="vendas_listar.php">Compras Realizadas</a>
   </div>
 </div>
   
@@ -157,6 +158,8 @@ body {
       <a href="/TCC-SITE/crud_receita/form_atualiza.html">Apaga/Deleta Receitas</a>
   </div>
 </div>
+
+
 
   <div>
     <a href="principal.php" class="button-link">

@@ -2,28 +2,30 @@
 include_once("conexao.php");
 include_once("autenticacao.php");
 
+// Verifica se o usuário está logado
 if (!usuarioEstaLogado()) {
-    $_SESSION['loginErro'] = "Você precisa estar logado para acessar esta página.";
+    $_SESSION['loginErro'] = "Você precisa estar logado para realizar esta compra.";
     header("Location: login_tcc.php");
     exit();
 }
 
-// Após verificar as credenciais do usuário no banco de dados e obter o ID do usuário:
-    if ($resultado_usuario = mysqli_fetch_assoc($resultado_usuario)) {
-        // Definir a variável de sessão com o ID do usuário
-        $_SESSION['usuario_id'] = $resultado_usuario['id_usuario'];
-        // Outras ações após o login bem-sucedido
-    }
-    
+$usuario_email = $_POST['usuario_email'];
+$produto_id = $_POST['produto_id'];
+$quantidade = $_POST['quantidade'];
 
-if (!isset($_SESSION['usuario_id'])) {
-    header('Location: login_tcc.php');
+// Obter o ID do usuário a partir do email
+$sql_id_usuario = "SELECT id_usuario FROM usuario WHERE email = ?";
+$stmt_id_usuario = $conn->prepare($sql_id_usuario);
+$stmt_id_usuario->bind_param("s", $usuario_email);
+$stmt_id_usuario->execute();
+$result_id_usuario = $stmt_id_usuario->get_result();
+
+if ($result_id_usuario->num_rows == 0) {
+    echo "Usuário não encontrado.";
     exit();
 }
 
-$id_usuario = $_SESSION['usuario_id'];
-$produto_id = $_POST['produto_id'];
-$quantidade = $_POST['quantidade'];
+$id_usuario = $result_id_usuario->fetch_assoc()['id_usuario'];
 
 // Verificar se o produto existe e obter o preço
 $sql_produto = "SELECT preco, estoque FROM produtos WHERE produto_id = ?";

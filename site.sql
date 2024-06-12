@@ -1,14 +1,13 @@
 -- phpMyAdmin SQL Dump
--- version 4.8.4
+-- version 5.2.1
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1:3306
--- Generation Time: 11-Jun-2024 às 01:37
--- Versão do servidor: 5.7.24
--- versão do PHP: 7.2.14
+-- Tempo de geração: 12/06/2024 às 20:32
+-- Versão do servidor: 8.2.0
+-- Versão do PHP: 8.2.13
 
 SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
-SET AUTOCOMMIT = 0;
 START TRANSACTION;
 SET time_zone = "+00:00";
 
@@ -19,26 +18,26 @@ SET time_zone = "+00:00";
 /*!40101 SET NAMES utf8mb4 */;
 
 --
--- Database: `site`
+-- Banco de dados: `site`
 --
 
 -- --------------------------------------------------------
 
 --
--- Estrutura da tabela `adm`
+-- Estrutura para tabela `adm`
 --
 
 DROP TABLE IF EXISTS `adm`;
 CREATE TABLE IF NOT EXISTS `adm` (
-  `codigo` int(11) NOT NULL AUTO_INCREMENT,
-  `nome` varchar(100) COLLATE utf8mb4_unicode_ci NOT NULL,
-  `email` varchar(100) COLLATE utf8mb4_unicode_ci NOT NULL,
-  `senha` varchar(100) COLLATE utf8mb4_unicode_ci NOT NULL,
+  `codigo` int NOT NULL AUTO_INCREMENT,
+  `nome` varchar(100) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci NOT NULL,
+  `email` varchar(100) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci NOT NULL,
+  `senha` varchar(100) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci NOT NULL,
   PRIMARY KEY (`codigo`)
 ) ENGINE=MyISAM AUTO_INCREMENT=5 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
 --
--- Extraindo dados da tabela `adm`
+-- Despejando dados para a tabela `adm`
 --
 
 INSERT INTO `adm` (`codigo`, `nome`, `email`, `senha`) VALUES
@@ -50,16 +49,16 @@ INSERT INTO `adm` (`codigo`, `nome`, `email`, `senha`) VALUES
 -- --------------------------------------------------------
 
 --
--- Estrutura da tabela `boletos`
+-- Estrutura para tabela `boletos`
 --
 
 DROP TABLE IF EXISTS `boletos`;
 CREATE TABLE IF NOT EXISTS `boletos` (
-  `id_boleto` int(11) NOT NULL AUTO_INCREMENT,
-  `id_venda` int(11) DEFAULT NULL,
-  `numero_boleto` varchar(100) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
+  `id_boleto` int NOT NULL AUTO_INCREMENT,
+  `id_venda` int DEFAULT NULL,
+  `numero_boleto` varchar(100) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci DEFAULT NULL,
   `data_vencimento` date DEFAULT NULL,
-  `status_pagamento` varchar(50) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
+  `status_pagamento` varchar(50) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci DEFAULT NULL,
   `data_criacao` timestamp NULL DEFAULT CURRENT_TIMESTAMP,
   PRIMARY KEY (`id_boleto`),
   KEY `id_venda` (`id_venda`)
@@ -68,18 +67,18 @@ CREATE TABLE IF NOT EXISTS `boletos` (
 -- --------------------------------------------------------
 
 --
--- Estrutura da tabela `categorias`
+-- Estrutura para tabela `categorias`
 --
 
 DROP TABLE IF EXISTS `categorias`;
 CREATE TABLE IF NOT EXISTS `categorias` (
-  `categoria_id` int(11) NOT NULL AUTO_INCREMENT,
-  `nome` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
+  `categoria_id` int NOT NULL AUTO_INCREMENT,
+  `nome` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci NOT NULL,
   PRIMARY KEY (`categoria_id`)
 ) ENGINE=InnoDB AUTO_INCREMENT=5 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
 --
--- Extraindo dados da tabela `categorias`
+-- Despejando dados para a tabela `categorias`
 --
 
 INSERT INTO `categorias` (`categoria_id`, `nome`) VALUES
@@ -91,18 +90,18 @@ INSERT INTO `categorias` (`categoria_id`, `nome`) VALUES
 -- --------------------------------------------------------
 
 --
--- Estrutura da tabela `categoria_exercicio`
+-- Estrutura para tabela `categoria_exercicio`
 --
 
 DROP TABLE IF EXISTS `categoria_exercicio`;
 CREATE TABLE IF NOT EXISTS `categoria_exercicio` (
-  `codigo` int(11) NOT NULL AUTO_INCREMENT,
-  `categoria` varchar(100) COLLATE utf8mb4_unicode_ci NOT NULL,
+  `codigo` int NOT NULL AUTO_INCREMENT,
+  `categoria` varchar(100) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci NOT NULL,
   PRIMARY KEY (`codigo`)
 ) ENGINE=MyISAM AUTO_INCREMENT=4 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
 --
--- Extraindo dados da tabela `categoria_exercicio`
+-- Despejando dados para a tabela `categoria_exercicio`
 --
 
 INSERT INTO `categoria_exercicio` (`codigo`, `categoria`) VALUES
@@ -113,18 +112,18 @@ INSERT INTO `categoria_exercicio` (`codigo`, `categoria`) VALUES
 -- --------------------------------------------------------
 
 --
--- Estrutura da tabela `categoria_receita`
+-- Estrutura para tabela `categoria_receita`
 --
 
 DROP TABLE IF EXISTS `categoria_receita`;
 CREATE TABLE IF NOT EXISTS `categoria_receita` (
-  `id_categoria` int(11) NOT NULL AUTO_INCREMENT,
-  `nome` varchar(50) COLLATE utf8mb4_unicode_ci NOT NULL,
+  `id_categoria` int NOT NULL AUTO_INCREMENT,
+  `nome` varchar(50) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci NOT NULL,
   PRIMARY KEY (`id_categoria`)
 ) ENGINE=MyISAM AUTO_INCREMENT=3 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
 --
--- Extraindo dados da tabela `categoria_receita`
+-- Despejando dados para a tabela `categoria_receita`
 --
 
 INSERT INTO `categoria_receita` (`id_categoria`, `nome`) VALUES
@@ -134,21 +133,21 @@ INSERT INTO `categoria_receita` (`id_categoria`, `nome`) VALUES
 -- --------------------------------------------------------
 
 --
--- Estrutura da tabela `detalhesusuario`
+-- Estrutura para tabela `detalhesusuario`
 --
 
 DROP TABLE IF EXISTS `detalhesusuario`;
 CREATE TABLE IF NOT EXISTS `detalhesusuario` (
-  `id_detalhe` int(11) NOT NULL AUTO_INCREMENT,
-  `id_usuario` int(11) DEFAULT NULL,
-  `nome_completo` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
-  `cpf_cnpj` varchar(20) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
-  `telefone` varchar(20) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
-  `endereco` varchar(255) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
-  `cidade` varchar(100) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
-  `estado` varchar(50) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
-  `pais` varchar(50) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
-  `cep` varchar(20) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
+  `id_detalhe` int NOT NULL AUTO_INCREMENT,
+  `id_usuario` int DEFAULT NULL,
+  `nome_completo` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci NOT NULL,
+  `cpf_cnpj` varchar(20) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci DEFAULT NULL,
+  `telefone` varchar(20) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci DEFAULT NULL,
+  `endereco` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci DEFAULT NULL,
+  `cidade` varchar(100) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci DEFAULT NULL,
+  `estado` varchar(50) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci DEFAULT NULL,
+  `pais` varchar(50) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci DEFAULT NULL,
+  `cep` varchar(20) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci DEFAULT NULL,
   `data_criacao` timestamp NULL DEFAULT CURRENT_TIMESTAMP,
   `data_atualizacao` timestamp NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP,
   PRIMARY KEY (`id_detalhe`),
@@ -158,19 +157,19 @@ CREATE TABLE IF NOT EXISTS `detalhesusuario` (
 -- --------------------------------------------------------
 
 --
--- Estrutura da tabela `exercicio`
+-- Estrutura para tabela `exercicio`
 --
 
 DROP TABLE IF EXISTS `exercicio`;
 CREATE TABLE IF NOT EXISTS `exercicio` (
-  `codigo` int(11) NOT NULL AUTO_INCREMENT,
-  `titulo` varchar(1000) COLLATE utf8mb4_unicode_ci NOT NULL,
-  `texto` varchar(10000) COLLATE utf8mb4_unicode_ci NOT NULL,
+  `codigo` int NOT NULL AUTO_INCREMENT,
+  `titulo` varchar(1000) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci NOT NULL,
+  `texto` varchar(10000) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci NOT NULL,
   PRIMARY KEY (`codigo`)
 ) ENGINE=MyISAM AUTO_INCREMENT=4 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
 --
--- Extraindo dados da tabela `exercicio`
+-- Despejando dados para a tabela `exercicio`
 --
 
 INSERT INTO `exercicio` (`codigo`, `titulo`, `texto`) VALUES
@@ -181,18 +180,18 @@ INSERT INTO `exercicio` (`codigo`, `titulo`, `texto`) VALUES
 -- --------------------------------------------------------
 
 --
--- Estrutura da tabela `imagem_noticia`
+-- Estrutura para tabela `imagem_noticia`
 --
 
 DROP TABLE IF EXISTS `imagem_noticia`;
 CREATE TABLE IF NOT EXISTS `imagem_noticia` (
-  `id` int(11) NOT NULL AUTO_INCREMENT,
-  `caminho` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
+  `id` int NOT NULL AUTO_INCREMENT,
+  `caminho` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci NOT NULL,
   PRIMARY KEY (`id`)
 ) ENGINE=InnoDB AUTO_INCREMENT=15 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
 --
--- Extraindo dados da tabela `imagem_noticia`
+-- Despejando dados para a tabela `imagem_noticia`
 --
 
 INSERT INTO `imagem_noticia` (`id`, `caminho`) VALUES
@@ -214,21 +213,21 @@ INSERT INTO `imagem_noticia` (`id`, `caminho`) VALUES
 -- --------------------------------------------------------
 
 --
--- Estrutura da tabela `imagem_produto`
+-- Estrutura para tabela `imagem_produto`
 --
 
 DROP TABLE IF EXISTS `imagem_produto`;
 CREATE TABLE IF NOT EXISTS `imagem_produto` (
-  `id` int(11) NOT NULL AUTO_INCREMENT,
-  `nome` varchar(220) COLLATE utf8_unicode_ci NOT NULL,
-  `imagem` varchar(220) COLLATE utf8_unicode_ci NOT NULL,
-  `produto_id` int(11) DEFAULT NULL,
+  `id` int NOT NULL AUTO_INCREMENT,
+  `nome` varchar(220) CHARACTER SET utf8mb3 COLLATE utf8mb3_unicode_ci NOT NULL,
+  `imagem` varchar(220) CHARACTER SET utf8mb3 COLLATE utf8mb3_unicode_ci NOT NULL,
+  `produto_id` int DEFAULT NULL,
   PRIMARY KEY (`id`),
   KEY `fk_produtos` (`produto_id`)
-) ENGINE=InnoDB AUTO_INCREMENT=26 DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=26 DEFAULT CHARSET=utf8mb3 COLLATE=utf8mb3_unicode_ci;
 
 --
--- Extraindo dados da tabela `imagem_produto`
+-- Despejando dados para a tabela `imagem_produto`
 --
 
 INSERT INTO `imagem_produto` (`id`, `nome`, `imagem`, `produto_id`) VALUES
@@ -256,19 +255,19 @@ INSERT INTO `imagem_produto` (`id`, `nome`, `imagem`, `produto_id`) VALUES
 -- --------------------------------------------------------
 
 --
--- Estrutura da tabela `imagem_receita`
+-- Estrutura para tabela `imagem_receita`
 --
 
 DROP TABLE IF EXISTS `imagem_receita`;
 CREATE TABLE IF NOT EXISTS `imagem_receita` (
-  `id_imgReceita` int(11) NOT NULL AUTO_INCREMENT,
-  `nome` varchar(100) COLLATE utf8mb4_unicode_ci NOT NULL,
-  `imagem` varchar(100) COLLATE utf8mb4_unicode_ci NOT NULL,
+  `id_imgReceita` int NOT NULL AUTO_INCREMENT,
+  `nome` varchar(100) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci NOT NULL,
+  `imagem` varchar(100) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci NOT NULL,
   PRIMARY KEY (`id_imgReceita`)
 ) ENGINE=InnoDB AUTO_INCREMENT=23 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
 --
--- Extraindo dados da tabela `imagem_receita`
+-- Despejando dados para a tabela `imagem_receita`
 --
 
 INSERT INTO `imagem_receita` (`id_imgReceita`, `nome`, `imagem`) VALUES
@@ -287,22 +286,22 @@ INSERT INTO `imagem_receita` (`id_imgReceita`, `nome`, `imagem`) VALUES
 -- --------------------------------------------------------
 
 --
--- Estrutura da tabela `noticia`
+-- Estrutura para tabela `noticia`
 --
 
 DROP TABLE IF EXISTS `noticia`;
 CREATE TABLE IF NOT EXISTS `noticia` (
-  `id` int(11) NOT NULL AUTO_INCREMENT,
-  `titulo` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
-  `texto` text COLLATE utf8mb4_unicode_ci NOT NULL,
-  `link` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
-  `imagem_noticia_id` int(11) DEFAULT NULL,
+  `id` int NOT NULL AUTO_INCREMENT,
+  `titulo` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci NOT NULL,
+  `texto` text CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci NOT NULL,
+  `link` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci NOT NULL,
+  `imagem_noticia_id` int DEFAULT NULL,
   PRIMARY KEY (`id`),
   KEY `fk_imagem_noticia` (`imagem_noticia_id`)
 ) ENGINE=InnoDB AUTO_INCREMENT=14 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
 --
--- Extraindo dados da tabela `noticia`
+-- Despejando dados para a tabela `noticia`
 --
 
 INSERT INTO `noticia` (`id`, `titulo`, `texto`, `link`, `imagem_noticia_id`) VALUES
@@ -323,15 +322,15 @@ INSERT INTO `noticia` (`id`, `titulo`, `texto`, `link`, `imagem_noticia_id`) VAL
 -- --------------------------------------------------------
 
 --
--- Estrutura da tabela `pagamentos`
+-- Estrutura para tabela `pagamentos`
 --
 
 DROP TABLE IF EXISTS `pagamentos`;
 CREATE TABLE IF NOT EXISTS `pagamentos` (
-  `id_pagamento` int(11) NOT NULL AUTO_INCREMENT,
-  `id_usuario` int(11) DEFAULT NULL,
-  `metodo_pagamento` varchar(50) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
-  `status_pagamento` varchar(50) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
+  `id_pagamento` int NOT NULL AUTO_INCREMENT,
+  `id_usuario` int DEFAULT NULL,
+  `metodo_pagamento` varchar(50) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci DEFAULT NULL,
+  `status_pagamento` varchar(50) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci DEFAULT NULL,
   `valor` decimal(10,2) DEFAULT NULL,
   `data_hora` datetime DEFAULT NULL,
   `data_criacao` timestamp NULL DEFAULT CURRENT_TIMESTAMP,
@@ -343,20 +342,20 @@ CREATE TABLE IF NOT EXISTS `pagamentos` (
 -- --------------------------------------------------------
 
 --
--- Estrutura da tabela `produtos`
+-- Estrutura para tabela `produtos`
 --
 
 DROP TABLE IF EXISTS `produtos`;
 CREATE TABLE IF NOT EXISTS `produtos` (
-  `produto_id` int(11) NOT NULL AUTO_INCREMENT,
-  `nome` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
+  `produto_id` int NOT NULL AUTO_INCREMENT,
+  `nome` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci NOT NULL,
   `preco` decimal(10,2) NOT NULL,
-  `estoque` int(11) NOT NULL,
-  `categoria_id` int(11) DEFAULT NULL,
-  `imagem_id` int(11) DEFAULT NULL,
-  `sobre` text COLLATE utf8mb4_unicode_ci,
-  `beneficios` text COLLATE utf8mb4_unicode_ci,
-  `recomendacoes` text COLLATE utf8mb4_unicode_ci,
+  `estoque` int NOT NULL,
+  `categoria_id` int DEFAULT NULL,
+  `imagem_id` int DEFAULT NULL,
+  `sobre` text CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci,
+  `beneficios` text CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci,
+  `recomendacoes` text CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci,
   `data_criacao` timestamp NULL DEFAULT CURRENT_TIMESTAMP,
   `data_atualizacao` timestamp NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP,
   `peso` decimal(10,2) NOT NULL DEFAULT '0.00',
@@ -369,52 +368,52 @@ CREATE TABLE IF NOT EXISTS `produtos` (
 ) ENGINE=InnoDB AUTO_INCREMENT=36 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
 --
--- Extraindo dados da tabela `produtos`
+-- Despejando dados para a tabela `produtos`
 --
 
 INSERT INTO `produtos` (`produto_id`, `nome`, `preco`, `estoque`, `categoria_id`, `imagem_id`, `sobre`, `beneficios`, `recomendacoes`, `data_criacao`, `data_atualizacao`, `peso`, `largura`, `altura`, `comprimento`) VALUES
-(1, 'Vitamina Exemplo 1', '129.00', 100, 1, 1, 'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Aliquam auctor enim vel lorem dapibus, ac maximus sem sollicitudin. Proin tincidunt quam nec nibh facilisis, at rutrum ipsum tempor. In vel vehicula velit. Cras ullamcorper aliquet lectus, id elementum eros iaculis non. Cras ut tellus porta, viverra augue vel, auctor nisl. Morbi eget justo suscipit, tristique purus quis, dignissim metus. Nulla a mauris arcu. Pellentesque convallis nulla sed nunc dignissim, ac vulputate justo rutrum.', 'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Aliquam auctor enim vel lorem dapibus, ac maximus sem sollicitudin. Proin tincidunt quam nec nibh facilisis, at rutrum ipsum tempor. In vel vehicula velit. Cras ullamcorper aliquet lectus, id elementum eros iaculis non. Cras ut tellus porta, viverra augue vel, auctor nisl. Morbi eget justo suscipit, tristique purus quis, dignissim metus. Nulla a mauris arcu. Pellentesque convallis nulla sed nunc dignissim, ac vulputate justo rutrum.', 'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Aliquam auctor enim vel lorem dapibus, ac maximus sem sollicitudin. Proin tincidunt quam nec nibh facilisis, at rutrum ipsum tempor. In vel vehicula velit. Cras ullamcorper aliquet lectus, id elementum eros iaculis non. Cras ut tellus porta, viverra augue vel, auctor nisl. Morbi eget justo suscipit, tristique purus quis, dignissim metus. Nulla a mauris arcu. Pellentesque convallis nulla sed nunc dignissim, ac vulputate justo rutrum.', '2024-05-02 22:48:54', '2024-06-11 01:27:35', '20.00', '50.00', '8.00', '5.00'),
-(2, 'Vitamina Exemplo 2', '231.00', 100, 1, 2, 'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Aliquam auctor enim vel lorem dapibus, ac maximus sem sollicitudin. Proin tincidunt quam nec nibh facilisis, at rutrum ipsum tempor. In vel vehicula velit. Cras ullamcorper aliquet lectus, id elementum eros iaculis non. Cras ut tellus porta, viverra augue vel, auctor nisl. Morbi eget justo suscipit, tristique purus quis, dignissim metus. Nulla a mauris arcu. Pellentesque convallis nulla sed nunc dignissim, ac vulputate justo rutrum.', 'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Aliquam auctor enim vel lorem dapibus, ac maximus sem sollicitudin. Proin tincidunt quam nec nibh facilisis, at rutrum ipsum tempor. In vel vehicula velit. Cras ullamcorper aliquet lectus, id elementum eros iaculis non. Cras ut tellus porta, viverra augue vel, auctor nisl. Morbi eget justo suscipit, tristique purus quis, dignissim metus. Nulla a mauris arcu. Pellentesque convallis nulla sed nunc dignissim, ac vulputate justo rutrum.', 'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Aliquam auctor enim vel lorem dapibus, ac maximus sem sollicitudin. Proin tincidunt quam nec nibh facilisis, at rutrum ipsum tempor. In vel vehicula velit. Cras ullamcorper aliquet lectus, id elementum eros iaculis non. Cras ut tellus porta, viverra augue vel, auctor nisl. Morbi eget justo suscipit, tristique purus quis, dignissim metus. Nulla a mauris arcu. Pellentesque convallis nulla sed nunc dignissim, ac vulputate justo rutrum.', '2024-05-02 22:48:54', '2024-06-11 01:27:52', '25.00', '55.00', '85.00', '55.00'),
-(3, 'Vitamina Exemplo 3', '339.00', 100, 1, 3, 'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Aliquam auctor enim vel lorem dapibus, ac maximus sem sollicitudin. Proin tincidunt quam nec nibh facilisis, at rutrum ipsum tempor. In vel vehicula velit. Cras ullamcorper aliquet lectus, id elementum eros iaculis non. Cras ut tellus porta, viverra augue vel, auctor nisl. Morbi eget justo suscipit, tristique purus quis, dignissim metus. Nulla a mauris arcu. Pellentesque convallis nulla sed nunc dignissim, ac vulputate justo rutrum.', 'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Aliquam auctor enim vel lorem dapibus, ac maximus sem sollicitudin. Proin tincidunt quam nec nibh facilisis, at rutrum ipsum tempor. In vel vehicula velit. Cras ullamcorper aliquet lectus, id elementum eros iaculis non. Cras ut tellus porta, viverra augue vel, auctor nisl. Morbi eget justo suscipit, tristique purus quis, dignissim metus. Nulla a mauris arcu. Pellentesque convallis nulla sed nunc dignissim, ac vulputate justo rutrum.', 'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Aliquam auctor enim vel lorem dapibus, ac maximus sem sollicitudin. Proin tincidunt quam nec nibh facilisis, at rutrum ipsum tempor. In vel vehicula velit. Cras ullamcorper aliquet lectus, id elementum eros iaculis non. Cras ut tellus porta, viverra augue vel, auctor nisl. Morbi eget justo suscipit, tristique purus quis, dignissim metus. Nulla a mauris arcu. Pellentesque convallis nulla sed nunc dignissim, ac vulputate justo rutrum.', '2024-05-02 22:48:54', '2024-06-11 01:28:13', '3.00', '60.00', '90.00', '60.00'),
-(4, 'Vitamina Exemplo 4', '135.00', 100, 1, 4, 'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Aliquam auctor enim vel lorem dapibus, ac maximus sem sollicitudin. Proin tincidunt quam nec nibh facilisis, at rutrum ipsum tempor. In vel vehicula velit. Cras ullamcorper aliquet lectus, id elementum eros iaculis non. Cras ut tellus porta, viverra augue vel, auctor nisl. Morbi eget justo suscipit, tristique purus quis, dignissim metus. Nulla a mauris arcu. Pellentesque convallis nulla sed nunc dignissim, ac vulputate justo rutrum.', 'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Aliquam auctor enim vel lorem dapibus, ac maximus sem sollicitudin. Proin tincidunt quam nec nibh facilisis, at rutrum ipsum tempor. In vel vehicula velit. Cras ullamcorper aliquet lectus, id elementum eros iaculis non. Cras ut tellus porta, viverra augue vel, auctor nisl. Morbi eget justo suscipit, tristique purus quis, dignissim metus. Nulla a mauris arcu. Pellentesque convallis nulla sed nunc dignissim, ac vulputate justo rutrum.', 'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Aliquam auctor enim vel lorem dapibus, ac maximus sem sollicitudin. Proin tincidunt quam nec nibh facilisis, at rutrum ipsum tempor. In vel vehicula velit. Cras ullamcorper aliquet lectus, id elementum eros iaculis non. Cras ut tellus porta, viverra augue vel, auctor nisl. Morbi eget justo suscipit, tristique purus quis, dignissim metus. Nulla a mauris arcu. Pellentesque convallis nulla sed nunc dignissim, ac vulputate justo rutrum.', '2024-05-02 22:48:54', '2024-06-11 01:28:41', '35.00', '65.00', '95.00', '65.00'),
-(5, 'Vitamina Exemplo 5', '79.00', 100, 1, 5, 'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Aliquam auctor enim vel lorem dapibus, ac maximus sem sollicitudin. Proin tincidunt quam nec nibh facilisis, at rutrum ipsum tempor. In vel vehicula velit. Cras ullamcorper aliquet lectus, id elementum eros iaculis non. Cras ut tellus porta, viverra augue vel, auctor nisl. Morbi eget justo suscipit, tristique purus quis, dignissim metus. Nulla a mauris arcu. Pellentesque convallis nulla sed nunc dignissim, ac vulputate justo rutrum.', 'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Aliquam auctor enim vel lorem dapibus, ac maximus sem sollicitudin. Proin tincidunt quam nec nibh facilisis, at rutrum ipsum tempor. In vel vehicula velit. Cras ullamcorper aliquet lectus, id elementum eros iaculis non. Cras ut tellus porta, viverra augue vel, auctor nisl. Morbi eget justo suscipit, tristique purus quis, dignissim metus. Nulla a mauris arcu. Pellentesque convallis nulla sed nunc dignissim, ac vulputate justo rutrum.', 'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Aliquam auctor enim vel lorem dapibus, ac maximus sem sollicitudin. Proin tincidunt quam nec nibh facilisis, at rutrum ipsum tempor. In vel vehicula velit. Cras ullamcorper aliquet lectus, id elementum eros iaculis non. Cras ut tellus porta, viverra augue vel, auctor nisl. Morbi eget justo suscipit, tristique purus quis, dignissim metus. Nulla a mauris arcu. Pellentesque convallis nulla sed nunc dignissim, ac vulputate justo rutrum.', '2024-05-02 22:48:54', '2024-06-11 01:29:31', '4.00', '7.00', '1.00', '7.00'),
-(6, 'Proteína Exemplo 1', '159.00', 50, 2, 6, 'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Aliquam auctor enim vel lorem dapibus, ac maximus sem sollicitudin. Proin tincidunt quam nec nibh facilisis, at rutrum ipsum tempor. In vel vehicula velit. Cras ullamcorper aliquet lectus, id elementum eros iaculis non. Cras ut tellus porta, viverra augue vel, auctor nisl. Morbi eget justo suscipit, tristique purus quis, dignissim metus. Nulla a mauris arcu. Pellentesque convallis nulla sed nunc dignissim, ac vulputate justo rutrum.', 'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Aliquam auctor enim vel lorem dapibus, ac maximus sem sollicitudin. Proin tincidunt quam nec nibh facilisis, at rutrum ipsum tempor. In vel vehicula velit. Cras ullamcorper aliquet lectus, id elementum eros iaculis non. Cras ut tellus porta, viverra augue vel, auctor nisl. Morbi eget justo suscipit, tristique purus quis, dignissim metus. Nulla a mauris arcu. Pellentesque convallis nulla sed nunc dignissim, ac vulputate justo rutrum.', 'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Aliquam auctor enim vel lorem dapibus, ac maximus sem sollicitudin. Proin tincidunt quam nec nibh facilisis, at rutrum ipsum tempor. In vel vehicula velit. Cras ullamcorper aliquet lectus, id elementum eros iaculis non. Cras ut tellus porta, viverra augue vel, auctor nisl. Morbi eget justo suscipit, tristique purus quis, dignissim metus. Nulla a mauris arcu. Pellentesque convallis nulla sed nunc dignissim, ac vulputate justo rutrum.', '2024-05-02 22:48:54', '2024-06-11 01:30:15', '50.00', '10.00', '15.00', '10.00'),
-(7, 'Proteína Exemplo 2', '69.00', 50, 2, 7, 'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Aliquam auctor enim vel lorem dapibus, ac maximus sem sollicitudin. Proin tincidunt quam nec nibh facilisis, at rutrum ipsum tempor. In vel vehicula velit. Cras ullamcorper aliquet lectus, id elementum eros iaculis non. Cras ut tellus porta, viverra augue vel, auctor nisl. Morbi eget justo suscipit, tristique purus quis, dignissim metus. Nulla a mauris arcu. Pellentesque convallis nulla sed nunc dignissim, ac vulputate justo rutrum.', 'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Aliquam auctor enim vel lorem dapibus, ac maximus sem sollicitudin. Proin tincidunt quam nec nibh facilisis, at rutrum ipsum tempor. In vel vehicula velit. Cras ullamcorper aliquet lectus, id elementum eros iaculis non. Cras ut tellus porta, viverra augue vel, auctor nisl. Morbi eget justo suscipit, tristique purus quis, dignissim metus. Nulla a mauris arcu. Pellentesque convallis nulla sed nunc dignissim, ac vulputate justo rutrum.', 'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Aliquam auctor enim vel lorem dapibus, ac maximus sem sollicitudin. Proin tincidunt quam nec nibh facilisis, at rutrum ipsum tempor. In vel vehicula velit. Cras ullamcorper aliquet lectus, id elementum eros iaculis non. Cras ut tellus porta, viverra augue vel, auctor nisl. Morbi eget justo suscipit, tristique purus quis, dignissim metus. Nulla a mauris arcu. Pellentesque convallis nulla sed nunc dignissim, ac vulputate justo rutrum.', '2024-05-02 22:48:54', '2024-06-11 01:29:52', '55.00', '10.00', '15.00', '10.00'),
-(8, 'Proteína Exemplo 3', '27.00', 50, 2, 8, 'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Aliquam auctor enim vel lorem dapibus, ac maximus sem sollicitudin. Proin tincidunt quam nec nibh facilisis, at rutrum ipsum tempor. In vel vehicula velit. Cras ullamcorper aliquet lectus, id elementum eros iaculis non. Cras ut tellus porta, viverra augue vel, auctor nisl. Morbi eget justo suscipit, tristique purus quis, dignissim metus. Nulla a mauris arcu. Pellentesque convallis nulla sed nunc dignissim, ac vulputate justo rutrum.', 'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Aliquam auctor enim vel lorem dapibus, ac maximus sem sollicitudin. Proin tincidunt quam nec nibh facilisis, at rutrum ipsum tempor. In vel vehicula velit. Cras ullamcorper aliquet lectus, id elementum eros iaculis non. Cras ut tellus porta, viverra augue vel, auctor nisl. Morbi eget justo suscipit, tristique purus quis, dignissim metus. Nulla a mauris arcu. Pellentesque convallis nulla sed nunc dignissim, ac vulputate justo rutrum.', 'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Aliquam auctor enim vel lorem dapibus, ac maximus sem sollicitudin. Proin tincidunt quam nec nibh facilisis, at rutrum ipsum tempor. In vel vehicula velit. Cras ullamcorper aliquet lectus, id elementum eros iaculis non. Cras ut tellus porta, viverra augue vel, auctor nisl. Morbi eget justo suscipit, tristique purus quis, dignissim metus. Nulla a mauris arcu. Pellentesque convallis nulla sed nunc dignissim, ac vulputate justo rutrum.', '2024-05-02 22:48:54', '2024-06-11 01:30:44', '60.00', '11.00', '16.00', '11.00'),
-(9, 'Proteína Exemplo 4', '18.00', 50, 2, 9, 'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Aliquam auctor enim vel lorem dapibus, ac maximus sem sollicitudin. Proin tincidunt quam nec nibh facilisis, at rutrum ipsum tempor. In vel vehicula velit. Cras ullamcorper aliquet lectus, id elementum eros iaculis non. Cras ut tellus porta, viverra augue vel, auctor nisl. Morbi eget justo suscipit, tristique purus quis, dignissim metus. Nulla a mauris arcu. Pellentesque convallis nulla sed nunc dignissim, ac vulputate justo rutrum.', 'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Aliquam auctor enim vel lorem dapibus, ac maximus sem sollicitudin. Proin tincidunt quam nec nibh facilisis, at rutrum ipsum tempor. In vel vehicula velit. Cras ullamcorper aliquet lectus, id elementum eros iaculis non. Cras ut tellus porta, viverra augue vel, auctor nisl. Morbi eget justo suscipit, tristique purus quis, dignissim metus. Nulla a mauris arcu. Pellentesque convallis nulla sed nunc dignissim, ac vulputate justo rutrum.', 'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Aliquam auctor enim vel lorem dapibus, ac maximus sem sollicitudin. Proin tincidunt quam nec nibh facilisis, at rutrum ipsum tempor. In vel vehicula velit. Cras ullamcorper aliquet lectus, id elementum eros iaculis non. Cras ut tellus porta, viverra augue vel, auctor nisl. Morbi eget justo suscipit, tristique purus quis, dignissim metus. Nulla a mauris arcu. Pellentesque convallis nulla sed nunc dignissim, ac vulputate justo rutrum.', '2024-05-02 22:48:54', '2024-06-11 01:31:11', '65.00', '11.00', '16.00', '11.00'),
-(10, 'Proteína Exemplo 5', '99.00', 50, 2, 10, 'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Aliquam auctor enim vel lorem dapibus, ac maximus sem sollicitudin. Proin tincidunt quam nec nibh facilisis, at rutrum ipsum tempor. In vel vehicula velit. Cras ullamcorper aliquet lectus, id elementum eros iaculis non. Cras ut tellus porta, viverra augue vel, auctor nisl. Morbi eget justo suscipit, tristique purus quis, dignissim metus. Nulla a mauris arcu. Pellentesque convallis nulla sed nunc dignissim, ac vulputate justo rutrum.', 'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Aliquam auctor enim vel lorem dapibus, ac maximus sem sollicitudin. Proin tincidunt quam nec nibh facilisis, at rutrum ipsum tempor. In vel vehicula velit. Cras ullamcorper aliquet lectus, id elementum eros iaculis non. Cras ut tellus porta, viverra augue vel, auctor nisl. Morbi eget justo suscipit, tristique purus quis, dignissim metus. Nulla a mauris arcu. Pellentesque convallis nulla sed nunc dignissim, ac vulputate justo rutrum.', 'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Aliquam auctor enim vel lorem dapibus, ac maximus sem sollicitudin. Proin tincidunt quam nec nibh facilisis, at rutrum ipsum tempor. In vel vehicula velit. Cras ullamcorper aliquet lectus, id elementum eros iaculis non. Cras ut tellus porta, viverra augue vel, auctor nisl. Morbi eget justo suscipit, tristique purus quis, dignissim metus. Nulla a mauris arcu. Pellentesque convallis nulla sed nunc dignissim, ac vulputate justo rutrum.', '2024-05-02 22:48:54', '2024-06-11 01:31:35', '70.00', '12.00', '17.00', '12.00'),
-(11, 'Pré Treino Exemplo 1', '45.00', 75, 3, 11, 'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Aliquam auctor enim vel lorem dapibus, ac maximus sem sollicitudin. Proin tincidunt quam nec nibh facilisis, at rutrum ipsum tempor. In vel vehicula velit. Cras ullamcorper aliquet lectus, id elementum eros iaculis non. Cras ut tellus porta, viverra augue vel, auctor nisl. Morbi eget justo suscipit, tristique purus quis, dignissim metus. Nulla a mauris arcu. Pellentesque convallis nulla sed nunc dignissim, ac vulputate justo rutrum.', 'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Aliquam auctor enim vel lorem dapibus, ac maximus sem sollicitudin. Proin tincidunt quam nec nibh facilisis, at rutrum ipsum tempor. In vel vehicula velit. Cras ullamcorper aliquet lectus, id elementum eros iaculis non. Cras ut tellus porta, viverra augue vel, auctor nisl. Morbi eget justo suscipit, tristique purus quis, dignissim metus. Nulla a mauris arcu. Pellentesque convallis nulla sed nunc dignissim, ac vulputate justo rutrum.', 'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Aliquam auctor enim vel lorem dapibus, ac maximus sem sollicitudin. Proin tincidunt quam nec nibh facilisis, at rutrum ipsum tempor. In vel vehicula velit. Cras ullamcorper aliquet lectus, id elementum eros iaculis non. Cras ut tellus porta, viverra augue vel, auctor nisl. Morbi eget justo suscipit, tristique purus quis, dignissim metus. Nulla a mauris arcu. Pellentesque convallis nulla sed nunc dignissim, ac vulputate justo rutrum.', '2024-05-02 22:48:54', '2024-06-11 01:32:10', '30.00', '70.00', '10.00', '70.00'),
-(12, 'Pré Treino Exemplo 2', '25.00', 75, 3, 12, 'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Aliquam auctor enim vel lorem dapibus, ac maximus sem sollicitudin. Proin tincidunt quam nec nibh facilisis, at rutrum ipsum tempor. In vel vehicula velit. Cras ullamcorper aliquet lectus, id elementum eros iaculis non. Cras ut tellus porta, viverra augue vel, auctor nisl. Morbi eget justo suscipit, tristique purus quis, dignissim metus. Nulla a mauris arcu. Pellentesque convallis nulla sed nunc dignissim, ac vulputate justo rutrum.', 'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Aliquam auctor enim vel lorem dapibus, ac maximus sem sollicitudin. Proin tincidunt quam nec nibh facilisis, at rutrum ipsum tempor. In vel vehicula velit. Cras ullamcorper aliquet lectus, id elementum eros iaculis non. Cras ut tellus porta, viverra augue vel, auctor nisl. Morbi eget justo suscipit, tristique purus quis, dignissim metus. Nulla a mauris arcu. Pellentesque convallis nulla sed nunc dignissim, ac vulputate justo rutrum.', 'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Aliquam auctor enim vel lorem dapibus, ac maximus sem sollicitudin. Proin tincidunt quam nec nibh facilisis, at rutrum ipsum tempor. In vel vehicula velit. Cras ullamcorper aliquet lectus, id elementum eros iaculis non. Cras ut tellus porta, viverra augue vel, auctor nisl. Morbi eget justo suscipit, tristique purus quis, dignissim metus. Nulla a mauris arcu. Pellentesque convallis nulla sed nunc dignissim, ac vulputate justo rutrum.', '2024-05-02 22:48:54', '2024-06-11 01:32:38', '35.00', '75.00', '10.00', '7.00'),
-(13, 'Pré Treino Exemplo 3', '16.00', 75, 3, 13, 'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Aliquam auctor enim vel lorem dapibus, ac maximus sem sollicitudin. Proin tincidunt quam nec nibh facilisis, at rutrum ipsum tempor. In vel vehicula velit. Cras ullamcorper aliquet lectus, id elementum eros iaculis non. Cras ut tellus porta, viverra augue vel, auctor nisl. Morbi eget justo suscipit, tristique purus quis, dignissim metus. Nulla a mauris arcu. Pellentesque convallis nulla sed nunc dignissim, ac vulputate justo rutrum.', 'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Aliquam auctor enim vel lorem dapibus, ac maximus sem sollicitudin. Proin tincidunt quam nec nibh facilisis, at rutrum ipsum tempor. In vel vehicula velit. Cras ullamcorper aliquet lectus, id elementum eros iaculis non. Cras ut tellus porta, viverra augue vel, auctor nisl. Morbi eget justo suscipit, tristique purus quis, dignissim metus. Nulla a mauris arcu. Pellentesque convallis nulla sed nunc dignissim, ac vulputate justo rutrum.', 'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Aliquam auctor enim vel lorem dapibus, ac maximus sem sollicitudin. Proin tincidunt quam nec nibh facilisis, at rutrum ipsum tempor. In vel vehicula velit. Cras ullamcorper aliquet lectus, id elementum eros iaculis non. Cras ut tellus porta, viverra augue vel, auctor nisl. Morbi eget justo suscipit, tristique purus quis, dignissim metus. Nulla a mauris arcu. Pellentesque convallis nulla sed nunc dignissim, ac vulputate justo rutrum.', '2024-05-02 22:48:54', '2024-06-11 01:34:46', '40.00', '80.00', '11.00', '80.00'),
-(14, 'Pré Treino Exemplo 4', '75.00', 75, 3, 14, 'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Aliquam auctor enim vel lorem dapibus, ac maximus sem sollicitudin. Proin tincidunt quam nec nibh facilisis, at rutrum ipsum tempor. In vel vehicula velit. Cras ullamcorper aliquet lectus, id elementum eros iaculis non. Cras ut tellus porta, viverra augue vel, auctor nisl. Morbi eget justo suscipit, tristique purus quis, dignissim metus. Nulla a mauris arcu. Pellentesque convallis nulla sed nunc dignissim, ac vulputate justo rutrum.', 'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Aliquam auctor enim vel lorem dapibus, ac maximus sem sollicitudin. Proin tincidunt quam nec nibh facilisis, at rutrum ipsum tempor. In vel vehicula velit. Cras ullamcorper aliquet lectus, id elementum eros iaculis non. Cras ut tellus porta, viverra augue vel, auctor nisl. Morbi eget justo suscipit, tristique purus quis, dignissim metus. Nulla a mauris arcu. Pellentesque convallis nulla sed nunc dignissim, ac vulputate justo rutrum.', 'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Aliquam auctor enim vel lorem dapibus, ac maximus sem sollicitudin. Proin tincidunt quam nec nibh facilisis, at rutrum ipsum tempor. In vel vehicula velit. Cras ullamcorper aliquet lectus, id elementum eros iaculis non. Cras ut tellus porta, viverra augue vel, auctor nisl. Morbi eget justo suscipit, tristique purus quis, dignissim metus. Nulla a mauris arcu. Pellentesque convallis nulla sed nunc dignissim, ac vulputate justo rutrum.', '2024-05-02 22:48:54', '2024-06-11 01:35:07', '45.00', '85.00', '11.00', '85.00'),
-(15, 'Pré Treino Exemplo 5', '185.00', 75, 3, 15, 'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Aliquam auctor enim vel lorem dapibus, ac maximus sem sollicitudin. Proin tincidunt quam nec nibh facilisis, at rutrum ipsum tempor. In vel vehicula velit. Cras ullamcorper aliquet lectus, id elementum eros iaculis non. Cras ut tellus porta, viverra augue vel, auctor nisl. Morbi eget justo suscipit, tristique purus quis, dignissim metus. Nulla a mauris arcu. Pellentesque convallis nulla sed nunc dignissim, ac vulputate justo rutrum.', 'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Aliquam auctor enim vel lorem dapibus, ac maximus sem sollicitudin. Proin tincidunt quam nec nibh facilisis, at rutrum ipsum tempor. In vel vehicula velit. Cras ullamcorper aliquet lectus, id elementum eros iaculis non. Cras ut tellus porta, viverra augue vel, auctor nisl. Morbi eget justo suscipit, tristique purus quis, dignissim metus. Nulla a mauris arcu. Pellentesque convallis nulla sed nunc dignissim, ac vulputate justo rutrum.', 'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Aliquam auctor enim vel lorem dapibus, ac maximus sem sollicitudin. Proin tincidunt quam nec nibh facilisis, at rutrum ipsum tempor. In vel vehicula velit. Cras ullamcorper aliquet lectus, id elementum eros iaculis non. Cras ut tellus porta, viverra augue vel, auctor nisl. Morbi eget justo suscipit, tristique purus quis, dignissim metus. Nulla a mauris arcu. Pellentesque convallis nulla sed nunc dignissim, ac vulputate justo rutrum.', '2024-05-02 22:48:54', '2024-06-11 01:35:33', '50.00', '90.00', '12.00', '90.00'),
-(16, 'Emagrecedor Exemplo 1', '23999.00', 85, 4, 16, 'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Aliquam auctor enim vel lorem dapibus, ac maximus sem sollicitudin. Proin tincidunt quam nec nibh facilisis, at rutrum ipsum tempor. In vel vehicula velit. Cras ullamcorper aliquet lectus, id elementum eros iaculis non. Cras ut tellus porta, viverra augue vel, auctor nisl. Morbi eget justo suscipit, tristique purus quis, dignissim metus. Nulla a mauris arcu. Pellentesque convallis nulla sed nunc dignissim, ac vulputate justo rutrum.', 'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Aliquam auctor enim vel lorem dapibus, ac maximus sem sollicitudin. Proin tincidunt quam nec nibh facilisis, at rutrum ipsum tempor. In vel vehicula velit. Cras ullamcorper aliquet lectus, id elementum eros iaculis non. Cras ut tellus porta, viverra augue vel, auctor nisl. Morbi eget justo suscipit, tristique purus quis, dignissim metus. Nulla a mauris arcu. Pellentesque convallis nulla sed nunc dignissim, ac vulputate justo rutrum.', 'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Aliquam auctor enim vel lorem dapibus, ac maximus sem sollicitudin. Proin tincidunt quam nec nibh facilisis, at rutrum ipsum tempor. In vel vehicula velit. Cras ullamcorper aliquet lectus, id elementum eros iaculis non. Cras ut tellus porta, viverra augue vel, auctor nisl. Morbi eget justo suscipit, tristique purus quis, dignissim metus. Nulla a mauris arcu. Pellentesque convallis nulla sed nunc dignissim, ac vulputate justo rutrum.', '2024-05-02 22:48:54', '2024-06-11 01:21:04', '20.00', '500.00', '800.00', '500.00'),
-(17, 'Emagrecedor Exemplo 2', '4999.00', 85, 4, 17, 'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Aliquam auctor enim vel lorem dapibus, ac maximus sem sollicitudin. Proin tincidunt quam nec nibh facilisis, at rutrum ipsum tempor. In vel vehicula velit. Cras ullamcorper aliquet lectus, id elementum eros iaculis non. Cras ut tellus porta, viverra augue vel, auctor nisl. Morbi eget justo suscipit, tristique purus quis, dignissim metus. Nulla a mauris arcu. Pellentesque convallis nulla sed nunc dignissim, ac vulputate justo rutrum.', 'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Aliquam auctor enim vel lorem dapibus, ac maximus sem sollicitudin. Proin tincidunt quam nec nibh facilisis, at rutrum ipsum tempor. In vel vehicula velit. Cras ullamcorper aliquet lectus, id elementum eros iaculis non. Cras ut tellus porta, viverra augue vel, auctor nisl. Morbi eget justo suscipit, tristique purus quis, dignissim metus. Nulla a mauris arcu. Pellentesque convallis nulla sed nunc dignissim, ac vulputate justo rutrum.', 'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Aliquam auctor enim vel lorem dapibus, ac maximus sem sollicitudin. Proin tincidunt quam nec nibh facilisis, at rutrum ipsum tempor. In vel vehicula velit. Cras ullamcorper aliquet lectus, id elementum eros iaculis non. Cras ut tellus porta, viverra augue vel, auctor nisl. Morbi eget justo suscipit, tristique purus quis, dignissim metus. Nulla a mauris arcu. Pellentesque convallis nulla sed nunc dignissim, ac vulputate justo rutrum.', '2024-05-02 22:48:54', '2024-06-11 01:21:21', '25.00', '550.00', '850.00', '550.00'),
-(18, 'Emagrecedor Exemplo 3', '159.00', 85, 4, 18, 'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Aliquam auctor enim vel lorem dapibus, ac maximus sem sollicitudin. Proin tincidunt quam nec nibh facilisis, at rutrum ipsum tempor. In vel vehicula velit. Cras ullamcorper aliquet lectus, id elementum eros iaculis non. Cras ut tellus porta, viverra augue vel, auctor nisl. Morbi eget justo suscipit, tristique purus quis, dignissim metus. Nulla a mauris arcu. Pellentesque convallis nulla sed nunc dignissim, ac vulputate justo rutrum.', 'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Aliquam auctor enim vel lorem dapibus, ac maximus sem sollicitudin. Proin tincidunt quam nec nibh facilisis, at rutrum ipsum tempor. In vel vehicula velit. Cras ullamcorper aliquet lectus, id elementum eros iaculis non. Cras ut tellus porta, viverra augue vel, auctor nisl. Morbi eget justo suscipit, tristique purus quis, dignissim metus. Nulla a mauris arcu. Pellentesque convallis nulla sed nunc dignissim, ac vulputate justo rutrum.', 'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Aliquam auctor enim vel lorem dapibus, ac maximus sem sollicitudin. Proin tincidunt quam nec nibh facilisis, at rutrum ipsum tempor. In vel vehicula velit. Cras ullamcorper aliquet lectus, id elementum eros iaculis non. Cras ut tellus porta, viverra augue vel, auctor nisl. Morbi eget justo suscipit, tristique purus quis, dignissim metus. Nulla a mauris arcu. Pellentesque convallis nulla sed nunc dignissim, ac vulputate justo rutrum.', '2024-05-02 22:48:54', '2024-06-11 01:35:53', '30.00', '60.00', '90.00', '60.00'),
-(19, 'Emagrecedor Exemplo 4', '169.00', 85, 4, 19, 'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Aliquam auctor enim vel lorem dapibus, ac maximus sem sollicitudin. Proin tincidunt quam nec nibh facilisis, at rutrum ipsum tempor. In vel vehicula velit. Cras ullamcorper aliquet lectus, id elementum eros iaculis non. Cras ut tellus porta, viverra augue vel, auctor nisl. Morbi eget justo suscipit, tristique purus quis, dignissim metus. Nulla a mauris arcu. Pellentesque convallis nulla sed nunc dignissim, ac vulputate justo rutrum.', 'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Aliquam auctor enim vel lorem dapibus, ac maximus sem sollicitudin. Proin tincidunt quam nec nibh facilisis, at rutrum ipsum tempor. In vel vehicula velit. Cras ullamcorper aliquet lectus, id elementum eros iaculis non. Cras ut tellus porta, viverra augue vel, auctor nisl. Morbi eget justo suscipit, tristique purus quis, dignissim metus. Nulla a mauris arcu. Pellentesque convallis nulla sed nunc dignissim, ac vulputate justo rutrum.', 'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Aliquam auctor enim vel lorem dapibus, ac maximus sem sollicitudin. Proin tincidunt quam nec nibh facilisis, at rutrum ipsum tempor. In vel vehicula velit. Cras ullamcorper aliquet lectus, id elementum eros iaculis non. Cras ut tellus porta, viverra augue vel, auctor nisl. Morbi eget justo suscipit, tristique purus quis, dignissim metus. Nulla a mauris arcu. Pellentesque convallis nulla sed nunc dignissim, ac vulputate justo rutrum.', '2024-05-02 22:48:54', '2024-06-11 01:36:11', '35.00', '65.00', '95.00', '65.00'),
-(20, 'Emagrecedor Exemplo 5', '79.00', 85, 4, 20, 'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Aliquam auctor enim vel lorem dapibus, ac maximus sem sollicitudin. Proin tincidunt quam nec nibh facilisis, at rutrum ipsum tempor. In vel vehicula velit. Cras ullamcorper aliquet lectus, id elementum eros iaculis non. Cras ut tellus porta, viverra augue vel, auctor nisl. Morbi eget justo suscipit, tristique purus quis, dignissim metus. Nulla a mauris arcu. Pellentesque convallis nulla sed nunc dignissim, ac vulputate justo rutrum.', 'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Aliquam auctor enim vel lorem dapibus, ac maximus sem sollicitudin. Proin tincidunt quam nec nibh facilisis, at rutrum ipsum tempor. In vel vehicula velit. Cras ullamcorper aliquet lectus, id elementum eros iaculis non. Cras ut tellus porta, viverra augue vel, auctor nisl. Morbi eget justo suscipit, tristique purus quis, dignissim metus. Nulla a mauris arcu. Pellentesque convallis nulla sed nunc dignissim, ac vulputate justo rutrum.', 'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Aliquam auctor enim vel lorem dapibus, ac maximus sem sollicitudin. Proin tincidunt quam nec nibh facilisis, at rutrum ipsum tempor. In vel vehicula velit. Cras ullamcorper aliquet lectus, id elementum eros iaculis non. Cras ut tellus porta, viverra augue vel, auctor nisl. Morbi eget justo suscipit, tristique purus quis, dignissim metus. Nulla a mauris arcu. Pellentesque convallis nulla sed nunc dignissim, ac vulputate justo rutrum.', '2024-05-02 22:48:54', '2024-06-11 01:36:28', '4.00', '7.00', '1.00', '7.00');
+(1, 'Vitamina Exemplo 1', 129.00, 97, 1, 1, 'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Aliquam auctor enim vel lorem dapibus, ac maximus sem sollicitudin. Proin tincidunt quam nec nibh facilisis, at rutrum ipsum tempor. In vel vehicula velit. Cras ullamcorper aliquet lectus, id elementum eros iaculis non. Cras ut tellus porta, viverra augue vel, auctor nisl. Morbi eget justo suscipit, tristique purus quis, dignissim metus. Nulla a mauris arcu. Pellentesque convallis nulla sed nunc dignissim, ac vulputate justo rutrum.', 'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Aliquam auctor enim vel lorem dapibus, ac maximus sem sollicitudin. Proin tincidunt quam nec nibh facilisis, at rutrum ipsum tempor. In vel vehicula velit. Cras ullamcorper aliquet lectus, id elementum eros iaculis non. Cras ut tellus porta, viverra augue vel, auctor nisl. Morbi eget justo suscipit, tristique purus quis, dignissim metus. Nulla a mauris arcu. Pellentesque convallis nulla sed nunc dignissim, ac vulputate justo rutrum.', 'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Aliquam auctor enim vel lorem dapibus, ac maximus sem sollicitudin. Proin tincidunt quam nec nibh facilisis, at rutrum ipsum tempor. In vel vehicula velit. Cras ullamcorper aliquet lectus, id elementum eros iaculis non. Cras ut tellus porta, viverra augue vel, auctor nisl. Morbi eget justo suscipit, tristique purus quis, dignissim metus. Nulla a mauris arcu. Pellentesque convallis nulla sed nunc dignissim, ac vulputate justo rutrum.', '2024-05-02 22:48:54', '2024-06-12 20:00:32', 20.00, 5.00, 8.00, 5.00),
+(2, 'Vitamina Exemplo 2', 231.00, 100, 1, 2, 'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Aliquam auctor enim vel lorem dapibus, ac maximus sem sollicitudin. Proin tincidunt quam nec nibh facilisis, at rutrum ipsum tempor. In vel vehicula velit. Cras ullamcorper aliquet lectus, id elementum eros iaculis non. Cras ut tellus porta, viverra augue vel, auctor nisl. Morbi eget justo suscipit, tristique purus quis, dignissim metus. Nulla a mauris arcu. Pellentesque convallis nulla sed nunc dignissim, ac vulputate justo rutrum.', 'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Aliquam auctor enim vel lorem dapibus, ac maximus sem sollicitudin. Proin tincidunt quam nec nibh facilisis, at rutrum ipsum tempor. In vel vehicula velit. Cras ullamcorper aliquet lectus, id elementum eros iaculis non. Cras ut tellus porta, viverra augue vel, auctor nisl. Morbi eget justo suscipit, tristique purus quis, dignissim metus. Nulla a mauris arcu. Pellentesque convallis nulla sed nunc dignissim, ac vulputate justo rutrum.', 'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Aliquam auctor enim vel lorem dapibus, ac maximus sem sollicitudin. Proin tincidunt quam nec nibh facilisis, at rutrum ipsum tempor. In vel vehicula velit. Cras ullamcorper aliquet lectus, id elementum eros iaculis non. Cras ut tellus porta, viverra augue vel, auctor nisl. Morbi eget justo suscipit, tristique purus quis, dignissim metus. Nulla a mauris arcu. Pellentesque convallis nulla sed nunc dignissim, ac vulputate justo rutrum.', '2024-05-02 22:48:54', '2024-06-11 01:27:52', 25.00, 55.00, 85.00, 55.00),
+(3, 'Vitamina Exemplo 3', 339.00, 100, 1, 3, 'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Aliquam auctor enim vel lorem dapibus, ac maximus sem sollicitudin. Proin tincidunt quam nec nibh facilisis, at rutrum ipsum tempor. In vel vehicula velit. Cras ullamcorper aliquet lectus, id elementum eros iaculis non. Cras ut tellus porta, viverra augue vel, auctor nisl. Morbi eget justo suscipit, tristique purus quis, dignissim metus. Nulla a mauris arcu. Pellentesque convallis nulla sed nunc dignissim, ac vulputate justo rutrum.', 'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Aliquam auctor enim vel lorem dapibus, ac maximus sem sollicitudin. Proin tincidunt quam nec nibh facilisis, at rutrum ipsum tempor. In vel vehicula velit. Cras ullamcorper aliquet lectus, id elementum eros iaculis non. Cras ut tellus porta, viverra augue vel, auctor nisl. Morbi eget justo suscipit, tristique purus quis, dignissim metus. Nulla a mauris arcu. Pellentesque convallis nulla sed nunc dignissim, ac vulputate justo rutrum.', 'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Aliquam auctor enim vel lorem dapibus, ac maximus sem sollicitudin. Proin tincidunt quam nec nibh facilisis, at rutrum ipsum tempor. In vel vehicula velit. Cras ullamcorper aliquet lectus, id elementum eros iaculis non. Cras ut tellus porta, viverra augue vel, auctor nisl. Morbi eget justo suscipit, tristique purus quis, dignissim metus. Nulla a mauris arcu. Pellentesque convallis nulla sed nunc dignissim, ac vulputate justo rutrum.', '2024-05-02 22:48:54', '2024-06-11 01:28:13', 3.00, 60.00, 90.00, 60.00),
+(4, 'Vitamina Exemplo 4', 135.00, 100, 1, 4, 'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Aliquam auctor enim vel lorem dapibus, ac maximus sem sollicitudin. Proin tincidunt quam nec nibh facilisis, at rutrum ipsum tempor. In vel vehicula velit. Cras ullamcorper aliquet lectus, id elementum eros iaculis non. Cras ut tellus porta, viverra augue vel, auctor nisl. Morbi eget justo suscipit, tristique purus quis, dignissim metus. Nulla a mauris arcu. Pellentesque convallis nulla sed nunc dignissim, ac vulputate justo rutrum.', 'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Aliquam auctor enim vel lorem dapibus, ac maximus sem sollicitudin. Proin tincidunt quam nec nibh facilisis, at rutrum ipsum tempor. In vel vehicula velit. Cras ullamcorper aliquet lectus, id elementum eros iaculis non. Cras ut tellus porta, viverra augue vel, auctor nisl. Morbi eget justo suscipit, tristique purus quis, dignissim metus. Nulla a mauris arcu. Pellentesque convallis nulla sed nunc dignissim, ac vulputate justo rutrum.', 'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Aliquam auctor enim vel lorem dapibus, ac maximus sem sollicitudin. Proin tincidunt quam nec nibh facilisis, at rutrum ipsum tempor. In vel vehicula velit. Cras ullamcorper aliquet lectus, id elementum eros iaculis non. Cras ut tellus porta, viverra augue vel, auctor nisl. Morbi eget justo suscipit, tristique purus quis, dignissim metus. Nulla a mauris arcu. Pellentesque convallis nulla sed nunc dignissim, ac vulputate justo rutrum.', '2024-05-02 22:48:54', '2024-06-11 01:28:41', 35.00, 65.00, 95.00, 65.00),
+(5, 'Vitamina Exemplo 5', 79.00, 100, 1, 5, 'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Aliquam auctor enim vel lorem dapibus, ac maximus sem sollicitudin. Proin tincidunt quam nec nibh facilisis, at rutrum ipsum tempor. In vel vehicula velit. Cras ullamcorper aliquet lectus, id elementum eros iaculis non. Cras ut tellus porta, viverra augue vel, auctor nisl. Morbi eget justo suscipit, tristique purus quis, dignissim metus. Nulla a mauris arcu. Pellentesque convallis nulla sed nunc dignissim, ac vulputate justo rutrum.', 'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Aliquam auctor enim vel lorem dapibus, ac maximus sem sollicitudin. Proin tincidunt quam nec nibh facilisis, at rutrum ipsum tempor. In vel vehicula velit. Cras ullamcorper aliquet lectus, id elementum eros iaculis non. Cras ut tellus porta, viverra augue vel, auctor nisl. Morbi eget justo suscipit, tristique purus quis, dignissim metus. Nulla a mauris arcu. Pellentesque convallis nulla sed nunc dignissim, ac vulputate justo rutrum.', 'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Aliquam auctor enim vel lorem dapibus, ac maximus sem sollicitudin. Proin tincidunt quam nec nibh facilisis, at rutrum ipsum tempor. In vel vehicula velit. Cras ullamcorper aliquet lectus, id elementum eros iaculis non. Cras ut tellus porta, viverra augue vel, auctor nisl. Morbi eget justo suscipit, tristique purus quis, dignissim metus. Nulla a mauris arcu. Pellentesque convallis nulla sed nunc dignissim, ac vulputate justo rutrum.', '2024-05-02 22:48:54', '2024-06-11 01:29:31', 4.00, 7.00, 1.00, 7.00),
+(6, 'Proteína Exemplo 1', 159.00, 50, 2, 6, 'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Aliquam auctor enim vel lorem dapibus, ac maximus sem sollicitudin. Proin tincidunt quam nec nibh facilisis, at rutrum ipsum tempor. In vel vehicula velit. Cras ullamcorper aliquet lectus, id elementum eros iaculis non. Cras ut tellus porta, viverra augue vel, auctor nisl. Morbi eget justo suscipit, tristique purus quis, dignissim metus. Nulla a mauris arcu. Pellentesque convallis nulla sed nunc dignissim, ac vulputate justo rutrum.', 'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Aliquam auctor enim vel lorem dapibus, ac maximus sem sollicitudin. Proin tincidunt quam nec nibh facilisis, at rutrum ipsum tempor. In vel vehicula velit. Cras ullamcorper aliquet lectus, id elementum eros iaculis non. Cras ut tellus porta, viverra augue vel, auctor nisl. Morbi eget justo suscipit, tristique purus quis, dignissim metus. Nulla a mauris arcu. Pellentesque convallis nulla sed nunc dignissim, ac vulputate justo rutrum.', 'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Aliquam auctor enim vel lorem dapibus, ac maximus sem sollicitudin. Proin tincidunt quam nec nibh facilisis, at rutrum ipsum tempor. In vel vehicula velit. Cras ullamcorper aliquet lectus, id elementum eros iaculis non. Cras ut tellus porta, viverra augue vel, auctor nisl. Morbi eget justo suscipit, tristique purus quis, dignissim metus. Nulla a mauris arcu. Pellentesque convallis nulla sed nunc dignissim, ac vulputate justo rutrum.', '2024-05-02 22:48:54', '2024-06-11 01:30:15', 50.00, 10.00, 15.00, 10.00),
+(7, 'Proteína Exemplo 2', 69.00, 50, 2, 7, 'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Aliquam auctor enim vel lorem dapibus, ac maximus sem sollicitudin. Proin tincidunt quam nec nibh facilisis, at rutrum ipsum tempor. In vel vehicula velit. Cras ullamcorper aliquet lectus, id elementum eros iaculis non. Cras ut tellus porta, viverra augue vel, auctor nisl. Morbi eget justo suscipit, tristique purus quis, dignissim metus. Nulla a mauris arcu. Pellentesque convallis nulla sed nunc dignissim, ac vulputate justo rutrum.', 'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Aliquam auctor enim vel lorem dapibus, ac maximus sem sollicitudin. Proin tincidunt quam nec nibh facilisis, at rutrum ipsum tempor. In vel vehicula velit. Cras ullamcorper aliquet lectus, id elementum eros iaculis non. Cras ut tellus porta, viverra augue vel, auctor nisl. Morbi eget justo suscipit, tristique purus quis, dignissim metus. Nulla a mauris arcu. Pellentesque convallis nulla sed nunc dignissim, ac vulputate justo rutrum.', 'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Aliquam auctor enim vel lorem dapibus, ac maximus sem sollicitudin. Proin tincidunt quam nec nibh facilisis, at rutrum ipsum tempor. In vel vehicula velit. Cras ullamcorper aliquet lectus, id elementum eros iaculis non. Cras ut tellus porta, viverra augue vel, auctor nisl. Morbi eget justo suscipit, tristique purus quis, dignissim metus. Nulla a mauris arcu. Pellentesque convallis nulla sed nunc dignissim, ac vulputate justo rutrum.', '2024-05-02 22:48:54', '2024-06-11 01:29:52', 55.00, 10.00, 15.00, 10.00),
+(8, 'Proteína Exemplo 3', 27.00, 50, 2, 8, 'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Aliquam auctor enim vel lorem dapibus, ac maximus sem sollicitudin. Proin tincidunt quam nec nibh facilisis, at rutrum ipsum tempor. In vel vehicula velit. Cras ullamcorper aliquet lectus, id elementum eros iaculis non. Cras ut tellus porta, viverra augue vel, auctor nisl. Morbi eget justo suscipit, tristique purus quis, dignissim metus. Nulla a mauris arcu. Pellentesque convallis nulla sed nunc dignissim, ac vulputate justo rutrum.', 'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Aliquam auctor enim vel lorem dapibus, ac maximus sem sollicitudin. Proin tincidunt quam nec nibh facilisis, at rutrum ipsum tempor. In vel vehicula velit. Cras ullamcorper aliquet lectus, id elementum eros iaculis non. Cras ut tellus porta, viverra augue vel, auctor nisl. Morbi eget justo suscipit, tristique purus quis, dignissim metus. Nulla a mauris arcu. Pellentesque convallis nulla sed nunc dignissim, ac vulputate justo rutrum.', 'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Aliquam auctor enim vel lorem dapibus, ac maximus sem sollicitudin. Proin tincidunt quam nec nibh facilisis, at rutrum ipsum tempor. In vel vehicula velit. Cras ullamcorper aliquet lectus, id elementum eros iaculis non. Cras ut tellus porta, viverra augue vel, auctor nisl. Morbi eget justo suscipit, tristique purus quis, dignissim metus. Nulla a mauris arcu. Pellentesque convallis nulla sed nunc dignissim, ac vulputate justo rutrum.', '2024-05-02 22:48:54', '2024-06-11 01:30:44', 60.00, 11.00, 16.00, 11.00),
+(9, 'Proteína Exemplo 4', 18.00, 50, 2, 9, 'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Aliquam auctor enim vel lorem dapibus, ac maximus sem sollicitudin. Proin tincidunt quam nec nibh facilisis, at rutrum ipsum tempor. In vel vehicula velit. Cras ullamcorper aliquet lectus, id elementum eros iaculis non. Cras ut tellus porta, viverra augue vel, auctor nisl. Morbi eget justo suscipit, tristique purus quis, dignissim metus. Nulla a mauris arcu. Pellentesque convallis nulla sed nunc dignissim, ac vulputate justo rutrum.', 'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Aliquam auctor enim vel lorem dapibus, ac maximus sem sollicitudin. Proin tincidunt quam nec nibh facilisis, at rutrum ipsum tempor. In vel vehicula velit. Cras ullamcorper aliquet lectus, id elementum eros iaculis non. Cras ut tellus porta, viverra augue vel, auctor nisl. Morbi eget justo suscipit, tristique purus quis, dignissim metus. Nulla a mauris arcu. Pellentesque convallis nulla sed nunc dignissim, ac vulputate justo rutrum.', 'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Aliquam auctor enim vel lorem dapibus, ac maximus sem sollicitudin. Proin tincidunt quam nec nibh facilisis, at rutrum ipsum tempor. In vel vehicula velit. Cras ullamcorper aliquet lectus, id elementum eros iaculis non. Cras ut tellus porta, viverra augue vel, auctor nisl. Morbi eget justo suscipit, tristique purus quis, dignissim metus. Nulla a mauris arcu. Pellentesque convallis nulla sed nunc dignissim, ac vulputate justo rutrum.', '2024-05-02 22:48:54', '2024-06-11 01:31:11', 65.00, 11.00, 16.00, 11.00),
+(10, 'Proteína Exemplo 5', 99.00, 50, 2, 10, 'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Aliquam auctor enim vel lorem dapibus, ac maximus sem sollicitudin. Proin tincidunt quam nec nibh facilisis, at rutrum ipsum tempor. In vel vehicula velit. Cras ullamcorper aliquet lectus, id elementum eros iaculis non. Cras ut tellus porta, viverra augue vel, auctor nisl. Morbi eget justo suscipit, tristique purus quis, dignissim metus. Nulla a mauris arcu. Pellentesque convallis nulla sed nunc dignissim, ac vulputate justo rutrum.', 'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Aliquam auctor enim vel lorem dapibus, ac maximus sem sollicitudin. Proin tincidunt quam nec nibh facilisis, at rutrum ipsum tempor. In vel vehicula velit. Cras ullamcorper aliquet lectus, id elementum eros iaculis non. Cras ut tellus porta, viverra augue vel, auctor nisl. Morbi eget justo suscipit, tristique purus quis, dignissim metus. Nulla a mauris arcu. Pellentesque convallis nulla sed nunc dignissim, ac vulputate justo rutrum.', 'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Aliquam auctor enim vel lorem dapibus, ac maximus sem sollicitudin. Proin tincidunt quam nec nibh facilisis, at rutrum ipsum tempor. In vel vehicula velit. Cras ullamcorper aliquet lectus, id elementum eros iaculis non. Cras ut tellus porta, viverra augue vel, auctor nisl. Morbi eget justo suscipit, tristique purus quis, dignissim metus. Nulla a mauris arcu. Pellentesque convallis nulla sed nunc dignissim, ac vulputate justo rutrum.', '2024-05-02 22:48:54', '2024-06-11 01:31:35', 70.00, 12.00, 17.00, 12.00),
+(11, 'Pré Treino Exemplo 1', 45.00, 75, 3, 11, 'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Aliquam auctor enim vel lorem dapibus, ac maximus sem sollicitudin. Proin tincidunt quam nec nibh facilisis, at rutrum ipsum tempor. In vel vehicula velit. Cras ullamcorper aliquet lectus, id elementum eros iaculis non. Cras ut tellus porta, viverra augue vel, auctor nisl. Morbi eget justo suscipit, tristique purus quis, dignissim metus. Nulla a mauris arcu. Pellentesque convallis nulla sed nunc dignissim, ac vulputate justo rutrum.', 'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Aliquam auctor enim vel lorem dapibus, ac maximus sem sollicitudin. Proin tincidunt quam nec nibh facilisis, at rutrum ipsum tempor. In vel vehicula velit. Cras ullamcorper aliquet lectus, id elementum eros iaculis non. Cras ut tellus porta, viverra augue vel, auctor nisl. Morbi eget justo suscipit, tristique purus quis, dignissim metus. Nulla a mauris arcu. Pellentesque convallis nulla sed nunc dignissim, ac vulputate justo rutrum.', 'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Aliquam auctor enim vel lorem dapibus, ac maximus sem sollicitudin. Proin tincidunt quam nec nibh facilisis, at rutrum ipsum tempor. In vel vehicula velit. Cras ullamcorper aliquet lectus, id elementum eros iaculis non. Cras ut tellus porta, viverra augue vel, auctor nisl. Morbi eget justo suscipit, tristique purus quis, dignissim metus. Nulla a mauris arcu. Pellentesque convallis nulla sed nunc dignissim, ac vulputate justo rutrum.', '2024-05-02 22:48:54', '2024-06-11 01:32:10', 30.00, 70.00, 10.00, 70.00),
+(12, 'Pré Treino Exemplo 2', 25.00, 75, 3, 12, 'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Aliquam auctor enim vel lorem dapibus, ac maximus sem sollicitudin. Proin tincidunt quam nec nibh facilisis, at rutrum ipsum tempor. In vel vehicula velit. Cras ullamcorper aliquet lectus, id elementum eros iaculis non. Cras ut tellus porta, viverra augue vel, auctor nisl. Morbi eget justo suscipit, tristique purus quis, dignissim metus. Nulla a mauris arcu. Pellentesque convallis nulla sed nunc dignissim, ac vulputate justo rutrum.', 'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Aliquam auctor enim vel lorem dapibus, ac maximus sem sollicitudin. Proin tincidunt quam nec nibh facilisis, at rutrum ipsum tempor. In vel vehicula velit. Cras ullamcorper aliquet lectus, id elementum eros iaculis non. Cras ut tellus porta, viverra augue vel, auctor nisl. Morbi eget justo suscipit, tristique purus quis, dignissim metus. Nulla a mauris arcu. Pellentesque convallis nulla sed nunc dignissim, ac vulputate justo rutrum.', 'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Aliquam auctor enim vel lorem dapibus, ac maximus sem sollicitudin. Proin tincidunt quam nec nibh facilisis, at rutrum ipsum tempor. In vel vehicula velit. Cras ullamcorper aliquet lectus, id elementum eros iaculis non. Cras ut tellus porta, viverra augue vel, auctor nisl. Morbi eget justo suscipit, tristique purus quis, dignissim metus. Nulla a mauris arcu. Pellentesque convallis nulla sed nunc dignissim, ac vulputate justo rutrum.', '2024-05-02 22:48:54', '2024-06-11 01:32:38', 35.00, 75.00, 10.00, 7.00),
+(13, 'Pré Treino Exemplo 3', 16.00, 75, 3, 13, 'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Aliquam auctor enim vel lorem dapibus, ac maximus sem sollicitudin. Proin tincidunt quam nec nibh facilisis, at rutrum ipsum tempor. In vel vehicula velit. Cras ullamcorper aliquet lectus, id elementum eros iaculis non. Cras ut tellus porta, viverra augue vel, auctor nisl. Morbi eget justo suscipit, tristique purus quis, dignissim metus. Nulla a mauris arcu. Pellentesque convallis nulla sed nunc dignissim, ac vulputate justo rutrum.', 'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Aliquam auctor enim vel lorem dapibus, ac maximus sem sollicitudin. Proin tincidunt quam nec nibh facilisis, at rutrum ipsum tempor. In vel vehicula velit. Cras ullamcorper aliquet lectus, id elementum eros iaculis non. Cras ut tellus porta, viverra augue vel, auctor nisl. Morbi eget justo suscipit, tristique purus quis, dignissim metus. Nulla a mauris arcu. Pellentesque convallis nulla sed nunc dignissim, ac vulputate justo rutrum.', 'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Aliquam auctor enim vel lorem dapibus, ac maximus sem sollicitudin. Proin tincidunt quam nec nibh facilisis, at rutrum ipsum tempor. In vel vehicula velit. Cras ullamcorper aliquet lectus, id elementum eros iaculis non. Cras ut tellus porta, viverra augue vel, auctor nisl. Morbi eget justo suscipit, tristique purus quis, dignissim metus. Nulla a mauris arcu. Pellentesque convallis nulla sed nunc dignissim, ac vulputate justo rutrum.', '2024-05-02 22:48:54', '2024-06-11 01:34:46', 40.00, 80.00, 11.00, 80.00),
+(14, 'Pré Treino Exemplo 4', 75.00, 75, 3, 14, 'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Aliquam auctor enim vel lorem dapibus, ac maximus sem sollicitudin. Proin tincidunt quam nec nibh facilisis, at rutrum ipsum tempor. In vel vehicula velit. Cras ullamcorper aliquet lectus, id elementum eros iaculis non. Cras ut tellus porta, viverra augue vel, auctor nisl. Morbi eget justo suscipit, tristique purus quis, dignissim metus. Nulla a mauris arcu. Pellentesque convallis nulla sed nunc dignissim, ac vulputate justo rutrum.', 'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Aliquam auctor enim vel lorem dapibus, ac maximus sem sollicitudin. Proin tincidunt quam nec nibh facilisis, at rutrum ipsum tempor. In vel vehicula velit. Cras ullamcorper aliquet lectus, id elementum eros iaculis non. Cras ut tellus porta, viverra augue vel, auctor nisl. Morbi eget justo suscipit, tristique purus quis, dignissim metus. Nulla a mauris arcu. Pellentesque convallis nulla sed nunc dignissim, ac vulputate justo rutrum.', 'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Aliquam auctor enim vel lorem dapibus, ac maximus sem sollicitudin. Proin tincidunt quam nec nibh facilisis, at rutrum ipsum tempor. In vel vehicula velit. Cras ullamcorper aliquet lectus, id elementum eros iaculis non. Cras ut tellus porta, viverra augue vel, auctor nisl. Morbi eget justo suscipit, tristique purus quis, dignissim metus. Nulla a mauris arcu. Pellentesque convallis nulla sed nunc dignissim, ac vulputate justo rutrum.', '2024-05-02 22:48:54', '2024-06-11 01:35:07', 45.00, 85.00, 11.00, 85.00),
+(15, 'Pré Treino Exemplo 5', 185.00, 75, 3, 15, 'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Aliquam auctor enim vel lorem dapibus, ac maximus sem sollicitudin. Proin tincidunt quam nec nibh facilisis, at rutrum ipsum tempor. In vel vehicula velit. Cras ullamcorper aliquet lectus, id elementum eros iaculis non. Cras ut tellus porta, viverra augue vel, auctor nisl. Morbi eget justo suscipit, tristique purus quis, dignissim metus. Nulla a mauris arcu. Pellentesque convallis nulla sed nunc dignissim, ac vulputate justo rutrum.', 'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Aliquam auctor enim vel lorem dapibus, ac maximus sem sollicitudin. Proin tincidunt quam nec nibh facilisis, at rutrum ipsum tempor. In vel vehicula velit. Cras ullamcorper aliquet lectus, id elementum eros iaculis non. Cras ut tellus porta, viverra augue vel, auctor nisl. Morbi eget justo suscipit, tristique purus quis, dignissim metus. Nulla a mauris arcu. Pellentesque convallis nulla sed nunc dignissim, ac vulputate justo rutrum.', 'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Aliquam auctor enim vel lorem dapibus, ac maximus sem sollicitudin. Proin tincidunt quam nec nibh facilisis, at rutrum ipsum tempor. In vel vehicula velit. Cras ullamcorper aliquet lectus, id elementum eros iaculis non. Cras ut tellus porta, viverra augue vel, auctor nisl. Morbi eget justo suscipit, tristique purus quis, dignissim metus. Nulla a mauris arcu. Pellentesque convallis nulla sed nunc dignissim, ac vulputate justo rutrum.', '2024-05-02 22:48:54', '2024-06-11 01:35:33', 50.00, 90.00, 12.00, 90.00),
+(16, 'Emagrecedor Exemplo 1', 239.00, 85, 4, 16, 'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Aliquam auctor enim vel lorem dapibus, ac maximus sem sollicitudin. Proin tincidunt quam nec nibh facilisis, at rutrum ipsum tempor. In vel vehicula velit. Cras ullamcorper aliquet lectus, id elementum eros iaculis non. Cras ut tellus porta, viverra augue vel, auctor nisl. Morbi eget justo suscipit, tristique purus quis, dignissim metus. Nulla a mauris arcu. Pellentesque convallis nulla sed nunc dignissim, ac vulputate justo rutrum.', 'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Aliquam auctor enim vel lorem dapibus, ac maximus sem sollicitudin. Proin tincidunt quam nec nibh facilisis, at rutrum ipsum tempor. In vel vehicula velit. Cras ullamcorper aliquet lectus, id elementum eros iaculis non. Cras ut tellus porta, viverra augue vel, auctor nisl. Morbi eget justo suscipit, tristique purus quis, dignissim metus. Nulla a mauris arcu. Pellentesque convallis nulla sed nunc dignissim, ac vulputate justo rutrum.', 'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Aliquam auctor enim vel lorem dapibus, ac maximus sem sollicitudin. Proin tincidunt quam nec nibh facilisis, at rutrum ipsum tempor. In vel vehicula velit. Cras ullamcorper aliquet lectus, id elementum eros iaculis non. Cras ut tellus porta, viverra augue vel, auctor nisl. Morbi eget justo suscipit, tristique purus quis, dignissim metus. Nulla a mauris arcu. Pellentesque convallis nulla sed nunc dignissim, ac vulputate justo rutrum.', '2024-05-02 22:48:54', '2024-06-12 19:59:54', 20.00, 50.00, 80.00, 50.00),
+(17, 'Emagrecedor Exemplo 2', 49.00, 85, 4, 17, 'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Aliquam auctor enim vel lorem dapibus, ac maximus sem sollicitudin. Proin tincidunt quam nec nibh facilisis, at rutrum ipsum tempor. In vel vehicula velit. Cras ullamcorper aliquet lectus, id elementum eros iaculis non. Cras ut tellus porta, viverra augue vel, auctor nisl. Morbi eget justo suscipit, tristique purus quis, dignissim metus. Nulla a mauris arcu. Pellentesque convallis nulla sed nunc dignissim, ac vulputate justo rutrum.', 'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Aliquam auctor enim vel lorem dapibus, ac maximus sem sollicitudin. Proin tincidunt quam nec nibh facilisis, at rutrum ipsum tempor. In vel vehicula velit. Cras ullamcorper aliquet lectus, id elementum eros iaculis non. Cras ut tellus porta, viverra augue vel, auctor nisl. Morbi eget justo suscipit, tristique purus quis, dignissim metus. Nulla a mauris arcu. Pellentesque convallis nulla sed nunc dignissim, ac vulputate justo rutrum.', 'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Aliquam auctor enim vel lorem dapibus, ac maximus sem sollicitudin. Proin tincidunt quam nec nibh facilisis, at rutrum ipsum tempor. In vel vehicula velit. Cras ullamcorper aliquet lectus, id elementum eros iaculis non. Cras ut tellus porta, viverra augue vel, auctor nisl. Morbi eget justo suscipit, tristique purus quis, dignissim metus. Nulla a mauris arcu. Pellentesque convallis nulla sed nunc dignissim, ac vulputate justo rutrum.', '2024-05-02 22:48:54', '2024-06-12 20:08:57', 25.00, 550.00, 85.00, 55.00),
+(18, 'Emagrecedor Exemplo 3', 15.00, 83, 4, 18, 'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Aliquam auctor enim vel lorem dapibus, ac maximus sem sollicitudin. Proin tincidunt quam nec nibh facilisis, at rutrum ipsum tempor. In vel vehicula velit. Cras ullamcorper aliquet lectus, id elementum eros iaculis non. Cras ut tellus porta, viverra augue vel, auctor nisl. Morbi eget justo suscipit, tristique purus quis, dignissim metus. Nulla a mauris arcu. Pellentesque convallis nulla sed nunc dignissim, ac vulputate justo rutrum.', 'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Aliquam auctor enim vel lorem dapibus, ac maximus sem sollicitudin. Proin tincidunt quam nec nibh facilisis, at rutrum ipsum tempor. In vel vehicula velit. Cras ullamcorper aliquet lectus, id elementum eros iaculis non. Cras ut tellus porta, viverra augue vel, auctor nisl. Morbi eget justo suscipit, tristique purus quis, dignissim metus. Nulla a mauris arcu. Pellentesque convallis nulla sed nunc dignissim, ac vulputate justo rutrum.', 'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Aliquam auctor enim vel lorem dapibus, ac maximus sem sollicitudin. Proin tincidunt quam nec nibh facilisis, at rutrum ipsum tempor. In vel vehicula velit. Cras ullamcorper aliquet lectus, id elementum eros iaculis non. Cras ut tellus porta, viverra augue vel, auctor nisl. Morbi eget justo suscipit, tristique purus quis, dignissim metus. Nulla a mauris arcu. Pellentesque convallis nulla sed nunc dignissim, ac vulputate justo rutrum.', '2024-05-02 22:48:54', '2024-06-12 20:13:29', 30.00, 6.00, 90.00, 60.00),
+(19, 'Emagrecedor Exemplo 4', 169.00, 85, 4, 19, 'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Aliquam auctor enim vel lorem dapibus, ac maximus sem sollicitudin. Proin tincidunt quam nec nibh facilisis, at rutrum ipsum tempor. In vel vehicula velit. Cras ullamcorper aliquet lectus, id elementum eros iaculis non. Cras ut tellus porta, viverra augue vel, auctor nisl. Morbi eget justo suscipit, tristique purus quis, dignissim metus. Nulla a mauris arcu. Pellentesque convallis nulla sed nunc dignissim, ac vulputate justo rutrum.', 'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Aliquam auctor enim vel lorem dapibus, ac maximus sem sollicitudin. Proin tincidunt quam nec nibh facilisis, at rutrum ipsum tempor. In vel vehicula velit. Cras ullamcorper aliquet lectus, id elementum eros iaculis non. Cras ut tellus porta, viverra augue vel, auctor nisl. Morbi eget justo suscipit, tristique purus quis, dignissim metus. Nulla a mauris arcu. Pellentesque convallis nulla sed nunc dignissim, ac vulputate justo rutrum.', 'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Aliquam auctor enim vel lorem dapibus, ac maximus sem sollicitudin. Proin tincidunt quam nec nibh facilisis, at rutrum ipsum tempor. In vel vehicula velit. Cras ullamcorper aliquet lectus, id elementum eros iaculis non. Cras ut tellus porta, viverra augue vel, auctor nisl. Morbi eget justo suscipit, tristique purus quis, dignissim metus. Nulla a mauris arcu. Pellentesque convallis nulla sed nunc dignissim, ac vulputate justo rutrum.', '2024-05-02 22:48:54', '2024-06-11 01:36:11', 35.00, 65.00, 95.00, 65.00),
+(20, 'Emagrecedor Exemplo 5', 79.00, 85, 4, 20, 'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Aliquam auctor enim vel lorem dapibus, ac maximus sem sollicitudin. Proin tincidunt quam nec nibh facilisis, at rutrum ipsum tempor. In vel vehicula velit. Cras ullamcorper aliquet lectus, id elementum eros iaculis non. Cras ut tellus porta, viverra augue vel, auctor nisl. Morbi eget justo suscipit, tristique purus quis, dignissim metus. Nulla a mauris arcu. Pellentesque convallis nulla sed nunc dignissim, ac vulputate justo rutrum.', 'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Aliquam auctor enim vel lorem dapibus, ac maximus sem sollicitudin. Proin tincidunt quam nec nibh facilisis, at rutrum ipsum tempor. In vel vehicula velit. Cras ullamcorper aliquet lectus, id elementum eros iaculis non. Cras ut tellus porta, viverra augue vel, auctor nisl. Morbi eget justo suscipit, tristique purus quis, dignissim metus. Nulla a mauris arcu. Pellentesque convallis nulla sed nunc dignissim, ac vulputate justo rutrum.', 'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Aliquam auctor enim vel lorem dapibus, ac maximus sem sollicitudin. Proin tincidunt quam nec nibh facilisis, at rutrum ipsum tempor. In vel vehicula velit. Cras ullamcorper aliquet lectus, id elementum eros iaculis non. Cras ut tellus porta, viverra augue vel, auctor nisl. Morbi eget justo suscipit, tristique purus quis, dignissim metus. Nulla a mauris arcu. Pellentesque convallis nulla sed nunc dignissim, ac vulputate justo rutrum.', '2024-05-02 22:48:54', '2024-06-11 01:36:28', 4.00, 7.00, 1.00, 7.00);
 
 -- --------------------------------------------------------
 
 --
--- Estrutura da tabela `receitas`
+-- Estrutura para tabela `receitas`
 --
 
 DROP TABLE IF EXISTS `receitas`;
 CREATE TABLE IF NOT EXISTS `receitas` (
-  `id_receita` int(11) NOT NULL AUTO_INCREMENT,
-  `titulo` varchar(50) COLLATE utf8mb4_unicode_ci NOT NULL,
-  `descricao` varchar(100) COLLATE utf8mb4_unicode_ci NOT NULL,
-  `id_imgReceita` int(11) NOT NULL,
-  `id_categoria` int(11) NOT NULL,
-  `link` varchar(1000) COLLATE utf8mb4_unicode_ci NOT NULL,
+  `id_receita` int NOT NULL AUTO_INCREMENT,
+  `titulo` varchar(50) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci NOT NULL,
+  `descricao` varchar(100) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci NOT NULL,
+  `id_imgReceita` int NOT NULL,
+  `id_categoria` int NOT NULL,
+  `link` varchar(1000) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci NOT NULL,
   PRIMARY KEY (`id_receita`),
   KEY `id_categoria` (`id_categoria`),
   KEY `fk_imagem_receita` (`id_imgReceita`)
 ) ENGINE=MyISAM AUTO_INCREMENT=26 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
 --
--- Extraindo dados da tabela `receitas`
+-- Despejando dados para a tabela `receitas`
 --
 
 INSERT INTO `receitas` (`id_receita`, `titulo`, `descricao`, `id_imgReceita`, `id_categoria`, `link`) VALUES
@@ -429,59 +428,68 @@ INSERT INTO `receitas` (`id_receita`, `titulo`, `descricao`, `id_imgReceita`, `i
 -- --------------------------------------------------------
 
 --
--- Estrutura da tabela `usuario`
+-- Estrutura para tabela `usuario`
 --
 
 DROP TABLE IF EXISTS `usuario`;
 CREATE TABLE IF NOT EXISTS `usuario` (
-  `id_usuario` int(11) NOT NULL AUTO_INCREMENT,
-  `nome` varchar(100) CHARACTER SET latin1 NOT NULL,
-  `email` varchar(150) CHARACTER SET latin1 NOT NULL,
-  `telefone` varchar(14) CHARACTER SET latin1 NOT NULL,
-  `senha` varchar(100) CHARACTER SET latin1 NOT NULL,
+  `id_usuario` int NOT NULL AUTO_INCREMENT,
+  `nome` varchar(100) CHARACTER SET latin1 COLLATE latin1_swedish_ci NOT NULL,
+  `email` varchar(150) CHARACTER SET latin1 COLLATE latin1_swedish_ci NOT NULL,
+  `telefone` varchar(14) CHARACTER SET latin1 COLLATE latin1_swedish_ci NOT NULL,
+  `senha` varchar(100) CHARACTER SET latin1 COLLATE latin1_swedish_ci NOT NULL,
   PRIMARY KEY (`id_usuario`)
-) ENGINE=InnoDB AUTO_INCREMENT=5 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=9 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
 --
--- Extraindo dados da tabela `usuario`
+-- Despejando dados para a tabela `usuario`
 --
 
 INSERT INTO `usuario` (`id_usuario`, `nome`, `email`, `telefone`, `senha`) VALUES
 (1, 'Gabriel de matos prando', 'biel2006@gamil.com', '18997754801', 'spy12310'),
 (3, 'Markos', 'Sidokinha567@gmail.com', '18994363', '696963'),
-(4, 'Isabella', 'belinha666@gmail.com', '189965264', 'nicule');
+(4, 'Isabella', 'belinha666@gmail.com', '189965264', 'nicule'),
+(8, 'Daniel2', 'rodriguimdamata123@gmail.com', '123', '123');
 
 -- --------------------------------------------------------
 
 --
--- Estrutura da tabela `vendas`
+-- Estrutura para tabela `vendas`
 --
 
 DROP TABLE IF EXISTS `vendas`;
 CREATE TABLE IF NOT EXISTS `vendas` (
-  `id_venda` int(11) NOT NULL AUTO_INCREMENT,
-  `id_usuario` int(11) DEFAULT NULL,
-  `id_produto` int(11) DEFAULT NULL,
-  `quantidade` int(11) DEFAULT NULL,
+  `id_venda` int NOT NULL AUTO_INCREMENT,
+  `id_usuario` int DEFAULT NULL,
+  `id_produto` int DEFAULT NULL,
+  `quantidade` int DEFAULT NULL,
   `preco_unitario` decimal(10,2) DEFAULT NULL,
   `data_venda` timestamp NULL DEFAULT CURRENT_TIMESTAMP,
   PRIMARY KEY (`id_venda`),
   KEY `id_usuario` (`id_usuario`),
   KEY `id_produto` (`id_produto`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=3 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
 --
--- Constraints for dumped tables
+-- Despejando dados para a tabela `vendas`
+--
+
+INSERT INTO `vendas` (`id_venda`, `id_usuario`, `id_produto`, `quantidade`, `preco_unitario`, `data_venda`) VALUES
+(1, 8, 1, 3, 129.00, '2024-06-12 19:51:06'),
+(2, 8, 18, 2, 15.00, '2024-06-12 20:13:29');
+
+--
+-- Restrições para tabelas despejadas
 --
 
 --
--- Limitadores para a tabela `noticia`
+-- Restrições para tabelas `noticia`
 --
 ALTER TABLE `noticia`
   ADD CONSTRAINT `fk_noticia_imagem_noticia` FOREIGN KEY (`imagem_noticia_id`) REFERENCES `imagem_noticia` (`id`);
 
 --
--- Limitadores para a tabela `vendas`
+-- Restrições para tabelas `vendas`
 --
 ALTER TABLE `vendas`
   ADD CONSTRAINT `vendas_ibfk_1` FOREIGN KEY (`id_usuario`) REFERENCES `usuario` (`id_usuario`),
