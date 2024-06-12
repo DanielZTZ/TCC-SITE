@@ -1,5 +1,15 @@
 <?php
-session_start();
+include_once("conexao.php");
+
+
+
+// Após verificar as credenciais do usuário no banco de dados e obter o ID do usuário:
+    if ($resultado_usuario = mysqli_fetch_assoc($resultado_usuario)) {
+        // Definir a variável de sessão com o ID do usuário
+        $_SESSION['usuario_id'] = $resultado_usuario['id_usuario'];
+        // Outras ações após o login bem-sucedido
+    }
+    
 
 // Função para verificar o login e retornar o JSON
 if ($_SERVER['REQUEST_METHOD'] === 'GET' && isset($_GET['action']) && $_GET['action'] === 'verificar_login') {
@@ -26,6 +36,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'GET' && isset($_GET['action']) && $_GET['act
         <h1 class="mb-3">Confirmação de Compra</h1>
         <p>Você está prestes a comprar o produto com o ID: <strong id="product-id"></strong>, na quantidade de: <strong id="product-quantity"></strong>.</p>
         <form action="processar_compra.php" method="post" id="purchase-form">
+            <input type="hidden" name="usuario_id" value="<?php echo $_SESSION['usuario_id']; ?>">
             <input type="hidden" name="produto_id" id="hidden-product-id">
             <input type="hidden" name="quantidade" id="hidden-quantity">
             <button type="button" class="btn btn-success" id="confirm-button">Confirmar Compra</button>

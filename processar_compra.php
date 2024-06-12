@@ -1,6 +1,20 @@
 <?php
-session_start();
 include_once("conexao.php");
+include_once("autenticacao.php");
+
+if (!usuarioEstaLogado()) {
+    $_SESSION['loginErro'] = "Você precisa estar logado para acessar esta página.";
+    header("Location: login_tcc.php");
+    exit();
+}
+
+// Após verificar as credenciais do usuário no banco de dados e obter o ID do usuário:
+    if ($resultado_usuario = mysqli_fetch_assoc($resultado_usuario)) {
+        // Definir a variável de sessão com o ID do usuário
+        $_SESSION['usuario_id'] = $resultado_usuario['id_usuario'];
+        // Outras ações após o login bem-sucedido
+    }
+    
 
 if (!isset($_SESSION['usuario_id'])) {
     header('Location: login_tcc.php');

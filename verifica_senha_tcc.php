@@ -60,50 +60,43 @@ include_once("conexao.php");
         </div>
     </header>
 
-<?php
-session_start();
-include_once("conexao.php");
+    <?php
 
-// Verifica se o usuário veio da página de confirmação de compra
-if (isset($_POST['redirecionar_para_confirmacao']) && $_POST['redirecionar_para_confirmacao'] === 'true') {
-    $_SESSION['redirecionar_para_confirmacao'] = true;
-} else {
-    $_SESSION['redirecionar_para_confirmacao'] = false;
-}
 
-if (isset($_POST['email']) && isset($_POST['senha'])) {
-    $nome = mysqli_real_escape_string($conn, $_POST['nome']);
-    $senha = mysqli_real_escape_string($conn, $_POST['senha']);
-    $email = mysqli_real_escape_string($conn, $_POST['email']);
+if((isset($_POST['email'])) && (isset($_POST['senha'])))
+  {
+      $nome = mysqli_real_escape_string($conn, $_POST['nome']);
+      $senha = mysqli_real_escape_string($conn, $_POST['senha']);
+      $email = mysqli_real_escape_string($conn, $_POST['email']);
 
-    $result_usuario = "SELECT * FROM usuario WHERE email = '$email' && senha = '$senha' LIMIT 1";
-    $resultado_usuario = mysqli_query($conn, $result_usuario);
-    $resultado = mysqli_fetch_assoc($resultado_usuario);
+      $result_usuario = "SELECT * FROM usuario WHERE email = '$email' && senha = '$senha' LIMIT 1";
+      $resultado_usuario = mysqli_query($conn, $result_usuario);
+      $resultado = mysqli_fetch_assoc($resultado_usuario);
 
-    if ($resultado) {
-        $_SESSION['usuarioNome'] = $resultado['nome'];
-        $_SESSION['usuarioEmail'] = $resultado['email'];
-        $_SESSION['usuarioSenha'] = $resultado['senha'];
+      if(isset($resultado))
+      {
 
-        // Verifica se deve redirecionar para a página de confirmação de compra
-        if ($_SESSION['redirecionar_para_confirmacao']) {
-            unset($_SESSION['redirecionar_para_confirmacao']); // Limpa a variável de sessão
-            header("Location: confirma_compra.php"); // Redireciona de volta para a página de confirmação de compra
-        } else {
-            header("Location: Principal.php"); // Redireciona para a página padrão
-        }
-        exit(); // Encerra o script após o redirecionamento
-    } else {
-        $_SESSION['loginErro'] = "Usuário ou senha inválido";
-        header("Location: login_tcc.php");
-        exit(); // Encerra o script após o redirecionamento
-    }
-} else {
-    $_SESSION['loginErro'] = "Usuário ou senha inválido";
-    header("Location: login_tcc.php");
-    exit(); // Encerra o script após o redirecionamento
-}
-?>
+          $_SESSION['usuarioNome'] = $resultado['nome'];
+          $_SESSION['usuarioEmail'] = $resultado['email'];
+          $_SESSION['usuarioSenha'] = $resultado['senha'];
+
+      //  aqui abaixo carregar a página de Principal
+          header("Location: Principal.php");
+
+      }
+
+      else
+      {	
+          $_SESSION['loginErro'] = "Usuário ou senha Inválido";
+          header("Location: login_tcc.php");
+      }
+  }
+  else
+  {
+      $_SESSION['loginErro'] = "Usuário ou senha inválido";
+      header("Location: login_tcc.php");
+  }
+  ?>
 
 
 

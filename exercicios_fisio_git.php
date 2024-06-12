@@ -1,6 +1,6 @@
 <?php
-session_start();
 include_once("conexao.php");
+include_once("autenticacao.php");
 ?>
 <!DOCTYPE html>
 <html lang="pt-br">
@@ -19,7 +19,7 @@ include_once("conexao.php");
     <header class="header bg-light sticky-top border-bottom shadow-sm">
         <div class="container">
             <nav class="navbar navbar-expand-lg">
-                <a class="navbar-brand" href="#">
+                <a class="navbar-brand" href="principal.php">
                     <img src="img/logo.png" alt="Logo" style="height: 50px; width: auto; object-fit: contain;">
                     Vida Saudável
                 </a>
@@ -28,29 +28,34 @@ include_once("conexao.php");
                 </button>
                 <div class="collapse navbar-collapse" id="navbarNav">
                     <ul class="navbar-nav mx-auto"> <!-- Alteração na classe para centralizar os links -->
-                    <li class="nav-item">
-                        <a class="nav-link" href="principal.php">Início</a>
-                    </li>
-                    <li class="nav-item">
-                        <a class="nav-link" href="receitas.php">Receitas</a>
-                    </li>
-                    <li class="nav-item">
-                        <a class="nav-link" href="produtos.php">Produtos</a>
-                    </li>
-                    <li class="nav-item">
-                        <a class="nav-link" href="exercicios_git.php">Exercícios</a>
-                    </li>
-                    <li class="nav-item">
-                        <a class="nav-link active" href="noticia22.php">Notícias</a>
-                    </li>
-                    <li class="nav-item">
-                        <a class="nav-link" href="login_tcc.php">Entrar</a>
-                    </li>
-                    <li class="nav-item">
-                        <a class="nav-link" href="Cadastro_cliente_git.php">Cadastre-se</a>
-                    </li>
-                </ul>
-                    
+                        <li class="nav-item">
+                            <a class="nav-link" href="principal.php">Início</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" href="receitas.php">Receitas</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" href="produtos.php">Produtos</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link active" href="exercicios_git.php">Exercícios</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" href="noticia22.php">Notícias</a>
+                        </li>
+                        <?php if (usuarioEstaLogado()): ?>
+                            <li class="nav-item">
+                                <a class="nav-link" href="logout.php">Sair</a>
+                            </li>
+                        <?php else: ?>
+                            <li class="nav-item">
+                                <a class="nav-link" href="login_tcc.php">Entrar</a>
+                            </li>
+                            <li class="nav-item">
+                                <a class="nav-link" href="Cadastro_cliente_git.php">Cadastre-se</a>
+                            </li>
+                        <?php endif; ?>
+                    </ul>
                 </div>
             </nav>
         </div>

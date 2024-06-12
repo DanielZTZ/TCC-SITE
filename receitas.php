@@ -1,5 +1,6 @@
 <?php
-require_once "conexao.php"; // Inclui o arquivo de conexão com o banco de dados
+require_once "conexao.php";
+include_once("autenticacao.php");
 
 // Função para buscar receitas por categoria (doce ou salgado)
 function buscarReceitasPorCategoria($conn, $categoria) {
@@ -27,29 +28,50 @@ $receitas_salgadas = buscarReceitasPorCategoria($conn, 'Salgados');
 </head>
 <body>
 
-<div class="container">
-        <nav class="navbar navbar-expand-lg">
-            <a class="navbar-brand" href="#">
-                <img src="img/logo.png" alt="Logo" style="height: 50px; width: auto; object-fit: contain;">
-                Vida Saudável
-            </a>
-            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
-                <span class="navbar-toggler-icon"></span>
-            </button>
-            <div class="collapse navbar-collapse" id="navbarNav">
-                <ul class="navbar-nav mx-auto">
-                    <li class="nav-item"><a class="nav-link" href="principal.php">Início</a></li>
-                    <li class="nav-item"><a class="nav-link active" href="#">Receitas</a></li>
-                    <li class="nav-item"><a class="nav-link" href="produtos.php">Produtos</a></li>
-                    <li class="nav-item"><a class="nav-link" href="exercicios_git.php">Exercícios</a></li>
-                    <li class="nav-item"><a class="nav-link" href="noticia22.php">Notícias</a></li>
-                    <li class="nav-item"><a class="nav-link" href="login_tcc.php">Entrar</a></li>
-                    <li class="nav-item"><a class="nav-link" href="Cadastro_cliente_git.php">Cadastre-se</a></li>
-                </ul>
+<header class="header bg-light sticky-top border-bottom shadow-sm">
+            <div class="container">
+                <nav class="navbar navbar-expand-lg">
+                    <a class="navbar-brand" href="principal.php">
+                        <img src="img/logo.png" alt="Logo" style="height: 50px; width: auto; object-fit: contain;">
+                        Vida Saudável
+                    </a>
+                    <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+                        <span class="navbar-toggler-icon"></span>
+                    </button>
+                    <div class="collapse navbar-collapse" id="navbarNav">
+                        <ul class="navbar-nav mx-auto"> <!-- Alteração na classe para centralizar os links -->
+                            <li class="nav-item">
+                                <a class="nav-link" href="principal.php">Início</a>
+                            </li>
+                            <li class="nav-item">
+                                <a class="nav-link active" href="receitas.php">Receitas</a>
+                            </li>
+                            <li class="nav-item">
+                                <a class="nav-link" href="produtos.php">Produtos</a>
+                            </li>
+                            <li class="nav-item">
+                                <a class="nav-link" href="exercicios_git.php">Exercícios</a>
+                            </li>
+                            <li class="nav-item">
+                                <a class="nav-link" href="noticia22.php">Notícias</a>
+                            </li>
+                            <?php if (usuarioEstaLogado()): ?>
+                                <li class="nav-item">
+                                    <a class="nav-link" href="logout.php">Sair</a>
+                                </li>
+                            <?php else: ?>
+                                <li class="nav-item">
+                                    <a class="nav-link" href="login_tcc.php">Entrar</a>
+                                </li>
+                                <li class="nav-item">
+                                    <a class="nav-link" href="Cadastro_cliente_git.php">Cadastre-se</a>
+                                </li>
+                            <?php endif; ?>
+                        </ul>
+                    </div>
+                </nav>
             </div>
-        </nav>
-    </div>
-</header>
+        </header>
 
 <div class="container mt-5">
     
