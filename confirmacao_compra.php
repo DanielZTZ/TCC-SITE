@@ -1,3 +1,17 @@
+<?php
+session_start();
+
+// Função para verificar o login e retornar o JSON
+if ($_SERVER['REQUEST_METHOD'] === 'GET' && isset($_GET['action']) && $_GET['action'] === 'verificar_login') {
+    $response = [
+        'logged_in' => isset($_SESSION['usuario_id'])
+    ];
+
+    header('Content-Type: application/json');
+    echo json_encode($response);
+    exit();
+}
+?>
 <!DOCTYPE html>
 <html lang="pt-br">
 <head>
@@ -36,11 +50,19 @@
 
         // Adiciona um evento de clique ao botão de confirmar compra
         document.getElementById('confirm-button').addEventListener('click', function() {
-            <?php if (!isset($_SESSION['usuario_id'])) : ?>
-                window.location.href = 'login_tcc.php';
-            <?php else : ?>
-                document.getElementById('purchase-form').submit();
-            <?php endif; ?>
+            fetch('?action=verificar_login')
+                .then(response => response.json())
+                .then(data => {
+                    if (data.logged_in) {
+                        document.getElementById('purchase-form').submit();
+                    } else {
+                        window.location.href = 'login_tcc.php';
+                    }
+                })
+                .catch(error => {
+                    console.error('Error:', error);
+                    alert('Ocorreu um erro ao verificar o login.');
+                });
         });
     </script>
     <!-- Bootstrap JS and Popper.js -->
@@ -48,4 +70,3 @@
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.1/dist/js/bootstrap.min.js"></script>
 </body>
 </html>
-

@@ -149,21 +149,25 @@ $produtos = filtrarProdutos($conn, $categoria_id, $min_preco, $max_preco, $pagin
                         </div>
                     </div>
 
-                    <div class="row row-cols-1 row-cols-md-3 g-4">
-                        <?php foreach ($produtos as $produto): ?>
-                            <div class="col">
-                                <a href="produto.php?produto_id=<?= $produto['produto_id'] ?>" class="card-link">
-                                    <div class="card rounded-0 border-0">
-                                        <img src="<?= $produto['imagem'] ?>" class="card-img-top rounded-0" alt="...">
-                                        <div class="card-body d-flex flex-column justify-content-center align-items-center">
-                                            <h5 class="card-title"><?= $produto['nome'] ?></h5>
-                                            <h6 class="card-price text-success">R$ <?= number_format($produto['preco'], 2) ?></h6>
-                                            <p class="card-text"><?= $produto['sobre'] ?></p>
+                    <div class="container mt-4">
+                        <div class="row row-cols-1 row-cols-md-3 g-4">
+                            <?php foreach ($produtos as $produto): ?>
+                                <div class="col">
+                                    <a href="produto.php?produto_id=<?= $produto['produto_id'] ?>" class="card-link">
+                                        <div class="card rounded-0 border-0">
+                                            <img src="<?= $produto['imagem'] ?>" class="card-img-top rounded-0" alt="...">
+                                            <div class="card-body d-flex flex-column justify-content-center align-items-center">
+                                                <h5 class="card-title"><?= $produto['nome'] ?></h5>
+                                                <h6 class="card-price text-success">R$ <?= number_format($produto['preco'], 2) ?></h6>
+                                                <div class="scrolling-text">
+                                                    <p class="card-text"><?= $produto['sobre'] ?></p>
+                                                </div>
+                                            </div>
                                         </div>
-                                    </div>
-                                </a>
-                            </div>
-                        <?php endforeach; ?>
+                                    </a>
+                                </div>
+                            <?php endforeach; ?>
+                        </div>
                     </div>
 
                     

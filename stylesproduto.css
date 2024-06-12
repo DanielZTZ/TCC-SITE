@@ -1,13 +1,11 @@
-
 /* Estilizando os links */
 .categoria-link {
-    color: grey; /* Altera a cor do link para azul */
+    color: grey; /* Altera a cor do link para cinza */
     text-decoration: none; /* Remove o sublinhado */
 }
 
-/* Estilizando os links quando o mouse passa sobre eles */
 .categoria-link:hover {
-    color: black /* Altera a cor do link para vermelho quando o mouse passa sobre ele */
+    color: black; /* Altera a cor do link para preto quando o mouse passa sobre ele */
 }
 
 .card-link {
@@ -48,6 +46,30 @@
     box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1); /* Efeito de sombra ao passar o mouse */
 }
 
+/* Animação de rolagem */
+.scrolling-text {
+    width: 100%;
+    overflow: hidden;
+    position: relative;
+    white-space: nowrap;
+}
+
+.scrolling-text p {
+    display: inline-block;
+    animation: scroll-left 65s linear infinite;
+}
+
+@keyframes scroll-left {
+    0% {
+        transform: translateX(0%);
+    }
+    10% {
+        transform: translateX(0%);
+    }
+    100% {
+        transform: translateX(-100%);
+    }
+}
 
 /* Nav Bar */
 .header {
@@ -68,6 +90,7 @@
 .nav-link:hover {
     color: white !important; /* Cor ao passar o mouse */
 }
+
 .nav-link.active {
     font-weight: bold; /* Estilo para indicar a página atual */
     color: #333 !important; /* Cor para indicar a página atual */
@@ -96,9 +119,8 @@
     margin: 0 10px; /* Adiciona espaçamento entre os ícones */
 }
 
-/* Página Produto*/
-
-.preco-produto{
+/* Página Produto */
+.preco-produto {
     font-size: 30px; /* Defina o tamanho da fonte desejado */
     font-weight: bold; /* Opcional: aumenta a espessura da fonte para dar destaque */
 }
@@ -111,10 +133,8 @@
     max-width: 600px; /* Defina a largura máxima desejada */
     width: 100%;
 }
+
 .max-width-container2 {
     max-width: 350px; /* Defina a largura máxima desejada */
     width: 100%;
 }
-
-
-

@@ -240,7 +240,7 @@ $conn->close();
                         </div>
                     </div>
 
-                    <div class="container mt-5">
+                    <div class="container mt-5 bg-light">
                         <div class="row">
                             <div class="col-12">
                                 <h2 class="text-center mb-4">Descrição</h2>
